@@ -1,0 +1,46 @@
+# Documentation mirror of pathclear_taxonomy.py; not a training configuration.
+# IDs are zero-based model IDs, not the one-based list numbering.
+schema_version: 1
+source_of_truth: pathclear_taxonomy.py
+ignore_label: 255
+classes:
+  - id: 0
+    name: Road
+    description: Road surface; not automatically safe to walk on.
+    cityscapes_train_ids: [0]
+  - id: 1
+    name: Sidewalk
+    description: Pedestrian surface; accessibility needs separate assessment.
+    cityscapes_train_ids: [1]
+  - id: 2
+    name: Person
+    description: People and riders under the existing mapping.
+    cityscapes_train_ids: [11, 12]
+  - id: 3
+    name: Vehicle
+    description: Cars, trucks, buses, trains, motorcycles, and bicycles.
+    cityscapes_train_ids: [13, 14, 15, 16, 17, 18]
+  - id: 4
+    name: Boundary
+    description: Walls and fences under the existing mapping.
+    cityscapes_train_ids: [3, 4]
+  - id: 5
+    name: Obstacle
+    description: Poles, traffic lights, and signs; local obstacles need annotation.
+    cityscapes_train_ids: [5, 6, 7]
+  - id: 6
+    name: Vegetation
+    description: Vegetation regions.
+    cityscapes_train_ids: [8]
+  - id: 7
+    name: Stairs
+    description: Stair regions requiring local supervision.
+    cityscapes_train_ids: []
+  - id: 8
+    name: Crosswalk
+    description: Crossing markings requiring local supervision.
+    cityscapes_train_ids: []
+  - id: 9
+    name: Uneven pavement
+    description: Surface defects requiring local supervision.
+    cityscapes_train_ids: []

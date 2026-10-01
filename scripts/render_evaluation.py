@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from PIL import Image
-from evaluate_baseline import OUT,COLORS,NAMES
+from scripts.evaluate_baseline import OUT,COLORS,NAMES
 
 with (OUT/'qualitative_selection.csv').open() as f: rows=list(csv.DictReader(f))
 with (OUT/'per_image_metrics.csv').open() as f: metrics=list(csv.DictReader(f))

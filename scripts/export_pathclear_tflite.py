@@ -17,7 +17,7 @@ from PIL import Image
 import tensorflow as tf
 from tensorflow.lite.python import schema_py_generated as schema
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / 'models/pathclear_cityscapes_epoch16'
 sys.path.insert(0, str(ARCHIVE / 'source'))
 import pathclear_stages  # Registers the archived custom objects.

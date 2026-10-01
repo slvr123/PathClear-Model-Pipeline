@@ -113,15 +113,15 @@ The raw smoke log is saved in `checkpoints/smoke.log`.
 I keep the commands above as the original nineteen-class Cityscapes workflow.
 I do not use `train.py` to train the new ten-class taxonomy.
 I prepared separate remapping, weight-transfer, and loss/metric helpers, tested without optimizer updates or a new checkpoint.
-I describe the results and exact commands in [the ten-class preparation report](docs/PATHCLEAR_10CLASS_PREPARATION.md).
-I will review [the annotation guide](docs/PATHCLEAR_ANNOTATION_GUIDE.md) on a real local pilot before selecting the local preprocessing and training configuration.
+I describe the results and exact commands in [the ten-class preparation report](PATHCLEAR_10CLASS_PREPARATION.md).
+I will review [the annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md) on a real local pilot before selecting the local preprocessing and training configuration.
 I have not implemented a local-data training command or started local training in this preparation stage.
 
 ## Seven-class Cityscapes adaptation, 2026-09-29
 
 After discussing the missing classes, I authorized a separate three-batch smoke check followed by one full Cityscapes epoch if the checks pass.
 I keep the original 19-class baseline and its training command unchanged.
-I use `train_pathclear_cityscapes.py` for this new stage.
+I use `scripts/train_pathclear_cityscapes.py` for this new stage.
 It always runs exactly one epoch; smoke mode contains only three training images and two validation images.
 Full mode uses all 2,975 training images and 500 validation images, at batch size 1.
 Each run starts fresh from the original feature weights and a newly initialized classifier; the smoke model is not resumed into the full run.
@@ -135,8 +135,8 @@ These seven-class scores are not directly comparable to the original 19-class ba
 
 ```powershell
 wsl -d Ubuntu -- bash ./run_wsl.sh -m unittest -v test_pathclear_stages test_pathclear_pipeline test_training_metrics
-wsl -d Ubuntu -- bash ./run_wsl.sh -u train_pathclear_cityscapes.py --mode smoke --output-dir checkpoints/pathclear_10class/cityscapes_smoke_2026-09-29
-wsl -d Ubuntu -- bash ./run_wsl.sh -u train_pathclear_cityscapes.py --mode full --output-dir checkpoints/pathclear_10class/cityscapes_1epoch_2026-09-29
+wsl -d Ubuntu -- bash ./run_wsl.sh -u scripts/train_pathclear_cityscapes.py --mode smoke --output-dir checkpoints/pathclear_10class/cityscapes_smoke_2026-09-29
+wsl -d Ubuntu -- bash ./run_wsl.sh -u scripts/train_pathclear_cityscapes.py --mode full --output-dir checkpoints/pathclear_10class/cityscapes_1epoch_2026-09-29
 ```
 
 I refuse to overwrite a nonempty experiment directory or write inside the original baseline experiment.
@@ -164,19 +164,19 @@ I tested that all three reserved outputs receive gradients after reactivation us
 I still need local annotations for all ten classes and a separately scoped training experiment.
 
 I completed this smoke check and the single full epoch successfully.
-I recorded metrics, per-class results, checkpoint locations, and visual limitations in [the adaptation report](docs/PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
+I recorded metrics, per-class results, checkpoint locations, and visual limitations in [the adaptation report](PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
 
 ## Continuing the saved adaptation model
 
 I subsequently requested ten additional epochs, continuing from epoch 1 through epoch 11.
-I use the separate `continue_pathclear_cityscapes.py` runner to preserve the original one-epoch experiment and its historical scripts.
+I use the separate `scripts/continue_pathclear_cityscapes.py` runner to preserve the original one-epoch experiment and its historical scripts.
 The continuation restores `last.keras` with the saved Adam state, validates its epoch/update counts, and checks that recomputed validation matches the saved result before training.
 I keep batch size 1, Adam at 0.001, frozen features, and seven active output classes.
 The random stream is restarted from the recorded seed, so I do not claim bit-for-bit equivalence to an uninterrupted dropout/shuffle stream.
 
 ```powershell
 wsl -d Ubuntu -- bash ./run_wsl.sh -m unittest -v test_pathclear_continuation test_pathclear_stages test_pathclear_pipeline test_training_metrics
-wsl -d Ubuntu -- bash ./run_wsl.sh -u continue_pathclear_cityscapes.py --resume-from checkpoints/pathclear_10class/cityscapes_1epoch_2026-09-29 --epochs 10 --output-dir checkpoints/pathclear_10class/cityscapes_epochs2_11_2026-09-29
+wsl -d Ubuntu -- bash ./run_wsl.sh -u scripts/continue_pathclear_cityscapes.py --resume-from checkpoints/pathclear_10class/cityscapes_1epoch_2026-09-29 --epochs 10 --output-dir checkpoints/pathclear_10class/cityscapes_epochs2_11_2026-09-29
 ```
 
 Here `--epochs` means additional epochs.
@@ -189,23 +189,23 @@ I can resume a completed epoch from a continuation directory into another new ou
 I keep the three local-only classes inactive until a separately scoped local-data experiment.
 
 I completed the requested continuation through epoch 11, selected epoch 11 as best, and stopped training.
-I recorded the full history, class results, checks, and checkpoint location in [the continuation report](docs/PATHCLEAR_EPOCHS_2_11_2026-09-29.md).
+I recorded the full history, class results, checks, and checkpoint location in [the continuation report](PATHCLEAR_EPOCHS_2_11_2026-09-29.md).
 
 I then explicitly requested five more epochs with the same settings, resuming from epoch 11 through epoch 16.
 I completed this run and stopped at epoch 16, which is the best saved checkpoint at 68.5992% validation mean IoU and 92.6262% pixel accuracy.
 I saved it at `checkpoints/pathclear_10class/cityscapes_epochs12_16_2026-09-29/best.keras`, preserving the earlier experiments.
-I recorded the epoch results, class scores, and verification in [the five-epoch continuation report](docs/PATHCLEAR_EPOCHS_12_16_2026-09-29.md).
+I recorded the epoch results, class scores, and verification in [the five-epoch continuation report](PATHCLEAR_EPOCHS_12_16_2026-09-29.md).
 
 ## My first TFLite integration export
 
 On 2026-09-30, I requested a baseline export to test app integration.
 I exported the preserved epoch-16 adaptation model to float32 TFLite, retaining ten output slots and seven active classes without training or quantization.
-I saved the model and developer handoff in [the TFLite bundle](output/tflite/pathclear_epoch16_float32/README.md).
+I saved the model and developer handoff in [the TFLite bundle](../output/tflite/pathclear_epoch16_float32/README.md).
 I verified prediction agreement against Keras on three Cityscapes images and two synthetic inputs, checked the packaged reference input independently, and preserved the original model hashes.
 I still need to test the app's runtime, preprocessing, performance and live-camera integration on the target phone.
 
 ```powershell
-wsl -d Ubuntu -- bash ./run_wsl.sh -u export_pathclear_tflite.py --output-dir output/tflite/pathclear_epoch16_float32
+wsl -d Ubuntu -- bash ./run_wsl.sh -u scripts/export_pathclear_tflite.py --output-dir output/tflite/pathclear_epoch16_float32
 wsl -d Ubuntu -- bash ./run_wsl.sh output/tflite/pathclear_epoch16_float32/verify_bundle.py
 ```
 

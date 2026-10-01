@@ -15,7 +15,7 @@ from pathclear_pipeline import BASELINE, load_cityscapes_pair, sha256, transfer_
 from pathclear_stages import cityscapes_model, enable_local_classes, GATE_NAME
 from pathclear_taxonomy import CLASS_NAMES, CITYSCAPES_SUPPORTED_IDS
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def write_json(path, value):
@@ -141,7 +141,7 @@ def run(args, output):
               "tensorflow": tf.__version__, "keras": keras.__version__, "devices": [str(gpu) for gpu in gpus],
               "baseline_hashes_before": before_hashes,
               "source_hashes": {name: sha256(ROOT / name) for name in (
-                  "pathclear_stages.py", "pathclear_pipeline.py", "pathclear_taxonomy.py", "train_pathclear_cityscapes.py")}}
+                  "pathclear_stages.py", "pathclear_pipeline.py", "pathclear_taxonomy.py", "scripts/train_pathclear_cityscapes.py")}}
     write_json(output / "config.json", config)
     print(json.dumps(config, indent=2), flush=True)
     raw, transfer = transfer_baseline()

@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 from pathclear_taxonomy import CITYSCAPES_NAMES, CITYSCAPES_TO_PATHCLEAR, CLASS_NAMES
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 OLD = ROOT / "checkpoints/baseline-5epochs"
 NEW = ROOT / "checkpoints/pathclear_10class/cityscapes_epochs2_11_2026-09-29"
 OUT = ROOT / "output/comparisons/cityscapes_baseline_vs_adaptation_2026-09-29"

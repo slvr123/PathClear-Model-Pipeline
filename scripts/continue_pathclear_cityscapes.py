@@ -16,9 +16,9 @@ from dataset_loader import collect_pairs
 from pathclear_pipeline import BASELINE, sha256
 from pathclear_stages import GATE_NAME, enable_local_classes
 from pathclear_taxonomy import CLASS_NAMES
-from train_pathclear_cityscapes import Checks, Tee, confusion_matrix, dataset_for, write_json
+from scripts.train_pathclear_cityscapes import Checks, Tee, confusion_matrix, dataset_for, write_json
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def read_json(path):

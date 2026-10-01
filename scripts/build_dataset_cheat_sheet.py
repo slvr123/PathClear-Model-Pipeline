@@ -161,7 +161,7 @@ checks = [
 for item in checks:
     y = para(item, M, y, W - 2 * M, 'small') - 7
 assert y > 68, ('page 2 overflow', y)
-para('Project references: docs/PATHCLEAR_ANNOTATION_GUIDE.md and LOCAL_DATASET_PLAN.md.<br/>'
+para('Project references: docs/PATHCLEAR_ANNOTATION_GUIDE.md and docs/LOCAL_DATASET_PLAN.md.<br/>'
      'I use these draft rules for the pilot and settle disagreements before large-scale annotation.',
      M, 60, W - 2 * M, 'small')
 footer(2)

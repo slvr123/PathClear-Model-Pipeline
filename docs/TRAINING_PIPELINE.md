@@ -18,18 +18,18 @@ I use `pathclear_taxonomy.py` as the executable source of truth for the ten clas
 `configs/pathclear_classes.yaml` records those same zero-based IDs for the handoff; it is not loaded by the training scripts.
 Cityscapes supports only the first seven PathClear classes.
 Stairs, Crosswalk, and Uneven pavement require reviewed local annotations.
-The existing Cityscapes adaptation experiment is documented in [TRAINING.md](../TRAINING.md) and [the stage report](PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
+The existing Cityscapes adaptation experiment is documented in [TRAINING.md](TRAINING.md) and [the stage report](PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
 I distinguish that experiment from Philippine fine-tuning and local accuracy.
 
 I use `train.py` for the original baseline and the existing PathClear training/continuation scripts for their documented stages.
 I evaluate on held-out data and preserve route/session separation before considering deployment.
-`export_pathclear_tflite.py` and `verify_pathclear_tflite_bundle.py` provide the existing export and verification path.
-I follow their command help and [TRAINING.md](../TRAINING.md), including deployment-bundle checks, rather than treating a successful conversion as device readiness.
+`scripts/export_pathclear_tflite.py` and `scripts/verify_pathclear_tflite_bundle.py` provide the existing export and verification path.
+I follow their command help and [TRAINING.md](TRAINING.md), including deployment-bundle checks, rather than treating a successful conversion as device readiness.
 
 My first infrastructure check from the project directory in WSL is:
 
 ```bash
-bash run_wsl.sh test_pipeline.py
+bash run_wsl.sh tests/test_pipeline.py
 ```
 
 This reads one batch and runs inference with random model weights; it does not evaluate a trained checkpoint or train.

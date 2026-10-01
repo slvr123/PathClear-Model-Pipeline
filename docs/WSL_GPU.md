@@ -8,7 +8,7 @@ I use the separate Linux environment at `/home/asus/venvs/pathclear` through thi
 
 ```bash
 cd /mnt/c/Users/Asus/OneDrive/Desktop/Code/PathClear
-bash run_wsl.sh test_pipeline.py
+bash run_wsl.sh tests/test_pipeline.py
 bash run_wsl.sh -u train.py
 ```
 
@@ -33,4 +33,4 @@ The one-batch training check completed with loss `2.870524`, mIoU `0.016118`, pi
 TensorFlow reported an XLA-compiled CUDA cluster, and an NVIDIA-SMI sample during training showed 36% GPU utilization.
 The detected GPU name is RTX 3050 Ti Laptop GPU with 4 GB VRAM.
 I also checked the Windows loader still imports with its original path and batch size 2.
-File hashes confirmed `fast_scnn.py`, `test_pipeline.py`, and `train.py` stayed unchanged.
+File hashes confirmed `fast_scnn.py`, `tests/test_pipeline.py`, and `train.py` stayed unchanged.

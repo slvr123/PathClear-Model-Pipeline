@@ -17,7 +17,7 @@ from PIL import Image
 import segmentation_metrics  # Register the saved custom metric.
 from dataset_loader import collect_pairs, load_pair, IMAGE_HEIGHT, IMAGE_WIDTH, NUM_CLASSES
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 CHECKPOINT = ROOT / 'checkpoints/baseline-5epochs/best.keras'
 OUT = CHECKPOINT.parent / 'evaluation'
 NAMES = ['road','sidewalk','building','wall','fence','pole','traffic light','traffic sign',

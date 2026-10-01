@@ -7,7 +7,7 @@ I authorized a three-batch smoke test followed by one full epoch if checks pass,
 I will keep the epoch-19 Cityscapes baseline frozen as the reference.
 
 1. **Check my annotation rules on a small pilot.**
-   I use the ten fixed IDs and the draft overlap rules in [the annotation guide](docs/PATHCLEAR_ANNOTATION_GUIDE.md).
+   I use the ten fixed IDs and the draft overlap rules in [the annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md).
 2. **Collect local footage at the intended camera position.**
    I include clear paths, narrow sidewalks, vehicles, pedestrians, barriers, discrete obstacles, vegetation, stairs, crossings, and visibly damaged pavement.
    I include intact pavement, ordinary road markings, shadows, and wet patches as contrasting examples.
@@ -29,28 +29,28 @@ I will start smaller if needed to settle annotation rules, while deliberately fi
 I will include multiple instances and views, not count neighboring frames as independent evidence.
 I will store clips under `datasets/pathclear_pilot/clips/`, selected images under `images/`, and ID masks under `masks/` relative to that pilot folder.
 I can create those folders when I have real files to place in them.
-I will add each selected image to [the empty manifest](datasets/pathclear_pilot/manifest.json), using `mask: null` until its annotation exists.
-I will follow the format and review rules in [the annotation guide](docs/PATHCLEAR_ANNOTATION_GUIDE.md).
+I will add each selected image to [the empty manifest](../datasets/pathclear_pilot/manifest.json), using `mask: null` until its annotation exists.
+I will follow the format and review rules in [the annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md).
 
 ## What is ready now
 
 I have preparation helpers for deterministic Cityscapes remapping, strict baseline weight transfer, and ten-class loss/metrics.
 I have verified these with synthetic tests and one real Cityscapes image without training or saving a new model.
-I recorded the checks, file inventory, and limitations in [the preparation report](docs/PATHCLEAR_10CLASS_PREPARATION.md).
-I subsequently completed the authorized smoke check and one full seven-active-class Cityscapes epoch, with results in [the adaptation report](docs/PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
+I recorded the checks, file inventory, and limitations in [the preparation report](PATHCLEAR_10CLASS_PREPARATION.md).
+I subsequently completed the authorized smoke check and one full seven-active-class Cityscapes epoch, with results in [the adaptation report](PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
 I now have a saved intermediate model while local-only classes remain untrained and disabled.
 The original nineteen-class training and evaluation scripts remain unchanged.
 
 I can check the pilot manifest from WSL with:
 
 ```bash
-bash run_wsl.sh validate_pathclear_pilot.py datasets/pathclear_pilot/manifest.json
+bash run_wsl.sh scripts/validate_pathclear_pilot.py datasets/pathclear_pilot/manifest.json
 ```
 
 I currently have zero entries in the new local manifest.
 The five previously inspected internet photographs remain qualitative examples, not a labeled local dataset or a source of local accuracy, IoU, or Dice.
 After completing the smoke check and one full adaptation epoch, I requested ten additional Cityscapes epochs, continuing through epoch 11 with the same frozen-feature setup described in [the training guide](TRAINING.md).
-I completed those ten epochs and retained epoch 11 as the best intermediate checkpoint; I recorded the results in [the continuation report](docs/PATHCLEAR_EPOCHS_2_11_2026-09-29.md).
+I completed those ten epochs and retained epoch 11 as the best intermediate checkpoint; I recorded the results in [the continuation report](PATHCLEAR_EPOCHS_2_11_2026-09-29.md).
 I subsequently requested and completed five additional epochs with the same settings, stopping at epoch 16 and retaining its best checkpoint.
-The extra run added 0.0403 percentage points of validation mean IoU; I recorded it in [the five-epoch continuation report](docs/PATHCLEAR_EPOCHS_12_16_2026-09-29.md).
+The extra run added 0.0403 percentage points of validation mean IoU; I recorded it in [the five-epoch continuation report](PATHCLEAR_EPOCHS_12_16_2026-09-29.md).
 I have not authorized feature-layer fine-tuning or custom-data training.

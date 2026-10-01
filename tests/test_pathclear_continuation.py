@@ -7,7 +7,7 @@ import keras
 import numpy as np
 import tensorflow as tf
 
-from continue_pathclear_cityscapes import EpochCheckpointer, assert_optimizer_state, read_json
+from scripts.continue_pathclear_cityscapes import EpochCheckpointer, assert_optimizer_state, read_json
 from pathclear_pipeline import sha256
 from pathclear_stages import cityscapes_model
 

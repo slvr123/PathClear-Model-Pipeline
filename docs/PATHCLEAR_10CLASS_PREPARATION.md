@@ -3,7 +3,7 @@
 Date: 2026-09-29.
 Status: preparation and sanity checks complete; local data collection and training remain pending.
 Historical scope: this report describes the preparation stage before any adaptation training.
-Later on 2026-09-29, I authorized a separate seven-active-class Cityscapes experiment, documented in [the training guide](../TRAINING.md).
+Later on 2026-09-29, I authorized a separate seven-active-class Cityscapes experiment, documented in [the training guide](TRAINING.md).
 I subsequently completed that bounded experiment and recorded it in [the adaptation report](PATHCLEAR_CITYSCAPES_STAGE_2026-09-29.md).
 Codex proposed preparing the ten-class pipeline while waiting for reviewed local data; I confirmed that sequence on 2026-09-29.
 I built a temporary ten-class model in memory to verify transfer and inference, then discarded it without saving a model checkpoint.

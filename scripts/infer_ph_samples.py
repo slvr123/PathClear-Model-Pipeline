@@ -10,9 +10,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
-from evaluate_baseline import NAMES, COLORS, digest
+from scripts.evaluate_baseline import NAMES, COLORS, digest
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'checkpoints/baseline-5epochs/ph_samples_2026-09-21'
 CHECKPOINT = ROOT / 'checkpoints/baseline-5epochs/best.keras'
 

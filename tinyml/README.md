@@ -16,7 +16,7 @@ I first review `../configs/pathclear_classes.yaml` and `../docs/DATASET_SETUP.md
 On a machine with the existing WSL environment and external Cityscapes data, my first runnable baseline check is:
 
 ```bash
-bash run_wsl.sh test_pipeline.py
+bash run_wsl.sh tests/test_pipeline.py
 ```
 
 I run it from the repository root, not from this folder.

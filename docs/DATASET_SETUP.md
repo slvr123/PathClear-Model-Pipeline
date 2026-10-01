@@ -32,14 +32,14 @@ $env:CITYSCAPES_ROOT = 'C:/datasets/cityscapes'
 
 ```bash
 export CITYSCAPES_ROOT=/mnt/c/datasets/cityscapes
-bash run_wsl.sh test_pipeline.py
+bash run_wsl.sh tests/test_pipeline.py
 ```
 
 I use that command for one real batch and a forward pass, without training or checkpoint writes.
 The existing WSL Python environment is a local prerequisite and is not included in Git.
-I follow [WSL_GPU.md](../WSL_GPU.md) for its setup.
-`inspect_cityscapes.py` remains a Windows-specific visual diagnostic with a hardcoded example image.
+I follow [WSL_GPU.md](WSL_GPU.md) for its setup.
+`scripts/inspect_cityscapes.py` remains a Windows-specific visual diagnostic with a hardcoded example image.
 
 For Philippine data, I keep the root configurable through the existing pilot manifest/path arguments rather than adding a machine-specific path to source code.
-I follow [LOCAL_DATASET_PLAN.md](../LOCAL_DATASET_PLAN.md) and the [annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md), preserving route/session splits.
+I follow [LOCAL_DATASET_PLAN.md](LOCAL_DATASET_PLAN.md) and the [annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md), preserving route/session splits.
 I keep local manifests and images outside version control and share reviewed data separately under the applicable dataset permissions.

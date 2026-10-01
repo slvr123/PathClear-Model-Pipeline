@@ -7,8 +7,8 @@ This expands LOCAL_DATASET_PLAN.md without replacing its six-step sequence.
 Creating this plan does not start training, change labels, or finalize hardware.
 
 Update, 2026-09-29: I supplied a ten-class taxonomy and confirmed preparing its pipeline without training until a labeled local pilot is available.
-I keep this roadmap's original proposals below for context; my current label definitions and collection sequence are in [the annotation guide](docs/PATHCLEAR_ANNOTATION_GUIDE.md) and [local dataset plan](LOCAL_DATASET_PLAN.md).
-I recorded the completed preparation checks in [the preparation report](docs/PATHCLEAR_10CLASS_PREPARATION.md).
+I keep this roadmap's original proposals below for context; my current label definitions and collection sequence are in [the annotation guide](PATHCLEAR_ANNOTATION_GUIDE.md) and [local dataset plan](LOCAL_DATASET_PLAN.md).
+I recorded the completed preparation checks in [the preparation report](PATHCLEAR_10CLASS_PREPARATION.md).
 
 ## Intended behavior
 

@@ -1,7 +1,7 @@
 """Build the evaluation report from saved counts; no model execution."""
 import csv,json
 from pathlib import Path
-p=Path(__file__).resolve().parent/'checkpoints/baseline-5epochs/evaluation'
+p=Path(__file__).resolve().parents[1]/'checkpoints/baseline-5epochs/evaluation'
 with (p/'per_class_metrics.csv').open() as f: classes=list(csv.DictReader(f))
 with (p/'confusion_pairs_by_count.csv').open() as f: counts=list(csv.DictReader(f))
 with (p/'confusion_pairs_by_rate.csv').open() as f: rates=list(csv.DictReader(f))

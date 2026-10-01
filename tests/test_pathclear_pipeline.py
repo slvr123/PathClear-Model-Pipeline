@@ -12,7 +12,7 @@ import tensorflow as tf
 from pathclear_pipeline import make_loss, prepare_targets, remap_cityscapes_tensor
 from pathclear_taxonomy import remap_cityscapes_train_ids, colorize
 from segmentation_metrics import make_metrics
-from validate_pathclear_pilot import validate_manifest
+from scripts.validate_pathclear_pilot import validate_manifest
 
 
 class MappingTests(unittest.TestCase):

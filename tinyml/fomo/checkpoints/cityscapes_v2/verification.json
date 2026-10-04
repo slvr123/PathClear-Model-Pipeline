@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-04",
+  "model_sha256": "c1758ffe2ae920c808290a10e8835539a6b1f21e26e734e31954b0188ff51e6e",
+  "fresh_evaluation": "tinyml/fomo/artifacts/frozen-v2-verification-20261004/report.json",
+  "images": 500,
+  "exact_original_counts_reproduced": true,
+  "probability_arrays_bitwise_identical": true,
+  "size_recall_reproduced": true,
+  "uncapped_micro": {
+    "tp": 3860,
+    "fp": 1509,
+    "fn": 6259,
+    "ignored": 1072,
+    "precision": 0.7189420748742783,
+    "recall": 0.38146061863820535,
+    "f1": 0.4984504132231405
+  },
+  "per_class": {
+    "person": {
+      "tp": 1286,
+      "fp": 599,
+      "fn": 2652,
+      "ignored": 608,
+      "precision": 0.6822281167108754,
+      "recall": 0.3265617064499746,
+      "f1": 0.44169671990382964
+    },
+    "vehicle": {
+      "tp": 2574,
+      "fp": 910,
+      "fn": 3607,
+      "ignored": 464,
+      "precision": 0.7388059701492538,
+      "recall": 0.41643746966510276,
+      "f1": 0.5326435592343508
+    }
+  },
+  "ge8": {
+    "total": 2194,
+    "matched": 1378,
+    "recall": 0.6280765724703737
+  },
+  "inference_cli_passed": true,
+  "inference_example_detections": 5,
+  "fomo_regression_tests": {
+    "passed": 47,
+    "runner": "python -B -m unittest discover -s tinyml/fomo -p test_*.py"
+  },
+  "repository_regression_tests": {
+    "passed": 23,
+    "runner": "unittest discovery in tests/ with scripts/ on sys.path",
+    "note": "pytest unavailable in existing environment; all existing unittest cases passed through their native runner"
+  },
+  "preservation": {
+    "all_prior_artifacts_sha256_unchanged": 539,
+    "tracked_files_sha256_unchanged": 56,
+    "dataset_images_and_masks_size_mtime_unchanged": 6950,
+    "raw_dataset_hashes_reread": false,
+    "dataset_manifests_and_caches_sha256_unchanged": true
+  },
+  "retrained": false,
+  "independent_footage_evaluated": false,
+  "embedded_hardware_verified": false
+}

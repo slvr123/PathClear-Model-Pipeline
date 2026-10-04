@@ -1,0 +1,6626 @@
+[
+  {
+    "threshold": 0.2,
+    "micro": {
+      "tp": 6569,
+      "fp": 7580,
+      "fn": 3550,
+      "ignored": 5954,
+      "precision": 0.4642730935048413,
+      "recall": 0.6491748196462102,
+      "f1": 0.5413713532223504
+    },
+    "per_class": {
+      "person": {
+        "tp": 2510,
+        "fp": 3352,
+        "fn": 1428,
+        "ignored": 3330,
+        "precision": 0.4281815080177414,
+        "recall": 0.6373793803961402,
+        "f1": 0.5122448979591837
+      },
+      "vehicle": {
+        "tp": 4059,
+        "fp": 4228,
+        "fn": 2122,
+        "ignored": 2624,
+        "precision": 0.48980330638349223,
+        "recall": 0.6566898560103543,
+        "f1": 0.5611003594138789
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 779,
+            "recall": 0.48657089319175517
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 499,
+            "recall": 0.4676663542642924
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1752,
+        "recall": 0.5959183673469388,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 878,
+            "recall": 0.6727969348659004
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 874,
+            "recall": 0.5345565749235474
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1648,
+        "recall": 0.7112645662494606,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 606,
+            "recall": 0.7994722955145118
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1042,
+            "recall": 0.6683771648492624
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1177,
+        "recall": 0.8449389806173726,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 217,
+            "recall": 0.9004149377593361
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 960,
+            "recall": 0.8333333333333334
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 714,
+        "recall": 0.8913857677902621,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 684,
+            "recall": 0.890625
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3400,
+        "recall": 0.646756705345254
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1891,
+        "recall": 0.8618960802187785
+      }
+    }
+  },
+  {
+    "threshold": 0.25,
+    "micro": {
+      "tp": 6569,
+      "fp": 7580,
+      "fn": 3550,
+      "ignored": 5954,
+      "precision": 0.4642730935048413,
+      "recall": 0.6491748196462102,
+      "f1": 0.5413713532223504
+    },
+    "per_class": {
+      "person": {
+        "tp": 2510,
+        "fp": 3352,
+        "fn": 1428,
+        "ignored": 3330,
+        "precision": 0.4281815080177414,
+        "recall": 0.6373793803961402,
+        "f1": 0.5122448979591837
+      },
+      "vehicle": {
+        "tp": 4059,
+        "fp": 4228,
+        "fn": 2122,
+        "ignored": 2624,
+        "precision": 0.48980330638349223,
+        "recall": 0.6566898560103543,
+        "f1": 0.5611003594138789
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 779,
+            "recall": 0.48657089319175517
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 499,
+            "recall": 0.4676663542642924
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1752,
+        "recall": 0.5959183673469388,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 878,
+            "recall": 0.6727969348659004
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 874,
+            "recall": 0.5345565749235474
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1648,
+        "recall": 0.7112645662494606,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 606,
+            "recall": 0.7994722955145118
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1042,
+            "recall": 0.6683771648492624
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1177,
+        "recall": 0.8449389806173726,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 217,
+            "recall": 0.9004149377593361
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 960,
+            "recall": 0.8333333333333334
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 714,
+        "recall": 0.8913857677902621,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 684,
+            "recall": 0.890625
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3400,
+        "recall": 0.646756705345254
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1891,
+        "recall": 0.8618960802187785
+      }
+    }
+  },
+  {
+    "threshold": 0.3,
+    "micro": {
+      "tp": 6569,
+      "fp": 7580,
+      "fn": 3550,
+      "ignored": 5954,
+      "precision": 0.4642730935048413,
+      "recall": 0.6491748196462102,
+      "f1": 0.5413713532223504
+    },
+    "per_class": {
+      "person": {
+        "tp": 2510,
+        "fp": 3352,
+        "fn": 1428,
+        "ignored": 3330,
+        "precision": 0.4281815080177414,
+        "recall": 0.6373793803961402,
+        "f1": 0.5122448979591837
+      },
+      "vehicle": {
+        "tp": 4059,
+        "fp": 4228,
+        "fn": 2122,
+        "ignored": 2624,
+        "precision": 0.48980330638349223,
+        "recall": 0.6566898560103543,
+        "f1": 0.5611003594138789
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 779,
+            "recall": 0.48657089319175517
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 499,
+            "recall": 0.4676663542642924
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1752,
+        "recall": 0.5959183673469388,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 878,
+            "recall": 0.6727969348659004
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 874,
+            "recall": 0.5345565749235474
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1648,
+        "recall": 0.7112645662494606,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 606,
+            "recall": 0.7994722955145118
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1042,
+            "recall": 0.6683771648492624
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1177,
+        "recall": 0.8449389806173726,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 217,
+            "recall": 0.9004149377593361
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 960,
+            "recall": 0.8333333333333334
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 714,
+        "recall": 0.8913857677902621,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 684,
+            "recall": 0.890625
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3400,
+        "recall": 0.646756705345254
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1891,
+        "recall": 0.8618960802187785
+      }
+    }
+  },
+  {
+    "threshold": 0.35,
+    "micro": {
+      "tp": 6569,
+      "fp": 7574,
+      "fn": 3550,
+      "ignored": 5952,
+      "precision": 0.46447005585802165,
+      "recall": 0.6491748196462102,
+      "f1": 0.5415052345231226
+    },
+    "per_class": {
+      "person": {
+        "tp": 2510,
+        "fp": 3346,
+        "fn": 1428,
+        "ignored": 3328,
+        "precision": 0.428620218579235,
+        "recall": 0.6373793803961402,
+        "f1": 0.5125587094139269
+      },
+      "vehicle": {
+        "tp": 4059,
+        "fp": 4228,
+        "fn": 2122,
+        "ignored": 2624,
+        "precision": 0.48980330638349223,
+        "recall": 0.6566898560103543,
+        "f1": 0.5611003594138789
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 779,
+            "recall": 0.48657089319175517
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 499,
+            "recall": 0.4676663542642924
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1752,
+        "recall": 0.5959183673469388,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 878,
+            "recall": 0.6727969348659004
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 874,
+            "recall": 0.5345565749235474
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1648,
+        "recall": 0.7112645662494606,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 606,
+            "recall": 0.7994722955145118
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1042,
+            "recall": 0.6683771648492624
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1177,
+        "recall": 0.8449389806173726,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 217,
+            "recall": 0.9004149377593361
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 960,
+            "recall": 0.8333333333333334
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 714,
+        "recall": 0.8913857677902621,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 684,
+            "recall": 0.890625
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1278,
+        "recall": 0.4790104947526237
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3400,
+        "recall": 0.646756705345254
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1891,
+        "recall": 0.8618960802187785
+      }
+    }
+  },
+  {
+    "threshold": 0.4,
+    "micro": {
+      "tp": 6521,
+      "fp": 7365,
+      "fn": 3598,
+      "ignored": 5783,
+      "precision": 0.46960967881319315,
+      "recall": 0.644431267911849,
+      "f1": 0.5433034784419912
+    },
+    "per_class": {
+      "person": {
+        "tp": 2477,
+        "fp": 3208,
+        "fn": 1461,
+        "ignored": 3223,
+        "precision": 0.4357080035180299,
+        "recall": 0.6289994921279838,
+        "f1": 0.5148082718486958
+      },
+      "vehicle": {
+        "tp": 4044,
+        "fp": 4157,
+        "fn": 2137,
+        "ignored": 2560,
+        "precision": 0.4931105962687477,
+        "recall": 0.6542630642290892,
+        "f1": 0.5623696287025448
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1254,
+        "recall": 0.4700149925037481,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 756,
+            "recall": 0.4722048719550281
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 498,
+            "recall": 0.46672914714151825
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1741,
+        "recall": 0.5921768707482993,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 872,
+            "recall": 0.668199233716475
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 869,
+            "recall": 0.5314984709480123
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1638,
+        "recall": 0.7069486404833837,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 604,
+            "recall": 0.7968337730870713
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1034,
+            "recall": 0.6632456703014753
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1174,
+        "recall": 0.8427853553481695,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 215,
+            "recall": 0.8921161825726142
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 959,
+            "recall": 0.8324652777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 714,
+        "recall": 0.8913857677902621,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 684,
+            "recall": 0.890625
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1254,
+        "recall": 0.4700149925037481
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3379,
+        "recall": 0.642762031576945
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1888,
+        "recall": 0.8605287146763901
+      }
+    }
+  },
+  {
+    "threshold": 0.45,
+    "micro": {
+      "tp": 6386,
+      "fp": 6867,
+      "fn": 3733,
+      "ignored": 5348,
+      "precision": 0.4818531653210594,
+      "recall": 0.6310900286589584,
+      "f1": 0.5464658565805237
+    },
+    "per_class": {
+      "person": {
+        "tp": 2407,
+        "fp": 2943,
+        "fn": 1531,
+        "ignored": 2977,
+        "precision": 0.4499065420560748,
+        "recall": 0.6112239715591671,
+        "f1": 0.518303186907838
+      },
+      "vehicle": {
+        "tp": 3979,
+        "fp": 3924,
+        "fn": 2202,
+        "ignored": 2371,
+        "precision": 0.5034796912564848,
+        "recall": 0.6437469665102734,
+        "f1": 0.5650383413802897
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1203,
+        "recall": 0.45089955022488754,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 717,
+            "recall": 0.4478450968144909
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 486,
+            "recall": 0.4554826616682287
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1701,
+        "recall": 0.5785714285714286,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 854,
+            "recall": 0.6544061302681993
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 847,
+            "recall": 0.5180428134556575
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1616,
+        "recall": 0.6974536037980147,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 597,
+            "recall": 0.787598944591029
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1019,
+            "recall": 0.6536241180243746
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1157,
+        "recall": 0.8305814788226848,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 209,
+            "recall": 0.8672199170124482
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 948,
+            "recall": 0.8229166666666666
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 709,
+        "recall": 0.885143570536829,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 30,
+            "recall": 0.9090909090909091
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 679,
+            "recall": 0.8841145833333334
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1203,
+        "recall": 0.45089955022488754
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3317,
+        "recall": 0.6309682328324139
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1866,
+        "recall": 0.8505013673655424
+      }
+    }
+  },
+  {
+    "threshold": 0.5,
+    "micro": {
+      "tp": 6120,
+      "fp": 6068,
+      "fn": 3999,
+      "ignored": 4587,
+      "precision": 0.5021332458155563,
+      "recall": 0.6048028461310406,
+      "f1": 0.5487066840005379
+    },
+    "per_class": {
+      "person": {
+        "tp": 2280,
+        "fp": 2499,
+        "fn": 1658,
+        "ignored": 2547,
+        "precision": 0.4770872567482737,
+        "recall": 0.5789740985271712,
+        "f1": 0.5231157508317081
+      },
+      "vehicle": {
+        "tp": 3840,
+        "fp": 3569,
+        "fn": 2341,
+        "ignored": 2040,
+        "precision": 0.518288567957889,
+        "recall": 0.6212586960038828,
+        "f1": 0.565121412803532
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1109,
+        "recall": 0.4156671664167916,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 652,
+            "recall": 0.40724547158026236
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 457,
+            "recall": 0.42830365510777885
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1610,
+        "recall": 0.5476190476190477,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 816,
+            "recall": 0.6252873563218391
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 794,
+            "recall": 0.4856269113149847
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1567,
+        "recall": 0.6763055675442382,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 577,
+            "recall": 0.7612137203166227
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 990,
+            "recall": 0.6350224502886466
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1134,
+        "recall": 0.8140703517587939,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 206,
+            "recall": 0.8547717842323651
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 928,
+            "recall": 0.8055555555555556
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 700,
+        "recall": 0.8739076154806492,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 671,
+            "recall": 0.8736979166666666
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1109,
+        "recall": 0.4156671664167916
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3177,
+        "recall": 0.6043370743770211
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1834,
+        "recall": 0.8359161349134002
+      }
+    }
+  },
+  {
+    "threshold": 0.55,
+    "micro": {
+      "tp": 5718,
+      "fp": 5004,
+      "fn": 4401,
+      "ignored": 3688,
+      "precision": 0.5332960268606604,
+      "recall": 0.5650756003557664,
+      "f1": 0.5487260688066792
+    },
+    "per_class": {
+      "person": {
+        "tp": 2113,
+        "fp": 2003,
+        "fn": 1825,
+        "ignored": 2062,
+        "precision": 0.5133624878522838,
+        "recall": 0.5365667851701371,
+        "f1": 0.5247082195182518
+      },
+      "vehicle": {
+        "tp": 3605,
+        "fp": 3001,
+        "fn": 2576,
+        "ignored": 1626,
+        "precision": 0.5457160157432637,
+        "recall": 0.5832389580973952,
+        "f1": 0.5638539141315398
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 994,
+        "recall": 0.37256371814092953,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 579,
+            "recall": 0.36164896939412866
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 415,
+            "recall": 0.3889409559512652
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1479,
+        "recall": 0.503061224489796,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 754,
+            "recall": 0.5777777777777777
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 725,
+            "recall": 0.4434250764525994
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1465,
+        "recall": 0.6322831247302546,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 551,
+            "recall": 0.7269129287598944
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 914,
+            "recall": 0.5862732520846696
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1096,
+        "recall": 0.7867910983488873,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 201,
+            "recall": 0.8340248962655602
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 895,
+            "recall": 0.7769097222222222
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 684,
+        "recall": 0.8539325842696629,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 656,
+            "recall": 0.8541666666666666
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 994,
+        "recall": 0.37256371814092953
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2944,
+        "recall": 0.5600152178048317
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1780,
+        "recall": 0.8113035551504102
+      }
+    }
+  },
+  {
+    "threshold": 0.6,
+    "micro": {
+      "tp": 5312,
+      "fp": 4092,
+      "fn": 4807,
+      "ignored": 2925,
+      "precision": 0.5648660144619311,
+      "recall": 0.5249530586026288,
+      "f1": 0.5441786610664344
+    },
+    "per_class": {
+      "person": {
+        "tp": 1936,
+        "fp": 1603,
+        "fn": 2002,
+        "ignored": 1657,
+        "precision": 0.5470471884713196,
+        "recall": 0.49162011173184356,
+        "f1": 0.5178547545807142
+      },
+      "vehicle": {
+        "tp": 3376,
+        "fp": 2489,
+        "fn": 2805,
+        "ignored": 1268,
+        "precision": 0.575618073316283,
+        "recall": 0.5461899369034137,
+        "f1": 0.5605180142785987
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 884,
+        "recall": 0.3313343328335832,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 507,
+            "recall": 0.31667707682698315
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 377,
+            "recall": 0.35332708528584816
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1345,
+        "recall": 0.4574829931972789,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 686,
+            "recall": 0.5256704980842912
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 659,
+            "recall": 0.40305810397553515
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1367,
+        "recall": 0.5899870522227018,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 520,
+            "recall": 0.6860158311345647
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 847,
+            "recall": 0.5432969852469531
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1053,
+        "recall": 0.7559224694903087,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 196,
+            "recall": 0.8132780082987552
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 857,
+            "recall": 0.7439236111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 663,
+        "recall": 0.8277153558052435,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 27,
+            "recall": 0.8181818181818182
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 636,
+            "recall": 0.828125
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 884,
+        "recall": 0.3313343328335832
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2712,
+        "recall": 0.5158835837930379
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1716,
+        "recall": 0.7821330902461258
+      }
+    }
+  },
+  {
+    "threshold": 0.65,
+    "micro": {
+      "tp": 4856,
+      "fp": 3270,
+      "fn": 5263,
+      "ignored": 2250,
+      "precision": 0.5975879891705637,
+      "recall": 0.47988931712619826,
+      "f1": 0.5323102219786243
+    },
+    "per_class": {
+      "person": {
+        "tp": 1750,
+        "fp": 1226,
+        "fn": 2188,
+        "ignored": 1281,
+        "precision": 0.5880376344086021,
+        "recall": 0.44438801422041646,
+        "f1": 0.506219265258895
+      },
+      "vehicle": {
+        "tp": 3106,
+        "fp": 2044,
+        "fn": 3075,
+        "ignored": 969,
+        "precision": 0.6031067961165049,
+        "recall": 0.5025076848406407,
+        "f1": 0.5482305180478334
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 752,
+        "recall": 0.2818590704647676,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 424,
+            "recall": 0.26483447845096814
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 328,
+            "recall": 0.30740393626991563
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1219,
+        "recall": 0.41462585034013605,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 627,
+            "recall": 0.4804597701149425
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 592,
+            "recall": 0.3620795107033639
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1261,
+        "recall": 0.5442382391022874,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 489,
+            "recall": 0.6451187335092349
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 772,
+            "recall": 0.49518922386144965
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 995,
+        "recall": 0.7142857142857143,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 185,
+            "recall": 0.7676348547717843
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 810,
+            "recall": 0.703125
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 629,
+        "recall": 0.7852684144818977,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 25,
+            "recall": 0.7575757575757576
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 604,
+            "recall": 0.7864583333333334
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 752,
+        "recall": 0.2818590704647676
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2480,
+        "recall": 0.4717519497812441
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1624,
+        "recall": 0.740200546946217
+      }
+    }
+  },
+  {
+    "threshold": 0.7,
+    "micro": {
+      "tp": 4395,
+      "fp": 2562,
+      "fn": 5724,
+      "ignored": 1674,
+      "precision": 0.6317378180250108,
+      "recall": 0.43433145567743847,
+      "f1": 0.5147575544624033
+    },
+    "per_class": {
+      "person": {
+        "tp": 1553,
+        "fp": 920,
+        "fn": 2385,
+        "ignored": 938,
+        "precision": 0.627982207844723,
+        "recall": 0.39436262061960387,
+        "f1": 0.4844798003431602
+      },
+      "vehicle": {
+        "tp": 2842,
+        "fp": 1642,
+        "fn": 3339,
+        "ignored": 736,
+        "precision": 0.6338090990187333,
+        "recall": 0.45979614949037373,
+        "f1": 0.5329582747304267
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 649,
+        "recall": 0.24325337331334332,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 364,
+            "recall": 0.2273579013116802
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 285,
+            "recall": 0.26710402999062793
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1072,
+        "recall": 0.36462585034013606,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 543,
+            "recall": 0.4160919540229885
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 529,
+            "recall": 0.3235474006116208
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1145,
+        "recall": 0.4941735002157963,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 446,
+            "recall": 0.5883905013192612
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 699,
+            "recall": 0.4483643361128929
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 936,
+        "recall": 0.6719310839913855,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 177,
+            "recall": 0.7344398340248963
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 759,
+            "recall": 0.6588541666666666
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 593,
+        "recall": 0.7403245942571786,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 23,
+            "recall": 0.696969696969697
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 570,
+            "recall": 0.7421875
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 649,
+        "recall": 0.24325337331334332
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2217,
+        "recall": 0.4217234163971847
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1529,
+        "recall": 0.6969006381039198
+      }
+    }
+  },
+  {
+    "threshold": 0.75,
+    "micro": {
+      "tp": 3925,
+      "fp": 1913,
+      "fn": 6194,
+      "ignored": 1208,
+      "precision": 0.6723192874272012,
+      "recall": 0.38788417827848604,
+      "f1": 0.4919471078523532
+    },
+    "per_class": {
+      "person": {
+        "tp": 1352,
+        "fp": 650,
+        "fn": 2586,
+        "ignored": 664,
+        "precision": 0.6753246753246753,
+        "recall": 0.34332148298628745,
+        "f1": 0.45521885521885525
+      },
+      "vehicle": {
+        "tp": 2573,
+        "fp": 1263,
+        "fn": 3608,
+        "ignored": 544,
+        "precision": 0.6707507820646507,
+        "recall": 0.41627568354635175,
+        "f1": 0.5137266646700609
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 542,
+        "recall": 0.20314842578710646,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 294,
+            "recall": 0.18363522798251092
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 248,
+            "recall": 0.232427366447985
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 950,
+        "recall": 0.3231292517006803,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 480,
+            "recall": 0.367816091954023
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 470,
+            "recall": 0.2874617737003058
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1016,
+        "recall": 0.4384980578334053,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 399,
+            "recall": 0.5263852242744064
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 617,
+            "recall": 0.3957665169980757
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 862,
+        "recall": 0.618808327351041,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 160,
+            "recall": 0.6639004149377593
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 702,
+            "recall": 0.609375
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 555,
+        "recall": 0.6928838951310862,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 19,
+            "recall": 0.5757575757575758
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 536,
+            "recall": 0.6979166666666666
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 542,
+        "recall": 0.20314842578710646
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1966,
+        "recall": 0.37397755373787334
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1417,
+        "recall": 0.645852324521422
+      }
+    }
+  },
+  {
+    "threshold": 0.8,
+    "micro": {
+      "tp": 3391,
+      "fp": 1313,
+      "fn": 6728,
+      "ignored": 762,
+      "precision": 0.720875850340136,
+      "recall": 0.33511216523371873,
+      "f1": 0.45753221345206774
+    },
+    "per_class": {
+      "person": {
+        "tp": 1130,
+        "fp": 425,
+        "fn": 2808,
+        "ignored": 419,
+        "precision": 0.7266881028938906,
+        "recall": 0.28694768918232605,
+        "f1": 0.4114327325687238
+      },
+      "vehicle": {
+        "tp": 2261,
+        "fp": 888,
+        "fn": 3920,
+        "ignored": 343,
+        "precision": 0.7180057161003494,
+        "recall": 0.36579841449603623,
+        "f1": 0.4846730975348339
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 434,
+        "recall": 0.16266866566716642,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 230,
+            "recall": 0.14366021236727045
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 204,
+            "recall": 0.19119025304592316
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 784,
+        "recall": 0.26666666666666666,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 391,
+            "recall": 0.2996168582375479
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 393,
+            "recall": 0.24036697247706423
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 872,
+        "recall": 0.376348726801899,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 347,
+            "recall": 0.4577836411609499
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 525,
+            "recall": 0.3367543296985247
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 788,
+        "recall": 0.5656855707106964,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 144,
+            "recall": 0.5975103734439834
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 644,
+            "recall": 0.5590277777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 513,
+        "recall": 0.6404494382022472,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 18,
+            "recall": 0.5454545454545454
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 495,
+            "recall": 0.64453125
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 434,
+        "recall": 0.16266866566716642
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1656,
+        "recall": 0.3150085600152178
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1301,
+        "recall": 0.5929808568824065
+      }
+    }
+  },
+  {
+    "threshold": 0.85,
+    "micro": {
+      "tp": 2682,
+      "fp": 782,
+      "fn": 7437,
+      "ignored": 424,
+      "precision": 0.7742494226327945,
+      "recall": 0.26504595315742663,
+      "f1": 0.3949053964514467
+    },
+    "per_class": {
+      "person": {
+        "tp": 811,
+        "fp": 241,
+        "fn": 3127,
+        "ignored": 233,
+        "precision": 0.7709125475285171,
+        "recall": 0.20594210259014728,
+        "f1": 0.3250501002004008
+      },
+      "vehicle": {
+        "tp": 1871,
+        "fp": 541,
+        "fn": 4310,
+        "ignored": 191,
+        "precision": 0.7757048092868989,
+        "recall": 0.3027018281831419,
+        "f1": 0.4354707319911556
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 299,
+        "recall": 0.11206896551724138,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 145,
+            "recall": 0.0905683947532792
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 154,
+            "recall": 0.14432989690721648
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 574,
+        "recall": 0.19523809523809524,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 274,
+            "recall": 0.2099616858237548
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 300,
+            "recall": 0.1834862385321101
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 692,
+        "recall": 0.2986620630125162,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 278,
+            "recall": 0.36675461741424803
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 414,
+            "recall": 0.2655548428479795
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 673,
+        "recall": 0.48312993539124194,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 101,
+            "recall": 0.4190871369294606
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 572,
+            "recall": 0.4965277777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 444,
+        "recall": 0.5543071161048689,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 13,
+            "recall": 0.3939393939393939
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 431,
+            "recall": 0.5611979166666666
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 299,
+        "recall": 0.11206896551724138
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1266,
+        "recall": 0.24082176146090925
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1117,
+        "recall": 0.5091157702825889
+      }
+    }
+  },
+  {
+    "threshold": 0.9,
+    "micro": {
+      "tp": 1949,
+      "fp": 347,
+      "fn": 8170,
+      "ignored": 190,
+      "precision": 0.8488675958188153,
+      "recall": 0.19260796521395396,
+      "f1": 0.3139750302053967
+    },
+    "per_class": {
+      "person": {
+        "tp": 529,
+        "fp": 98,
+        "fn": 3409,
+        "ignored": 98,
+        "precision": 0.8437001594896332,
+        "recall": 0.13433214829862875,
+        "f1": 0.23176341730558597
+      },
+      "vehicle": {
+        "tp": 1420,
+        "fp": 249,
+        "fn": 4761,
+        "ignored": 92,
+        "precision": 0.8508088675853804,
+        "recall": 0.22973628862643586,
+        "f1": 0.36178343949044584
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 181,
+        "recall": 0.06784107946026986,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 84,
+            "recall": 0.05246720799500312
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 97,
+            "recall": 0.09090909090909091
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 385,
+        "recall": 0.13095238095238096,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 184,
+            "recall": 0.1409961685823755
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 201,
+            "recall": 0.12293577981651377
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 491,
+        "recall": 0.21191195511437202,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 187,
+            "recall": 0.24670184696569922
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 304,
+            "recall": 0.19499679281590762
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 562,
+        "recall": 0.40344580043072503,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 66,
+            "recall": 0.27385892116182575
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 496,
+            "recall": 0.4305555555555556
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 330,
+        "recall": 0.41198501872659177,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 8,
+            "recall": 0.24242424242424243
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 322,
+            "recall": 0.4192708333333333
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 181,
+        "recall": 0.06784107946026986
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 876,
+        "recall": 0.16663496290660074
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 892,
+        "recall": 0.406563354603464
+      }
+    }
+  },
+  {
+    "threshold": 0.95,
+    "micro": {
+      "tp": 965,
+      "fp": 66,
+      "fn": 9154,
+      "ignored": 45,
+      "precision": 0.9359844810863239,
+      "recall": 0.09536515465955134,
+      "f1": 0.17309417040358743
+    },
+    "per_class": {
+      "person": {
+        "tp": 186,
+        "fp": 9,
+        "fn": 3752,
+        "ignored": 20,
+        "precision": 0.9538461538461539,
+        "recall": 0.047232097511427124,
+        "f1": 0.09000725864989112
+      },
+      "vehicle": {
+        "tp": 779,
+        "fp": 57,
+        "fn": 5402,
+        "ignored": 25,
+        "precision": 0.9318181818181818,
+        "recall": 0.12603138650703768,
+        "f1": 0.22203220749608094
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 59,
+        "recall": 0.022113943028485756,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 22,
+            "recall": 0.013741411617738912
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 37,
+            "recall": 0.03467666354264293
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 154,
+        "recall": 0.05238095238095238,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 62,
+            "recall": 0.0475095785440613
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 92,
+            "recall": 0.056269113149847096
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 229,
+        "recall": 0.09883470004315925,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 79,
+            "recall": 0.10422163588390501
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 150,
+            "recall": 0.09621552277100706
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 340,
+        "recall": 0.2440775305096913,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 22,
+            "recall": 0.0912863070539419
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 318,
+            "recall": 0.2760416666666667
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 183,
+        "recall": 0.22846441947565543,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 1,
+            "recall": 0.030303030303030304
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 182,
+            "recall": 0.23697916666666666
+          }
+        }
+      }
+    },
+    "experiment": "baseline_v1",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 59,
+        "recall": 0.022113943028485756
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 383,
+        "recall": 0.0728552406315389
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 523,
+        "recall": 0.23837739288969917
+      }
+    }
+  },
+  {
+    "threshold": 0.2,
+    "micro": {
+      "tp": 6223,
+      "fp": 5484,
+      "fn": 3896,
+      "ignored": 4514,
+      "precision": 0.531562313145981,
+      "recall": 0.6149817175610238,
+      "f1": 0.5702373316228352
+    },
+    "per_class": {
+      "person": {
+        "tp": 2300,
+        "fp": 2478,
+        "fn": 1638,
+        "ignored": 2521,
+        "precision": 0.48137295939723734,
+        "recall": 0.5840528186896902,
+        "f1": 0.5277650298301974
+      },
+      "vehicle": {
+        "tp": 3923,
+        "fp": 3006,
+        "fn": 2258,
+        "ignored": 1993,
+        "precision": 0.5661711646702265,
+        "recall": 0.6346869438602168,
+        "f1": 0.5984744469870328
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 675,
+            "recall": 0.4216114928169894
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 468,
+            "recall": 0.4386129334582943
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1652,
+        "recall": 0.5619047619047619,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 807,
+            "recall": 0.6183908045977011
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 845,
+            "recall": 0.5168195718654435
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1592,
+        "recall": 0.6870953819594303,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 578,
+            "recall": 0.762532981530343
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1014,
+            "recall": 0.6504169339320077
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1163,
+        "recall": 0.8348887293610912,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 211,
+            "recall": 0.8755186721991701
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 952,
+            "recall": 0.8263888888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 673,
+        "recall": 0.8401997503121099,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 644,
+            "recall": 0.8385416666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3244,
+        "recall": 0.6170819859235306
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1836,
+        "recall": 0.8368277119416591
+      }
+    }
+  },
+  {
+    "threshold": 0.25,
+    "micro": {
+      "tp": 6223,
+      "fp": 5484,
+      "fn": 3896,
+      "ignored": 4514,
+      "precision": 0.531562313145981,
+      "recall": 0.6149817175610238,
+      "f1": 0.5702373316228352
+    },
+    "per_class": {
+      "person": {
+        "tp": 2300,
+        "fp": 2478,
+        "fn": 1638,
+        "ignored": 2521,
+        "precision": 0.48137295939723734,
+        "recall": 0.5840528186896902,
+        "f1": 0.5277650298301974
+      },
+      "vehicle": {
+        "tp": 3923,
+        "fp": 3006,
+        "fn": 2258,
+        "ignored": 1993,
+        "precision": 0.5661711646702265,
+        "recall": 0.6346869438602168,
+        "f1": 0.5984744469870328
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 675,
+            "recall": 0.4216114928169894
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 468,
+            "recall": 0.4386129334582943
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1652,
+        "recall": 0.5619047619047619,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 807,
+            "recall": 0.6183908045977011
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 845,
+            "recall": 0.5168195718654435
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1592,
+        "recall": 0.6870953819594303,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 578,
+            "recall": 0.762532981530343
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1014,
+            "recall": 0.6504169339320077
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1163,
+        "recall": 0.8348887293610912,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 211,
+            "recall": 0.8755186721991701
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 952,
+            "recall": 0.8263888888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 673,
+        "recall": 0.8401997503121099,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 644,
+            "recall": 0.8385416666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3244,
+        "recall": 0.6170819859235306
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1836,
+        "recall": 0.8368277119416591
+      }
+    }
+  },
+  {
+    "threshold": 0.3,
+    "micro": {
+      "tp": 6223,
+      "fp": 5484,
+      "fn": 3896,
+      "ignored": 4514,
+      "precision": 0.531562313145981,
+      "recall": 0.6149817175610238,
+      "f1": 0.5702373316228352
+    },
+    "per_class": {
+      "person": {
+        "tp": 2300,
+        "fp": 2478,
+        "fn": 1638,
+        "ignored": 2521,
+        "precision": 0.48137295939723734,
+        "recall": 0.5840528186896902,
+        "f1": 0.5277650298301974
+      },
+      "vehicle": {
+        "tp": 3923,
+        "fp": 3006,
+        "fn": 2258,
+        "ignored": 1993,
+        "precision": 0.5661711646702265,
+        "recall": 0.6346869438602168,
+        "f1": 0.5984744469870328
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 675,
+            "recall": 0.4216114928169894
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 468,
+            "recall": 0.4386129334582943
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1652,
+        "recall": 0.5619047619047619,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 807,
+            "recall": 0.6183908045977011
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 845,
+            "recall": 0.5168195718654435
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1592,
+        "recall": 0.6870953819594303,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 578,
+            "recall": 0.762532981530343
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1014,
+            "recall": 0.6504169339320077
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1163,
+        "recall": 0.8348887293610912,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 211,
+            "recall": 0.8755186721991701
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 952,
+            "recall": 0.8263888888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 673,
+        "recall": 0.8401997503121099,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 644,
+            "recall": 0.8385416666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1143,
+        "recall": 0.42841079460269865
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3244,
+        "recall": 0.6170819859235306
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1836,
+        "recall": 0.8368277119416591
+      }
+    }
+  },
+  {
+    "threshold": 0.35,
+    "micro": {
+      "tp": 6221,
+      "fp": 5481,
+      "fn": 3898,
+      "ignored": 4512,
+      "precision": 0.5316185267475645,
+      "recall": 0.6147840695720921,
+      "f1": 0.5701846844782549
+    },
+    "per_class": {
+      "person": {
+        "tp": 2298,
+        "fp": 2475,
+        "fn": 1640,
+        "ignored": 2519,
+        "precision": 0.48145820238843495,
+        "recall": 0.5835449466734383,
+        "f1": 0.5276087705200322
+      },
+      "vehicle": {
+        "tp": 3923,
+        "fp": 3006,
+        "fn": 2258,
+        "ignored": 1993,
+        "precision": 0.5661711646702265,
+        "recall": 0.6346869438602168,
+        "f1": 0.5984744469870328
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1141,
+        "recall": 0.42766116941529236,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 673,
+            "recall": 0.4203622735790131
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 468,
+            "recall": 0.4386129334582943
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1652,
+        "recall": 0.5619047619047619,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 807,
+            "recall": 0.6183908045977011
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 845,
+            "recall": 0.5168195718654435
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1592,
+        "recall": 0.6870953819594303,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 578,
+            "recall": 0.762532981530343
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1014,
+            "recall": 0.6504169339320077
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1163,
+        "recall": 0.8348887293610912,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 211,
+            "recall": 0.8755186721991701
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 952,
+            "recall": 0.8263888888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 673,
+        "recall": 0.8401997503121099,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 644,
+            "recall": 0.8385416666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1141,
+        "recall": 0.42766116941529236
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3244,
+        "recall": 0.6170819859235306
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1836,
+        "recall": 0.8368277119416591
+      }
+    }
+  },
+  {
+    "threshold": 0.4,
+    "micro": {
+      "tp": 6145,
+      "fp": 5273,
+      "fn": 3974,
+      "ignored": 4342,
+      "precision": 0.5381853214223157,
+      "recall": 0.6072734459926871,
+      "f1": 0.5706458652551423
+    },
+    "per_class": {
+      "person": {
+        "tp": 2259,
+        "fp": 2358,
+        "fn": 1679,
+        "ignored": 2431,
+        "precision": 0.48927875243664715,
+        "recall": 0.5736414423565261,
+        "f1": 0.5281122150789013
+      },
+      "vehicle": {
+        "tp": 3886,
+        "fp": 2915,
+        "fn": 2295,
+        "ignored": 1911,
+        "precision": 0.5713865607998824,
+        "recall": 0.6287008574664293,
+        "f1": 0.5986750885841935
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1114,
+        "recall": 0.41754122938530736,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 652,
+            "recall": 0.40724547158026236
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 462,
+            "recall": 0.4329896907216495
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1630,
+        "recall": 0.5544217687074829,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 796,
+            "recall": 0.6099616858237548
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 834,
+            "recall": 0.5100917431192661
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1576,
+        "recall": 0.6801899007337073,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 573,
+            "recall": 0.7559366754617414
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1003,
+            "recall": 0.6433611289288005
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1156,
+        "recall": 0.8298636037329504,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 209,
+            "recall": 0.8672199170124482
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 947,
+            "recall": 0.8220486111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 669,
+        "recall": 0.8352059925093633,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 640,
+            "recall": 0.8333333333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1114,
+        "recall": 0.41754122938530736
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3206,
+        "recall": 0.6098535286284953
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1825,
+        "recall": 0.8318140382862352
+      }
+    }
+  },
+  {
+    "threshold": 0.45,
+    "micro": {
+      "tp": 5952,
+      "fp": 4847,
+      "fn": 4167,
+      "ignored": 3919,
+      "precision": 0.5511621446430225,
+      "recall": 0.5882004150607768,
+      "f1": 0.5690792618797208
+    },
+    "per_class": {
+      "person": {
+        "tp": 2160,
+        "fp": 2121,
+        "fn": 1778,
+        "ignored": 2203,
+        "precision": 0.5045550105115627,
+        "recall": 0.5485017775520569,
+        "f1": 0.5256113882467454
+      },
+      "vehicle": {
+        "tp": 3792,
+        "fp": 2726,
+        "fn": 2389,
+        "ignored": 1716,
+        "precision": 0.5817735501687634,
+        "recall": 0.6134929623038343,
+        "f1": 0.5972123789274746
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1044,
+        "recall": 0.391304347826087,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 597,
+            "recall": 0.37289194253591507
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 447,
+            "recall": 0.4189315838800375
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1565,
+        "recall": 0.532312925170068,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 764,
+            "recall": 0.5854406130268199
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 801,
+            "recall": 0.48990825688073397
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1543,
+        "recall": 0.6659473457056538,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 568,
+            "recall": 0.7493403693931399
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 975,
+            "recall": 0.6254008980115459
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1137,
+        "recall": 0.8162239770279971,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 203,
+            "recall": 0.8423236514522822
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 934,
+            "recall": 0.8107638888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 663,
+        "recall": 0.8277153558052435,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 635,
+            "recall": 0.8268229166666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1044,
+        "recall": 0.391304347826087
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3108,
+        "recall": 0.5912117177097204
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1800,
+        "recall": 0.8204193254329991
+      }
+    }
+  },
+  {
+    "threshold": 0.5,
+    "micro": {
+      "tp": 5623,
+      "fp": 4246,
+      "fn": 4496,
+      "ignored": 3272,
+      "precision": 0.5697639071841119,
+      "recall": 0.5556873208815101,
+      "f1": 0.5626375825495297
+    },
+    "per_class": {
+      "person": {
+        "tp": 2014,
+        "fp": 1787,
+        "fn": 1924,
+        "ignored": 1833,
+        "precision": 0.5298605630097343,
+        "recall": 0.5114271203656678,
+        "f1": 0.5204806822586897
+      },
+      "vehicle": {
+        "tp": 3609,
+        "fp": 2459,
+        "fn": 2572,
+        "ignored": 1439,
+        "precision": 0.5947593935398814,
+        "recall": 0.5838861025723993,
+        "f1": 0.5892725936811168
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 945,
+        "recall": 0.35419790104947524,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 531,
+            "recall": 0.3316677076826983
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 414,
+            "recall": 0.3880037488284911
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1465,
+        "recall": 0.49829931972789115,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 720,
+            "recall": 0.5517241379310345
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 745,
+            "recall": 0.45565749235474007
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1465,
+        "recall": 0.6322831247302546,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 538,
+            "recall": 0.7097625329815304
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 927,
+            "recall": 0.5946119307248237
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1098,
+        "recall": 0.7882268485283561,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 197,
+            "recall": 0.8174273858921162
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 901,
+            "recall": 0.7821180555555556
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 650,
+        "recall": 0.8114856429463171,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 622,
+            "recall": 0.8098958333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 945,
+        "recall": 0.35419790104947524
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2930,
+        "recall": 0.5573521019592924
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1748,
+        "recall": 0.796718322698268
+      }
+    }
+  },
+  {
+    "threshold": 0.55,
+    "micro": {
+      "tp": 5233,
+      "fp": 3425,
+      "fn": 4886,
+      "ignored": 2576,
+      "precision": 0.6044121044121045,
+      "recall": 0.5171459630398261,
+      "f1": 0.5573840336581989
+    },
+    "per_class": {
+      "person": {
+        "tp": 1848,
+        "fp": 1413,
+        "fn": 2090,
+        "ignored": 1444,
+        "precision": 0.5666973321067157,
+        "recall": 0.4692737430167598,
+        "f1": 0.5134046395332685
+      },
+      "vehicle": {
+        "tp": 3385,
+        "fp": 2012,
+        "fn": 2796,
+        "ignored": 1132,
+        "precision": 0.6272002964609968,
+        "recall": 0.5476460119721728,
+        "f1": 0.5847296596994299
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 832,
+        "recall": 0.3118440779610195,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 462,
+            "recall": 0.28856964397251716
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 370,
+            "recall": 0.3467666354264292
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1340,
+        "recall": 0.4557823129251701,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 658,
+            "recall": 0.5042145593869731
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 682,
+            "recall": 0.41712538226299695
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1377,
+        "recall": 0.5943029779887786,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 512,
+            "recall": 0.6754617414248021
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 865,
+            "recall": 0.554842847979474
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1053,
+        "recall": 0.7559224694903087,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 190,
+            "recall": 0.7883817427385892
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 863,
+            "recall": 0.7491319444444444
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 631,
+        "recall": 0.787765293383271,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 26,
+            "recall": 0.7878787878787878
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 605,
+            "recall": 0.7877604166666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 832,
+        "recall": 0.3118440779610195
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2717,
+        "recall": 0.5168346965950161
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1684,
+        "recall": 0.7675478577939836
+      }
+    }
+  },
+  {
+    "threshold": 0.6,
+    "micro": {
+      "tp": 4796,
+      "fp": 2676,
+      "fn": 5323,
+      "ignored": 1981,
+      "precision": 0.6418629550321199,
+      "recall": 0.47395987745824686,
+      "f1": 0.5452788357682906
+    },
+    "per_class": {
+      "person": {
+        "tp": 1660,
+        "fp": 1093,
+        "fn": 2278,
+        "ignored": 1102,
+        "precision": 0.6029785688339993,
+        "recall": 0.4215337734890808,
+        "f1": 0.49618891047675984
+      },
+      "vehicle": {
+        "tp": 3136,
+        "fp": 1583,
+        "fn": 3045,
+        "ignored": 879,
+        "precision": 0.6645475736384827,
+        "recall": 0.507361268403171,
+        "f1": 0.5754128440366972
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 737,
+        "recall": 0.2762368815592204,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 401,
+            "recall": 0.2504684572142411
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 336,
+            "recall": 0.3149015932521087
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1195,
+        "recall": 0.4064625850340136,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 583,
+            "recall": 0.4467432950191571
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 612,
+            "recall": 0.3743119266055046
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1264,
+        "recall": 0.5455330168321105,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 473,
+            "recall": 0.6240105540897097
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 791,
+            "recall": 0.5073765234124439
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 994,
+        "recall": 0.7135678391959799,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 181,
+            "recall": 0.7510373443983402
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 813,
+            "recall": 0.7057291666666666
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 606,
+        "recall": 0.7565543071161048,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 22,
+            "recall": 0.6666666666666666
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 584,
+            "recall": 0.7604166666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 737,
+        "recall": 0.2762368815592204
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2459,
+        "recall": 0.46775727601293515
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1600,
+        "recall": 0.7292616226071102
+      }
+    }
+  },
+  {
+    "threshold": 0.65,
+    "micro": {
+      "tp": 4355,
+      "fp": 2057,
+      "fn": 5764,
+      "ignored": 1468,
+      "precision": 0.679195258889582,
+      "recall": 0.4303784958988042,
+      "f1": 0.5268888754461315
+    },
+    "per_class": {
+      "person": {
+        "tp": 1484,
+        "fp": 821,
+        "fn": 2454,
+        "ignored": 809,
+        "precision": 0.6438177874186551,
+        "recall": 0.37684103605891317,
+        "f1": 0.4754124619573923
+      },
+      "vehicle": {
+        "tp": 2871,
+        "fp": 1236,
+        "fn": 3310,
+        "ignored": 659,
+        "precision": 0.6990504017531045,
+        "recall": 0.4644879469341531,
+        "f1": 0.5581259720062208
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 638,
+        "recall": 0.2391304347826087,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 339,
+            "recall": 0.21174266083697688
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 299,
+            "recall": 0.2802249297094658
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1062,
+        "recall": 0.36122448979591837,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 520,
+            "recall": 0.39846743295019155
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 542,
+            "recall": 0.3314984709480122
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1151,
+        "recall": 0.4967630556754424,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 440,
+            "recall": 0.5804749340369393
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 711,
+            "recall": 0.45606157793457347
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 928,
+        "recall": 0.6661880832735104,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 165,
+            "recall": 0.6846473029045643
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 763,
+            "recall": 0.6623263888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 576,
+        "recall": 0.7191011235955056,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 20,
+            "recall": 0.6060606060606061
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 556,
+            "recall": 0.7239583333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 638,
+        "recall": 0.2391304347826087
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2213,
+        "recall": 0.42096252615560203
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1504,
+        "recall": 0.6855059252506837
+      }
+    }
+  },
+  {
+    "threshold": 0.7,
+    "micro": {
+      "tp": 3860,
+      "fp": 1509,
+      "fn": 6259,
+      "ignored": 1072,
+      "precision": 0.7189420748742783,
+      "recall": 0.38146061863820535,
+      "f1": 0.4984504132231405
+    },
+    "per_class": {
+      "person": {
+        "tp": 1286,
+        "fp": 599,
+        "fn": 2652,
+        "ignored": 608,
+        "precision": 0.6822281167108754,
+        "recall": 0.3265617064499746,
+        "f1": 0.44169671990382964
+      },
+      "vehicle": {
+        "tp": 2574,
+        "fp": 910,
+        "fn": 3607,
+        "ignored": 464,
+        "precision": 0.7388059701492538,
+        "recall": 0.41643746966510276,
+        "f1": 0.5326435592343508
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 542,
+        "recall": 0.20314842578710646,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 276,
+            "recall": 0.17239225484072454
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 266,
+            "recall": 0.2492970946579194
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 915,
+        "recall": 0.3112244897959184,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 449,
+            "recall": 0.34406130268199236
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 466,
+            "recall": 0.2850152905198777
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1025,
+        "recall": 0.4423823910228744,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 394,
+            "recall": 0.5197889182058048
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 631,
+            "recall": 0.404746632456703
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 858,
+        "recall": 0.6159368269921034,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 148,
+            "recall": 0.6141078838174274
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 710,
+            "recall": 0.6163194444444444
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 520,
+        "recall": 0.6491885143570537,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 19,
+            "recall": 0.5757575757575758
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 501,
+            "recall": 0.65234375
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 542,
+        "recall": 0.20314842578710646
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1940,
+        "recall": 0.36903176716758607
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1378,
+        "recall": 0.6280765724703737
+      }
+    }
+  },
+  {
+    "threshold": 0.75,
+    "micro": {
+      "tp": 3345,
+      "fp": 1080,
+      "fn": 6774,
+      "ignored": 724,
+      "precision": 0.7559322033898305,
+      "recall": 0.3305662614882894,
+      "f1": 0.459983498349835
+    },
+    "per_class": {
+      "person": {
+        "tp": 1098,
+        "fp": 437,
+        "fn": 2840,
+        "ignored": 414,
+        "precision": 0.7153094462540717,
+        "recall": 0.27882173692229556,
+        "f1": 0.40124246300018274
+      },
+      "vehicle": {
+        "tp": 2247,
+        "fp": 643,
+        "fn": 3934,
+        "ignored": 310,
+        "precision": 0.7775086505190312,
+        "recall": 0.3635334088335221,
+        "f1": 0.49542498070775
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 422,
+        "recall": 0.15817091454272864,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 219,
+            "recall": 0.136789506558401
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 203,
+            "recall": 0.190253045923149
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 777,
+        "recall": 0.2642857142857143,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 377,
+            "recall": 0.28888888888888886
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 400,
+            "recall": 0.24464831804281345
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 901,
+        "recall": 0.3888649115235218,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 352,
+            "recall": 0.46437994722955145
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 549,
+            "recall": 0.3521488133418858
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 779,
+        "recall": 0.5592246949030869,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 132,
+            "recall": 0.5477178423236515
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 647,
+            "recall": 0.5616319444444444
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 466,
+        "recall": 0.581772784019975,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 18,
+            "recall": 0.5454545454545454
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 448,
+            "recall": 0.5833333333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 422,
+        "recall": 0.15817091454272864
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1678,
+        "recall": 0.3191934563439224
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1245,
+        "recall": 0.5674567000911577
+      }
+    }
+  },
+  {
+    "threshold": 0.8,
+    "micro": {
+      "tp": 2751,
+      "fp": 650,
+      "fn": 7368,
+      "ignored": 446,
+      "precision": 0.8088797412525728,
+      "recall": 0.27186480877557073,
+      "f1": 0.4069526627218935
+    },
+    "per_class": {
+      "person": {
+        "tp": 852,
+        "fp": 260,
+        "fn": 3086,
+        "ignored": 256,
+        "precision": 0.7661870503597122,
+        "recall": 0.21635347892331133,
+        "f1": 0.33742574257425745
+      },
+      "vehicle": {
+        "tp": 1899,
+        "fp": 390,
+        "fn": 4282,
+        "ignored": 190,
+        "precision": 0.8296199213630406,
+        "recall": 0.3072318395081702,
+        "f1": 0.4484061393152302
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 319,
+        "recall": 0.11956521739130435,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 155,
+            "recall": 0.09681449094316052
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 164,
+            "recall": 0.15370196813495782
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 615,
+        "recall": 0.20918367346938777,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 295,
+            "recall": 0.2260536398467433
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 320,
+            "recall": 0.19571865443425077
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 724,
+        "recall": 0.312473025463962,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 287,
+            "recall": 0.3786279683377309
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 437,
+            "recall": 0.28030788967286724
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 694,
+        "recall": 0.49820531227566406,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 104,
+            "recall": 0.4315352697095436
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 590,
+            "recall": 0.5121527777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 399,
+        "recall": 0.49812734082397003,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 11,
+            "recall": 0.3333333333333333
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 388,
+            "recall": 0.5052083333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 319,
+        "recall": 0.11956521739130435
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1339,
+        "recall": 0.2547080083697927
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1093,
+        "recall": 0.4981768459434822
+      }
+    }
+  },
+  {
+    "threshold": 0.85,
+    "micro": {
+      "tp": 2091,
+      "fp": 325,
+      "fn": 8028,
+      "ignored": 238,
+      "precision": 0.8654801324503312,
+      "recall": 0.20664097242810556,
+      "f1": 0.3336258476266454
+    },
+    "per_class": {
+      "person": {
+        "tp": 606,
+        "fp": 124,
+        "fn": 3332,
+        "ignored": 130,
+        "precision": 0.8301369863013699,
+        "recall": 0.15388522092432708,
+        "f1": 0.2596401028277635
+      },
+      "vehicle": {
+        "tp": 1485,
+        "fp": 201,
+        "fn": 4696,
+        "ignored": 108,
+        "precision": 0.8807829181494662,
+        "recall": 0.2402523863452516,
+        "f1": 0.3775263760010169
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 223,
+        "recall": 0.0835832083958021,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 106,
+            "recall": 0.06620861961274203
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 117,
+            "recall": 0.10965323336457357
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 433,
+        "recall": 0.14727891156462586,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 208,
+            "recall": 0.15938697318007664
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 225,
+            "recall": 0.13761467889908258
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 560,
+        "recall": 0.24169184290030213,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 210,
+            "recall": 0.2770448548812665
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 350,
+            "recall": 0.22450288646568314
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 572,
+        "recall": 0.4106245513280689,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 72,
+            "recall": 0.2987551867219917
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 500,
+            "recall": 0.4340277777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 303,
+        "recall": 0.3782771535580524,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 10,
+            "recall": 0.30303030303030304
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 293,
+            "recall": 0.3815104166666667
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 223,
+        "recall": 0.0835832083958021
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 993,
+        "recall": 0.18889100247289328
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 875,
+        "recall": 0.39881494986326343
+      }
+    }
+  },
+  {
+    "threshold": 0.9,
+    "micro": {
+      "tp": 1380,
+      "fp": 114,
+      "fn": 8739,
+      "ignored": 83,
+      "precision": 0.9236947791164659,
+      "recall": 0.13637711236288172,
+      "f1": 0.2376646861276156
+    },
+    "per_class": {
+      "person": {
+        "tp": 347,
+        "fp": 34,
+        "fn": 3591,
+        "ignored": 45,
+        "precision": 0.910761154855643,
+        "recall": 0.08811579481970544,
+        "f1": 0.16068534382959018
+      },
+      "vehicle": {
+        "tp": 1033,
+        "fp": 80,
+        "fn": 5148,
+        "ignored": 38,
+        "precision": 0.9281221922731356,
+        "recall": 0.16712506066979455,
+        "f1": 0.2832465039758706
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 115,
+        "recall": 0.04310344827586207,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 47,
+            "recall": 0.029356652092442224
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 68,
+            "recall": 0.06373008434864105
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 264,
+        "recall": 0.08979591836734693,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 121,
+            "recall": 0.09272030651340996
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 143,
+            "recall": 0.0874617737003058
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 366,
+        "recall": 0.15796288303841174,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 136,
+            "recall": 0.17941952506596306
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 230,
+            "recall": 0.14753046824887747
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 434,
+        "recall": 0.31155778894472363,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 38,
+            "recall": 0.15767634854771784
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 396,
+            "recall": 0.34375
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 201,
+        "recall": 0.250936329588015,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 5,
+            "recall": 0.15151515151515152
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 196,
+            "recall": 0.2552083333333333
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 115,
+        "recall": 0.04310344827586207
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 630,
+        "recall": 0.11984021304926765
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 635,
+        "recall": 0.2894257064721969
+      }
+    }
+  },
+  {
+    "threshold": 0.95,
+    "micro": {
+      "tp": 590,
+      "fp": 18,
+      "fn": 9529,
+      "ignored": 12,
+      "precision": 0.9703947368421053,
+      "recall": 0.05830615673485522,
+      "f1": 0.11000279668127155
+    },
+    "per_class": {
+      "person": {
+        "tp": 86,
+        "fp": 0,
+        "fn": 3852,
+        "ignored": 2,
+        "precision": 1.0,
+        "recall": 0.021838496698831894,
+        "f1": 0.042743538767395624
+      },
+      "vehicle": {
+        "tp": 504,
+        "fp": 18,
+        "fn": 5677,
+        "ignored": 10,
+        "precision": 0.9655172413793104,
+        "recall": 0.08154020385050963,
+        "f1": 0.1503804266746233
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 32,
+        "recall": 0.01199400299850075,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 13,
+            "recall": 0.008119925046845722
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 19,
+            "recall": 0.01780693533270853
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 80,
+        "recall": 0.027210884353741496,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 29,
+            "recall": 0.022222222222222223
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 51,
+            "recall": 0.031192660550458717
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 138,
+        "recall": 0.059559775571860166,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 36,
+            "recall": 0.047493403693931395
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 102,
+            "recall": 0.0654265554842848
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 252,
+        "recall": 0.18090452261306533,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 7,
+            "recall": 0.029045643153526972
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 245,
+            "recall": 0.2126736111111111
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 88,
+        "recall": 0.10986267166042447,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 1,
+            "recall": 0.030303030303030304
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 87,
+            "recall": 0.11328125
+          }
+        }
+      }
+    },
+    "experiment": "weight10",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 32,
+        "recall": 0.01199400299850075
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 218,
+        "recall": 0.04146851816625452
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 340,
+        "recall": 0.15496809480401094
+      }
+    }
+  },
+  {
+    "threshold": 0.2,
+    "micro": {
+      "tp": 6778,
+      "fp": 9048,
+      "fn": 3341,
+      "ignored": 6920,
+      "precision": 0.42828257298117023,
+      "recall": 0.6698290344895741,
+      "f1": 0.5224898824436307
+    },
+    "per_class": {
+      "person": {
+        "tp": 2484,
+        "fp": 3419,
+        "fn": 1454,
+        "ignored": 3465,
+        "precision": 0.4208029815348128,
+        "recall": 0.6307770441848655,
+        "f1": 0.5048267452494665
+      },
+      "vehicle": {
+        "tp": 4294,
+        "fp": 5629,
+        "fn": 1887,
+        "ignored": 3455,
+        "precision": 0.4327320366824549,
+        "recall": 0.694709593916842,
+        "f1": 0.5332836562344759
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 770,
+            "recall": 0.48094940662086194
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 529,
+            "recall": 0.4957825679475164
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1811,
+        "recall": 0.6159863945578231,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 867,
+            "recall": 0.664367816091954
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 944,
+            "recall": 0.5773700305810398
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1723,
+        "recall": 0.7436340094950367,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 603,
+            "recall": 0.7955145118733509
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1120,
+            "recall": 0.718409236690186
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1212,
+        "recall": 0.8700646087580761,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 215,
+            "recall": 0.8921161825726142
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 997,
+            "recall": 0.8654513888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 733,
+        "recall": 0.9151061173533084,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 704,
+            "recall": 0.9166666666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3534,
+        "recall": 0.6722465284382728
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1945,
+        "recall": 0.8865086599817684
+      }
+    }
+  },
+  {
+    "threshold": 0.25,
+    "micro": {
+      "tp": 6778,
+      "fp": 9048,
+      "fn": 3341,
+      "ignored": 6920,
+      "precision": 0.42828257298117023,
+      "recall": 0.6698290344895741,
+      "f1": 0.5224898824436307
+    },
+    "per_class": {
+      "person": {
+        "tp": 2484,
+        "fp": 3419,
+        "fn": 1454,
+        "ignored": 3465,
+        "precision": 0.4208029815348128,
+        "recall": 0.6307770441848655,
+        "f1": 0.5048267452494665
+      },
+      "vehicle": {
+        "tp": 4294,
+        "fp": 5629,
+        "fn": 1887,
+        "ignored": 3455,
+        "precision": 0.4327320366824549,
+        "recall": 0.694709593916842,
+        "f1": 0.5332836562344759
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 770,
+            "recall": 0.48094940662086194
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 529,
+            "recall": 0.4957825679475164
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1811,
+        "recall": 0.6159863945578231,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 867,
+            "recall": 0.664367816091954
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 944,
+            "recall": 0.5773700305810398
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1723,
+        "recall": 0.7436340094950367,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 603,
+            "recall": 0.7955145118733509
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1120,
+            "recall": 0.718409236690186
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1212,
+        "recall": 0.8700646087580761,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 215,
+            "recall": 0.8921161825726142
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 997,
+            "recall": 0.8654513888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 733,
+        "recall": 0.9151061173533084,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 704,
+            "recall": 0.9166666666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3534,
+        "recall": 0.6722465284382728
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1945,
+        "recall": 0.8865086599817684
+      }
+    }
+  },
+  {
+    "threshold": 0.3,
+    "micro": {
+      "tp": 6778,
+      "fp": 9048,
+      "fn": 3341,
+      "ignored": 6920,
+      "precision": 0.42828257298117023,
+      "recall": 0.6698290344895741,
+      "f1": 0.5224898824436307
+    },
+    "per_class": {
+      "person": {
+        "tp": 2484,
+        "fp": 3419,
+        "fn": 1454,
+        "ignored": 3465,
+        "precision": 0.4208029815348128,
+        "recall": 0.6307770441848655,
+        "f1": 0.5048267452494665
+      },
+      "vehicle": {
+        "tp": 4294,
+        "fp": 5629,
+        "fn": 1887,
+        "ignored": 3455,
+        "precision": 0.4327320366824549,
+        "recall": 0.694709593916842,
+        "f1": 0.5332836562344759
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 770,
+            "recall": 0.48094940662086194
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 529,
+            "recall": 0.4957825679475164
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1811,
+        "recall": 0.6159863945578231,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 867,
+            "recall": 0.664367816091954
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 944,
+            "recall": 0.5773700305810398
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1723,
+        "recall": 0.7436340094950367,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 603,
+            "recall": 0.7955145118733509
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1120,
+            "recall": 0.718409236690186
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1212,
+        "recall": 0.8700646087580761,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 215,
+            "recall": 0.8921161825726142
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 997,
+            "recall": 0.8654513888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 733,
+        "recall": 0.9151061173533084,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 704,
+            "recall": 0.9166666666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1299,
+        "recall": 0.4868815592203898
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3534,
+        "recall": 0.6722465284382728
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1945,
+        "recall": 0.8865086599817684
+      }
+    }
+  },
+  {
+    "threshold": 0.35,
+    "micro": {
+      "tp": 6776,
+      "fp": 9044,
+      "fn": 3343,
+      "ignored": 6915,
+      "precision": 0.4283185840707965,
+      "recall": 0.6696313865006424,
+      "f1": 0.5224565326342573
+    },
+    "per_class": {
+      "person": {
+        "tp": 2482,
+        "fp": 3415,
+        "fn": 1456,
+        "ignored": 3460,
+        "precision": 0.4208919789723588,
+        "recall": 0.6302691721686136,
+        "f1": 0.5047280122013218
+      },
+      "vehicle": {
+        "tp": 4294,
+        "fp": 5629,
+        "fn": 1887,
+        "ignored": 3455,
+        "precision": 0.4327320366824549,
+        "recall": 0.694709593916842,
+        "f1": 0.5332836562344759
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1297,
+        "recall": 0.4861319340329835,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 768,
+            "recall": 0.4797001873828857
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 529,
+            "recall": 0.4957825679475164
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1811,
+        "recall": 0.6159863945578231,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 867,
+            "recall": 0.664367816091954
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 944,
+            "recall": 0.5773700305810398
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1723,
+        "recall": 0.7436340094950367,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 603,
+            "recall": 0.7955145118733509
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1120,
+            "recall": 0.718409236690186
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1212,
+        "recall": 0.8700646087580761,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 215,
+            "recall": 0.8921161825726142
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 997,
+            "recall": 0.8654513888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 733,
+        "recall": 0.9151061173533084,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 704,
+            "recall": 0.9166666666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1297,
+        "recall": 0.4861319340329835
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3534,
+        "recall": 0.6722465284382728
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1945,
+        "recall": 0.8865086599817684
+      }
+    }
+  },
+  {
+    "threshold": 0.4,
+    "micro": {
+      "tp": 6743,
+      "fp": 8827,
+      "fn": 3376,
+      "ignored": 6738,
+      "precision": 0.4330764290301863,
+      "recall": 0.6663701946832691,
+      "f1": 0.5249717778037293
+    },
+    "per_class": {
+      "person": {
+        "tp": 2465,
+        "fp": 3283,
+        "fn": 1473,
+        "ignored": 3352,
+        "precision": 0.4288448155880306,
+        "recall": 0.6259522600304723,
+        "f1": 0.5089820359281437
+      },
+      "vehicle": {
+        "tp": 4278,
+        "fp": 5544,
+        "fn": 1903,
+        "ignored": 3386,
+        "precision": 0.43555284056200366,
+        "recall": 0.6921210160168257,
+        "f1": 0.5346497531712804
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1286,
+        "recall": 0.48200899550224885,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 759,
+            "recall": 0.4740787008119925
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 527,
+            "recall": 0.4939081537019681
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1798,
+        "recall": 0.6115646258503401,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 862,
+            "recall": 0.660536398467433
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 936,
+            "recall": 0.5724770642201835
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1716,
+        "recall": 0.7406128614587829,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 601,
+            "recall": 0.7928759894459103
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1115,
+            "recall": 0.7152020525978191
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1211,
+        "recall": 0.8693467336683417,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 214,
+            "recall": 0.8879668049792531
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 997,
+            "recall": 0.8654513888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 732,
+        "recall": 0.9138576779026217,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 703,
+            "recall": 0.9153645833333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1286,
+        "recall": 0.48200899550224885
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3514,
+        "recall": 0.6684420772303595
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1943,
+        "recall": 0.8855970829535096
+      }
+    }
+  },
+  {
+    "threshold": 0.45,
+    "micro": {
+      "tp": 6640,
+      "fp": 8340,
+      "fn": 3479,
+      "ignored": 6321,
+      "precision": 0.4432576769025367,
+      "recall": 0.6561913232532859,
+      "f1": 0.5291047452089724
+    },
+    "per_class": {
+      "person": {
+        "tp": 2404,
+        "fp": 3016,
+        "fn": 1534,
+        "ignored": 3129,
+        "precision": 0.44354243542435423,
+        "recall": 0.6104621635347892,
+        "f1": 0.5137849967941868
+      },
+      "vehicle": {
+        "tp": 4236,
+        "fp": 5324,
+        "fn": 1945,
+        "ignored": 3192,
+        "precision": 0.4430962343096234,
+        "recall": 0.6853259990292833,
+        "f1": 0.5382123117972175
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1245,
+        "recall": 0.46664167916041976,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 727,
+            "recall": 0.4540911930043723
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 518,
+            "recall": 0.4854732895970009
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1774,
+        "recall": 0.6034013605442177,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 848,
+            "recall": 0.6498084291187739
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 926,
+            "recall": 0.5663608562691131
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1691,
+        "recall": 0.7298230470435908,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 592,
+            "recall": 0.7810026385224275
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1099,
+            "recall": 0.704939063502245
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1198,
+        "recall": 0.8600143575017947,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 208,
+            "recall": 0.8630705394190872
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 990,
+            "recall": 0.859375
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 732,
+        "recall": 0.9138576779026217,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 29,
+            "recall": 0.8787878787878788
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 703,
+            "recall": 0.9153645833333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1245,
+        "recall": 0.46664167916041976
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3465,
+        "recall": 0.6591211717709721
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1930,
+        "recall": 0.8796718322698268
+      }
+    }
+  },
+  {
+    "threshold": 0.5,
+    "micro": {
+      "tp": 6424,
+      "fp": 7505,
+      "fn": 3695,
+      "ignored": 5649,
+      "precision": 0.4611960657620791,
+      "recall": 0.6348453404486609,
+      "f1": 0.5342648037258816
+    },
+    "per_class": {
+      "person": {
+        "tp": 2288,
+        "fp": 2567,
+        "fn": 1650,
+        "ignored": 2736,
+        "precision": 0.4712667353244078,
+        "recall": 0.5810055865921788,
+        "f1": 0.5204139656544979
+      },
+      "vehicle": {
+        "tp": 4136,
+        "fp": 4938,
+        "fn": 2045,
+        "ignored": 2913,
+        "precision": 0.45580780251267355,
+        "recall": 0.6691473871541822,
+        "f1": 0.5422484431333989
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1166,
+        "recall": 0.4370314842578711,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 659,
+            "recall": 0.41161773891317927
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 507,
+            "recall": 0.4751640112464855
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1710,
+        "recall": 0.5816326530612245,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 817,
+            "recall": 0.6260536398467433
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 893,
+            "recall": 0.5461773700305811
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1643,
+        "recall": 0.7091066033664221,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 577,
+            "recall": 0.7612137203166227
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1066,
+            "recall": 0.6837716484926235
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1186,
+        "recall": 0.8513998564249821,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 207,
+            "recall": 0.8589211618257261
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 979,
+            "recall": 0.8498263888888888
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 719,
+        "recall": 0.8976279650436954,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 691,
+            "recall": 0.8997395833333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1166,
+        "recall": 0.4370314842578711
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3353,
+        "recall": 0.6378162450066578
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1905,
+        "recall": 0.8682771194165907
+      }
+    }
+  },
+  {
+    "threshold": 0.55,
+    "micro": {
+      "tp": 6090,
+      "fp": 6427,
+      "fn": 4029,
+      "ignored": 4685,
+      "precision": 0.4865383079012543,
+      "recall": 0.6018381262970649,
+      "f1": 0.5380809330270366
+    },
+    "per_class": {
+      "person": {
+        "tp": 2148,
+        "fp": 2118,
+        "fn": 1790,
+        "ignored": 2269,
+        "precision": 0.5035161744022504,
+        "recall": 0.5454545454545454,
+        "f1": 0.5236470014627012
+      },
+      "vehicle": {
+        "tp": 3942,
+        "fp": 4309,
+        "fn": 2239,
+        "ignored": 2416,
+        "precision": 0.4777602714822446,
+        "recall": 0.637760880116486,
+        "f1": 0.5462860310421286
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1071,
+        "recall": 0.401424287856072,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 597,
+            "recall": 0.37289194253591507
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 474,
+            "recall": 0.4442361761949391
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1603,
+        "recall": 0.5452380952380952,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 767,
+            "recall": 0.5877394636015326
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 836,
+            "recall": 0.5113149847094801
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1559,
+        "recall": 0.6728528269313768,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 553,
+            "recall": 0.7295514511873351
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 1006,
+            "recall": 0.6452854393842207
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1150,
+        "recall": 0.8255563531945441,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 203,
+            "recall": 0.8423236514522822
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 947,
+            "recall": 0.8220486111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 707,
+        "recall": 0.8826466916354557,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 679,
+            "recall": 0.8841145833333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 1071,
+        "recall": 0.401424287856072
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 3162,
+        "recall": 0.6014837359710862
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1857,
+        "recall": 0.8463992707383774
+      }
+    }
+  },
+  {
+    "threshold": 0.6,
+    "micro": {
+      "tp": 5724,
+      "fp": 5378,
+      "fn": 4395,
+      "ignored": 3780,
+      "precision": 0.5155827778778599,
+      "recall": 0.5656685443225615,
+      "f1": 0.5394656236746619
+    },
+    "per_class": {
+      "person": {
+        "tp": 1989,
+        "fp": 1681,
+        "fn": 1949,
+        "ignored": 1827,
+        "precision": 0.5419618528610354,
+        "recall": 0.5050787201625191,
+        "f1": 0.5228706624605678
+      },
+      "vehicle": {
+        "tp": 3735,
+        "fp": 3697,
+        "fn": 2446,
+        "ignored": 1953,
+        "precision": 0.5025565123789021,
+        "recall": 0.6042711535350267,
+        "f1": 0.5487401748328803
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 956,
+        "recall": 0.3583208395802099,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 523,
+            "recall": 0.3266708307307932
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 433,
+            "recall": 0.40581068416119964
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1490,
+        "recall": 0.5068027210884354,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 711,
+            "recall": 0.5448275862068965
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 779,
+            "recall": 0.4764525993883792
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1468,
+        "recall": 0.6335779024600777,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 527,
+            "recall": 0.6952506596306068
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 941,
+            "recall": 0.603592046183451
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1114,
+        "recall": 0.7997128499641063,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 200,
+            "recall": 0.8298755186721992
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 914,
+            "recall": 0.7934027777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 696,
+        "recall": 0.8689138576779026,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 28,
+            "recall": 0.8484848484848485
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 668,
+            "recall": 0.8697916666666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 956,
+        "recall": 0.3583208395802099
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2958,
+        "recall": 0.5626783336503709
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1810,
+        "recall": 0.8249772105742935
+      }
+    }
+  },
+  {
+    "threshold": 0.65,
+    "micro": {
+      "tp": 5279,
+      "fp": 4444,
+      "fn": 4840,
+      "ignored": 2957,
+      "precision": 0.5429394219890981,
+      "recall": 0.5216918667852555,
+      "f1": 0.532103618586836
+    },
+    "per_class": {
+      "person": {
+        "tp": 1796,
+        "fp": 1314,
+        "fn": 2142,
+        "ignored": 1440,
+        "precision": 0.577491961414791,
+        "recall": 0.45606907059421026,
+        "f1": 0.5096481271282634
+      },
+      "vehicle": {
+        "tp": 3483,
+        "fp": 3130,
+        "fn": 2698,
+        "ignored": 1517,
+        "precision": 0.5266898533192197,
+        "recall": 0.5635010516097719,
+        "f1": 0.5444739721744568
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 824,
+        "recall": 0.30884557721139433,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 437,
+            "recall": 0.27295440349781386
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 387,
+            "recall": 0.3626991565135895
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1348,
+        "recall": 0.45850340136054424,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 645,
+            "recall": 0.4942528735632184
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 703,
+            "recall": 0.42996941896024465
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1366,
+        "recall": 0.5895554596460941,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 500,
+            "recall": 0.6596306068601583
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 866,
+            "recall": 0.5554842847979474
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1064,
+        "recall": 0.7638190954773869,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 189,
+            "recall": 0.7842323651452282
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 875,
+            "recall": 0.7595486111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 677,
+        "recall": 0.8451935081148564,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 25,
+            "recall": 0.7575757575757576
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 652,
+            "recall": 0.8489583333333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 824,
+        "recall": 0.30884557721139433
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2714,
+        "recall": 0.5162640289138292
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1741,
+        "recall": 0.7935278030993619
+      }
+    }
+  },
+  {
+    "threshold": 0.7,
+    "micro": {
+      "tp": 4831,
+      "fp": 3577,
+      "fn": 5288,
+      "ignored": 2295,
+      "precision": 0.5745718363463368,
+      "recall": 0.4774187172645518,
+      "f1": 0.5215091488098451
+    },
+    "per_class": {
+      "person": {
+        "tp": 1595,
+        "fp": 1018,
+        "fn": 2343,
+        "ignored": 1108,
+        "precision": 0.6104094910065059,
+        "recall": 0.40502793296089384,
+        "f1": 0.48694855747214166
+      },
+      "vehicle": {
+        "tp": 3236,
+        "fp": 2559,
+        "fn": 2945,
+        "ignored": 1187,
+        "precision": 0.5584124245038826,
+        "recall": 0.5235398802782721,
+        "f1": 0.5404141616566466
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 710,
+        "recall": 0.2661169415292354,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 368,
+            "recall": 0.22985633978763273
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 342,
+            "recall": 0.32052483598875353
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1205,
+        "recall": 0.4098639455782313,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 565,
+            "recall": 0.4329501915708812
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 640,
+            "recall": 0.39143730886850153
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1251,
+        "recall": 0.5399223133362107,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 458,
+            "recall": 0.604221635883905
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 793,
+            "recall": 0.5086593970493907
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 1010,
+        "recall": 0.7250538406317301,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 180,
+            "recall": 0.7468879668049793
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 830,
+            "recall": 0.7204861111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 655,
+        "recall": 0.8177278401997503,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 24,
+            "recall": 0.7272727272727273
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 631,
+            "recall": 0.8216145833333334
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 710,
+        "recall": 0.2661169415292354
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2456,
+        "recall": 0.46718660833174813
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1665,
+        "recall": 0.7588878760255242
+      }
+    }
+  },
+  {
+    "threshold": 0.75,
+    "micro": {
+      "tp": 4375,
+      "fp": 2839,
+      "fn": 5744,
+      "ignored": 1677,
+      "precision": 0.606459661768783,
+      "recall": 0.4323549757881214,
+      "f1": 0.5048174003346219
+    },
+    "per_class": {
+      "person": {
+        "tp": 1411,
+        "fp": 747,
+        "fn": 2527,
+        "ignored": 795,
+        "precision": 0.6538461538461539,
+        "recall": 0.35830370746571866,
+        "f1": 0.4629265091863517
+      },
+      "vehicle": {
+        "tp": 2964,
+        "fp": 2092,
+        "fn": 3217,
+        "ignored": 882,
+        "precision": 0.5862341772151899,
+        "recall": 0.4795340559779971,
+        "f1": 0.5275429385067189
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 612,
+        "recall": 0.22938530734632684,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 310,
+            "recall": 0.19362898188632105
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 302,
+            "recall": 0.2830365510777882
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 1050,
+        "recall": 0.35714285714285715,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 492,
+            "recall": 0.37701149425287356
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 558,
+            "recall": 0.3412844036697248
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 1134,
+        "recall": 0.48942598187311176,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 421,
+            "recall": 0.5554089709762533
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 713,
+            "recall": 0.4573444515715202
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 951,
+        "recall": 0.6826992103374013,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 165,
+            "recall": 0.6846473029045643
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 786,
+            "recall": 0.6822916666666666
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 628,
+        "recall": 0.784019975031211,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 23,
+            "recall": 0.696969696969697
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 605,
+            "recall": 0.7877604166666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 612,
+        "recall": 0.22938530734632684
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 2184,
+        "recall": 0.41544607190412786
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1579,
+        "recall": 0.719690063810392
+      }
+    }
+  },
+  {
+    "threshold": 0.8,
+    "micro": {
+      "tp": 3817,
+      "fp": 2109,
+      "fn": 6302,
+      "ignored": 1123,
+      "precision": 0.6441106986162674,
+      "recall": 0.37721118687617355,
+      "f1": 0.4757868494858211
+    },
+    "per_class": {
+      "person": {
+        "tp": 1176,
+        "fp": 515,
+        "fn": 2762,
+        "ignored": 527,
+        "precision": 0.6954464813719693,
+        "recall": 0.29862874555611985,
+        "f1": 0.4178362053650737
+      },
+      "vehicle": {
+        "tp": 2641,
+        "fp": 1594,
+        "fn": 3540,
+        "ignored": 596,
+        "precision": 0.6236127508854782,
+        "recall": 0.4272771396214205,
+        "f1": 0.5071044546850998
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 495,
+        "recall": 0.18553223388305848,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 239,
+            "recall": 0.14928169893816365
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 256,
+            "recall": 0.23992502343017807
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 869,
+        "recall": 0.295578231292517,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 398,
+            "recall": 0.3049808429118774
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 471,
+            "recall": 0.28807339449541286
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 995,
+        "recall": 0.4294346137246439,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 376,
+            "recall": 0.49604221635883905
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 619,
+            "recall": 0.3970493906350224
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 874,
+        "recall": 0.6274228284278536,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 143,
+            "recall": 0.5933609958506224
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 731,
+            "recall": 0.6345486111111112
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 584,
+        "recall": 0.7290886392009988,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 20,
+            "recall": 0.6060606060606061
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 564,
+            "recall": 0.734375
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 495,
+        "recall": 0.18553223388305848
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1864,
+        "recall": 0.3545748525775157
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1458,
+        "recall": 0.6645396536007293
+      }
+    }
+  },
+  {
+    "threshold": 0.85,
+    "micro": {
+      "tp": 3156,
+      "fp": 1437,
+      "fn": 6963,
+      "ignored": 674,
+      "precision": 0.6871325930764206,
+      "recall": 0.31188852653424254,
+      "f1": 0.4290375203915171
+    },
+    "per_class": {
+      "person": {
+        "tp": 884,
+        "fp": 310,
+        "fn": 3054,
+        "ignored": 299,
+        "precision": 0.7403685092127303,
+        "recall": 0.2244794311833418,
+        "f1": 0.34450506625097427
+      },
+      "vehicle": {
+        "tp": 2272,
+        "fp": 1127,
+        "fn": 3909,
+        "ignored": 375,
+        "precision": 0.6684318917328627,
+        "recall": 0.36757806180229735,
+        "f1": 0.474321503131524
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 371,
+        "recall": 0.13905547226386808,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 166,
+            "recall": 0.10368519675202999
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 205,
+            "recall": 0.19212746016869728
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 680,
+        "recall": 0.23129251700680273,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 297,
+            "recall": 0.22758620689655173
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 383,
+            "recall": 0.2342507645259939
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 795,
+        "recall": 0.3431160984031075,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 292,
+            "recall": 0.38522427440633245
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 503,
+            "recall": 0.32264271969211034
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 785,
+        "recall": 0.5635319454414932,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 113,
+            "recall": 0.46887966804979253
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 672,
+            "recall": 0.5833333333333334
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 525,
+        "recall": 0.6554307116104869,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 16,
+            "recall": 0.48484848484848486
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 509,
+            "recall": 0.6627604166666666
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 371,
+        "recall": 0.13905547226386808
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1475,
+        "recall": 0.2805782765836028
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1310,
+        "recall": 0.5970829535095715
+      }
+    }
+  },
+  {
+    "threshold": 0.9,
+    "micro": {
+      "tp": 2382,
+      "fp": 779,
+      "fn": 7737,
+      "ignored": 292,
+      "precision": 0.7535590003163556,
+      "recall": 0.23539875481766973,
+      "f1": 0.35873493975903614
+    },
+    "per_class": {
+      "person": {
+        "tp": 592,
+        "fp": 138,
+        "fn": 3346,
+        "ignored": 118,
+        "precision": 0.810958904109589,
+        "recall": 0.15033011681056374,
+        "f1": 0.2536418166238218
+      },
+      "vehicle": {
+        "tp": 1790,
+        "fp": 641,
+        "fn": 4391,
+        "ignored": 174,
+        "precision": 0.7363225010283834,
+        "recall": 0.28959715256430996,
+        "f1": 0.41569902461681374
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 220,
+        "recall": 0.08245877061469266,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 90,
+            "recall": 0.056214865708931916
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 130,
+            "recall": 0.1218369259606373
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 474,
+        "recall": 0.16122448979591836,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 198,
+            "recall": 0.15172413793103448
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 276,
+            "recall": 0.1688073394495413
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 582,
+        "recall": 0.25118687958567115,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 215,
+            "recall": 0.2836411609498681
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 367,
+            "recall": 0.2354073123797306
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 649,
+        "recall": 0.46590093323761667,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 79,
+            "recall": 0.3278008298755187
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 570,
+            "recall": 0.4947916666666667
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 457,
+        "recall": 0.5705368289637952,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 10,
+            "recall": 0.30303030303030304
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 447,
+            "recall": 0.58203125
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 220,
+        "recall": 0.08245877061469266
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1056,
+        "recall": 0.20087502377782004
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1106,
+        "recall": 0.504102096627165
+      }
+    }
+  },
+  {
+    "threshold": 0.95,
+    "micro": {
+      "tp": 1365,
+      "fp": 200,
+      "fn": 8754,
+      "ignored": 67,
+      "precision": 0.8722044728434505,
+      "recall": 0.13489475244589386,
+      "f1": 0.23365285861006505
+    },
+    "per_class": {
+      "person": {
+        "tp": 224,
+        "fp": 19,
+        "fn": 3714,
+        "ignored": 20,
+        "precision": 0.9218106995884774,
+        "recall": 0.056881665820213305,
+        "f1": 0.10715139918679742
+      },
+      "vehicle": {
+        "tp": 1141,
+        "fp": 181,
+        "fn": 5040,
+        "ignored": 47,
+        "precision": 0.8630862329803328,
+        "recall": 0.18459796149490373,
+        "f1": 0.3041450086632014
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 88,
+        "recall": 0.03298350824587706,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 23,
+            "recall": 0.014366021236727046
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 65,
+            "recall": 0.06091846298031865
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 219,
+        "recall": 0.07448979591836735,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 71,
+            "recall": 0.05440613026819923
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 148,
+            "recall": 0.09051987767584098
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 295,
+        "recall": 0.1273198100992663,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 94,
+            "recall": 0.12401055408970976
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 201,
+            "recall": 0.12892880051314945
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 451,
+        "recall": 0.3237616654702082,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 30,
+            "recall": 0.12448132780082988
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 421,
+            "recall": 0.3654513888888889
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 312,
+        "recall": 0.3895131086142322,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 6,
+            "recall": 0.18181818181818182
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 306,
+            "recall": 0.3984375
+          }
+        }
+      }
+    },
+    "experiment": "weight40",
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 88,
+        "recall": 0.03298350824587706
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 514,
+        "recall": 0.09777439604337074
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 763,
+        "recall": 0.3477666362807657
+      }
+    }
+  }
+]

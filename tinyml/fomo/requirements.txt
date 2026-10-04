@@ -1,0 +1,7 @@
+# Tested with Python 3.11.15 in the existing Windows environment.
+# No installation is needed when reusing that environment.
+tensorflow==2.21.0
+keras==3.15.1
+numpy==2.4.6
+pillow==12.3.0
+matplotlib==3.11.1

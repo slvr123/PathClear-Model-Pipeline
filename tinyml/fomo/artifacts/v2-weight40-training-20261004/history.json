@@ -1,0 +1,602 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.7246971726417542,
+    "validation_loss": 0.5657210350036621,
+    "validation_f1": 0.2961306498610829,
+    "validation_precision": 0.47110823630875376,
+    "validation_recall": 0.21593042790789604,
+    "per_class": {
+      "person": {
+        "tp": 531,
+        "fp": 793,
+        "fn": 3407,
+        "ignored": 573,
+        "precision": 0.40105740181268884,
+        "recall": 0.13484002031488065,
+        "f1": 0.20182440136830102
+      },
+      "vehicle": {
+        "tp": 1654,
+        "fp": 1660,
+        "fn": 4527,
+        "ignored": 1191,
+        "precision": 0.49909474954737476,
+        "recall": 0.26759424041417246,
+        "f1": 0.3483938915218536
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 23.321236672999987
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.4955669343471527,
+    "validation_loss": 0.5076397657394409,
+    "validation_f1": 0.32816337988630784,
+    "validation_precision": 0.5661016949152542,
+    "validation_recall": 0.23105049906117206,
+    "per_class": {
+      "person": {
+        "tp": 659,
+        "fp": 643,
+        "fn": 3279,
+        "ignored": 595,
+        "precision": 0.5061443932411674,
+        "recall": 0.16734382935500253,
+        "f1": 0.2515267175572519
+      },
+      "vehicle": {
+        "tp": 1679,
+        "fp": 1149,
+        "fn": 4502,
+        "ignored": 820,
+        "precision": 0.5937057991513437,
+        "recall": 0.2716388933829477,
+        "f1": 0.37273837273837274
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 34.230464601999984
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.44972801208496094,
+    "validation_loss": 0.4886685907840729,
+    "validation_f1": 0.3323459287623727,
+    "validation_precision": 0.6179473401397099,
+    "validation_recall": 0.22729518727146952,
+    "per_class": {
+      "person": {
+        "tp": 589,
+        "fp": 394,
+        "fn": 3349,
+        "ignored": 367,
+        "precision": 0.5991861648016277,
+        "recall": 0.14956830878618588,
+        "f1": 0.23938223938223938
+      },
+      "vehicle": {
+        "tp": 1711,
+        "fp": 1028,
+        "fn": 4470,
+        "ignored": 759,
+        "precision": 0.624680540343191,
+        "recall": 0.2768160491829801,
+        "f1": 0.3836322869955157
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 45.44379978499998
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.4265960156917572,
+    "validation_loss": 0.4614885151386261,
+    "validation_f1": 0.34623761680601417,
+    "validation_precision": 0.5989304812834224,
+    "validation_recall": 0.24350232236386996,
+    "per_class": {
+      "person": {
+        "tp": 610,
+        "fp": 467,
+        "fn": 3328,
+        "ignored": 433,
+        "precision": 0.5663881151346333,
+        "recall": 0.15490096495683087,
+        "f1": 0.2432701894317049
+      },
+      "vehicle": {
+        "tp": 1854,
+        "fp": 1183,
+        "fn": 4327,
+        "ignored": 919,
+        "precision": 0.6104708594007244,
+        "recall": 0.2999514641643747,
+        "f1": 0.40225645476242133
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 57.258050924
+  },
+  {
+    "epoch": 5,
+    "train_loss": 0.4104369580745697,
+    "validation_loss": 0.4533196687698364,
+    "validation_f1": 0.35354325111948254,
+    "validation_precision": 0.6296202531645569,
+    "validation_recall": 0.24577527423658466,
+    "per_class": {
+      "person": {
+        "tp": 700,
+        "fp": 489,
+        "fn": 3238,
+        "ignored": 494,
+        "precision": 0.5887300252312868,
+        "recall": 0.17775520568816658,
+        "f1": 0.2730641700799688
+      },
+      "vehicle": {
+        "tp": 1787,
+        "fp": 974,
+        "fn": 4394,
+        "ignored": 742,
+        "precision": 0.6472292647591452,
+        "recall": 0.28911179420805694,
+        "f1": 0.39968687094609706
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 73.06173943499996
+  },
+  {
+    "epoch": 6,
+    "train_loss": 0.39783889055252075,
+    "validation_loss": 0.44377589225769043,
+    "validation_f1": 0.3554347068256292,
+    "validation_precision": 0.6034564393939394,
+    "validation_recall": 0.2519023618934677,
+    "per_class": {
+      "person": {
+        "tp": 691,
+        "fp": 506,
+        "fn": 3247,
+        "ignored": 534,
+        "precision": 0.5772765246449457,
+        "recall": 0.17546978161503302,
+        "f1": 0.2691333982473223
+      },
+      "vehicle": {
+        "tp": 1858,
+        "fp": 1169,
+        "fn": 4323,
+        "ignored": 907,
+        "precision": 0.6138090518665346,
+        "recall": 0.30059860863937876,
+        "f1": 0.4035621198957428
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 87.54424833800002
+  },
+  {
+    "epoch": 7,
+    "train_loss": 0.38893407583236694,
+    "validation_loss": 0.44577524065971375,
+    "validation_f1": 0.35209093460566937,
+    "validation_precision": 0.6070650858940237,
+    "validation_recall": 0.2479494021148335,
+    "per_class": {
+      "person": {
+        "tp": 594,
+        "fp": 360,
+        "fn": 3344,
+        "ignored": 359,
+        "precision": 0.6226415094339622,
+        "recall": 0.15083798882681565,
+        "f1": 0.2428454619787408
+      },
+      "vehicle": {
+        "tp": 1915,
+        "fp": 1264,
+        "fn": 4266,
+        "ignored": 911,
+        "precision": 0.6023906888958792,
+        "recall": 0.3098204174081864,
+        "f1": 0.4091880341880342
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 101.04898091699997
+  },
+  {
+    "epoch": 8,
+    "train_loss": 0.3808748424053192,
+    "validation_loss": 0.4371241331100464,
+    "validation_f1": 0.35850786263310064,
+    "validation_precision": 0.6258000984736583,
+    "validation_recall": 0.25121059393220674,
+    "per_class": {
+      "person": {
+        "tp": 642,
+        "fp": 348,
+        "fn": 3296,
+        "ignored": 419,
+        "precision": 0.6484848484848484,
+        "recall": 0.16302691721686136,
+        "f1": 0.26055194805194803
+      },
+      "vehicle": {
+        "tp": 1900,
+        "fp": 1172,
+        "fn": 4281,
+        "ignored": 840,
+        "precision": 0.6184895833333334,
+        "recall": 0.3073936256269212,
+        "f1": 0.4106776180698152
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 112.49573152499997
+  },
+  {
+    "epoch": 9,
+    "train_loss": 0.37632396817207336,
+    "validation_loss": 0.43178996443748474,
+    "validation_f1": 0.36541321436158913,
+    "validation_precision": 0.6446776611694153,
+    "validation_recall": 0.2549659057219093,
+    "per_class": {
+      "person": {
+        "tp": 818,
+        "fp": 582,
+        "fn": 3120,
+        "ignored": 627,
+        "precision": 0.5842857142857143,
+        "recall": 0.20771965464702896,
+        "f1": 0.30648182840014987
+      },
+      "vehicle": {
+        "tp": 1762,
+        "fp": 840,
+        "fn": 4419,
+        "ignored": 711,
+        "precision": 0.6771714066102997,
+        "recall": 0.2850671412392817,
+        "f1": 0.4012296481839918
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 127.266435546
+  },
+  {
+    "epoch": 10,
+    "train_loss": 0.3688230812549591,
+    "validation_loss": 0.4374004602432251,
+    "validation_f1": 0.36240352016158117,
+    "validation_precision": 0.6709401709401709,
+    "validation_recall": 0.24824587409823104,
+    "per_class": {
+      "person": {
+        "tp": 644,
+        "fp": 356,
+        "fn": 3294,
+        "ignored": 407,
+        "precision": 0.644,
+        "recall": 0.16353478923311326,
+        "f1": 0.2608343458890239
+      },
+      "vehicle": {
+        "tp": 1868,
+        "fp": 876,
+        "fn": 4313,
+        "ignored": 785,
+        "precision": 0.6807580174927114,
+        "recall": 0.3022164698268889,
+        "f1": 0.41859943977591035
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 138.31508544099998
+  },
+  {
+    "epoch": 11,
+    "train_loss": 0.3667740523815155,
+    "validation_loss": 0.42228779196739197,
+    "validation_f1": 0.3685972786207879,
+    "validation_precision": 0.6602858601327207,
+    "validation_recall": 0.2556576736831703,
+    "per_class": {
+      "person": {
+        "tp": 685,
+        "fp": 372,
+        "fn": 3253,
+        "ignored": 468,
+        "precision": 0.6480605487228004,
+        "recall": 0.1739461655662773,
+        "f1": 0.27427427427427425
+      },
+      "vehicle": {
+        "tp": 1902,
+        "fp": 959,
+        "fn": 4279,
+        "ignored": 769,
+        "precision": 0.6648025166025865,
+        "recall": 0.30771719786442325,
+        "f1": 0.42070338420703385
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 148.914437697
+  },
+  {
+    "epoch": 12,
+    "train_loss": 0.3615526258945465,
+    "validation_loss": 0.42876744270324707,
+    "validation_f1": 0.3696702671972712,
+    "validation_precision": 0.6579812800404756,
+    "validation_recall": 0.25704120960569227,
+    "per_class": {
+      "person": {
+        "tp": 715,
+        "fp": 341,
+        "fn": 3223,
+        "ignored": 517,
+        "precision": 0.6770833333333334,
+        "recall": 0.18156424581005587,
+        "f1": 0.28634361233480177
+      },
+      "vehicle": {
+        "tp": 1886,
+        "fp": 1011,
+        "fn": 4295,
+        "ignored": 793,
+        "precision": 0.6510182947877114,
+        "recall": 0.30512861996440704,
+        "f1": 0.41551002423441286
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 169.155652023
+  },
+  {
+    "epoch": 13,
+    "train_loss": 0.3568994998931885,
+    "validation_loss": 0.42049697041511536,
+    "validation_f1": 0.37092731829573933,
+    "validation_precision": 0.6275618374558304,
+    "validation_recall": 0.2632671212570412,
+    "per_class": {
+      "person": {
+        "tp": 769,
+        "fp": 515,
+        "fn": 3169,
+        "ignored": 588,
+        "precision": 0.5989096573208723,
+        "recall": 0.1952767902488573,
+        "f1": 0.2945231711987744
+      },
+      "vehicle": {
+        "tp": 1895,
+        "fp": 1066,
+        "fn": 4286,
+        "ignored": 842,
+        "precision": 0.6399864910503208,
+        "recall": 0.30658469503316615,
+        "f1": 0.4145701159483702
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 187.25760650599997
+  },
+  {
+    "epoch": 14,
+    "train_loss": 0.3538796901702881,
+    "validation_loss": 0.43448206782341003,
+    "validation_f1": 0.36459797817500167,
+    "validation_precision": 0.5651722706517227,
+    "validation_recall": 0.26909773693052674,
+    "per_class": {
+      "person": {
+        "tp": 848,
+        "fp": 1008,
+        "fn": 3090,
+        "ignored": 921,
+        "precision": 0.45689655172413796,
+        "recall": 0.21533773489080751,
+        "f1": 0.2927166033828098
+      },
+      "vehicle": {
+        "tp": 1875,
+        "fp": 1087,
+        "fn": 4306,
+        "ignored": 799,
+        "precision": 0.6330182309250506,
+        "recall": 0.3033489726581459,
+        "f1": 0.410149841408728
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 198.73194049399999
+  },
+  {
+    "epoch": 15,
+    "train_loss": 0.3487231731414795,
+    "validation_loss": 0.4229043126106262,
+    "validation_f1": 0.3689223770258743,
+    "validation_precision": 0.6571283869334008,
+    "validation_recall": 0.2564482656388971,
+    "per_class": {
+      "person": {
+        "tp": 804,
+        "fp": 449,
+        "fn": 3134,
+        "ignored": 597,
+        "precision": 0.641660015961692,
+        "recall": 0.20416455053326563,
+        "f1": 0.3097669042573685
+      },
+      "vehicle": {
+        "tp": 1791,
+        "fp": 905,
+        "fn": 4390,
+        "ignored": 604,
+        "precision": 0.6643175074183977,
+        "recall": 0.289758938683061,
+        "f1": 0.40351470091247044
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 210.97741446299997
+  },
+  {
+    "epoch": 16,
+    "train_loss": 0.3420960009098053,
+    "validation_loss": 0.4150528013706207,
+    "validation_f1": 0.3792721737927217,
+    "validation_precision": 0.6322952710495963,
+    "validation_recall": 0.27087656883091216,
+    "per_class": {
+      "person": {
+        "tp": 867,
+        "fp": 648,
+        "fn": 3071,
+        "ignored": 709,
+        "precision": 0.5722772277227722,
+        "recall": 0.22016251904520062,
+        "f1": 0.317990097194205
+      },
+      "vehicle": {
+        "tp": 1874,
+        "fp": 946,
+        "fn": 4307,
+        "ignored": 743,
+        "precision": 0.6645390070921986,
+        "recall": 0.3031871865393949,
+        "f1": 0.41639817798022444
+      }
+    },
+    "learning_rate": 0.0005000000237487257,
+    "elapsed_seconds": 227.927272757
+  },
+  {
+    "epoch": 17,
+    "train_loss": 0.3397942781448364,
+    "validation_loss": 0.4227646589279175,
+    "validation_f1": 0.37334779366908427,
+    "validation_precision": 0.5943029779887786,
+    "validation_recall": 0.2721612807589683,
+    "per_class": {
+      "person": {
+        "tp": 728,
+        "fp": 484,
+        "fn": 3210,
+        "ignored": 565,
+        "precision": 0.6006600660066007,
+        "recall": 0.18486541391569325,
+        "f1": 0.28271844660194173
+      },
+      "vehicle": {
+        "tp": 2026,
+        "fp": 1396,
+        "fn": 4155,
+        "ignored": 1038,
+        "precision": 0.592051431911163,
+        "recall": 0.3277786765895486,
+        "f1": 0.42195147349786527
+      }
+    },
+    "learning_rate": 0.0005000000237487257,
+    "elapsed_seconds": 240.34790072899997
+  },
+  {
+    "epoch": 18,
+    "train_loss": 0.3379945158958435,
+    "validation_loss": 0.4317359924316406,
+    "validation_f1": 0.37364995350833274,
+    "validation_precision": 0.6763335059554635,
+    "validation_recall": 0.25812827354481666,
+    "per_class": {
+      "person": {
+        "tp": 748,
+        "fp": 360,
+        "fn": 3190,
+        "ignored": 512,
+        "precision": 0.6750902527075813,
+        "recall": 0.18994413407821228,
+        "f1": 0.2964724534284582
+      },
+      "vehicle": {
+        "tp": 1864,
+        "fp": 890,
+        "fn": 4317,
+        "ignored": 703,
+        "precision": 0.6768336964415396,
+        "recall": 0.3015693253518848,
+        "f1": 0.4172355903749301
+      }
+    },
+    "learning_rate": 0.0005000000237487257,
+    "elapsed_seconds": 255.884015569
+  },
+  {
+    "epoch": 19,
+    "train_loss": 0.3339882493019104,
+    "validation_loss": 0.41361260414123535,
+    "validation_f1": 0.3789302860233958,
+    "validation_precision": 0.6,
+    "validation_recall": 0.27690483249332937,
+    "per_class": {
+      "person": {
+        "tp": 891,
+        "fp": 758,
+        "fn": 3047,
+        "ignored": 833,
+        "precision": 0.5403274711946634,
+        "recall": 0.22625698324022347,
+        "f1": 0.3189547163057097
+      },
+      "vehicle": {
+        "tp": 1911,
+        "fp": 1110,
+        "fn": 4270,
+        "ignored": 862,
+        "precision": 0.6325719960278053,
+        "recall": 0.3091732729331823,
+        "f1": 0.41534449032818954
+      }
+    },
+    "learning_rate": 0.0002500000118743628,
+    "elapsed_seconds": 266.802961213
+  },
+  {
+    "epoch": 20,
+    "train_loss": 0.33188003301620483,
+    "validation_loss": 0.41462409496307373,
+    "validation_f1": 0.38105927744650997,
+    "validation_precision": 0.6566731141199227,
+    "validation_recall": 0.2684059689692657,
+    "per_class": {
+      "person": {
+        "tp": 816,
+        "fp": 468,
+        "fn": 3122,
+        "ignored": 623,
+        "precision": 0.6355140186915887,
+        "recall": 0.20721178263077705,
+        "f1": 0.31252393718881655
+      },
+      "vehicle": {
+        "tp": 1900,
+        "fp": 952,
+        "fn": 4281,
+        "ignored": 759,
+        "precision": 0.6661991584852734,
+        "recall": 0.3073936256269212,
+        "f1": 0.42067972987933133
+      }
+    },
+    "learning_rate": 0.0002500000118743628,
+    "elapsed_seconds": 284.645582095
+  }
+]

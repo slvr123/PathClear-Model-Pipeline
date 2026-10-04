@@ -1,0 +1,142 @@
+{
+  "dataset": "Cityscapes",
+  "split": "official validation",
+  "images": 500,
+  "independent_test": false,
+  "threshold": 0.7,
+  "micro": {
+    "tp": 3860,
+    "fp": 1509,
+    "fn": 6259,
+    "ignored": 1072,
+    "precision": 0.7189420748742783,
+    "recall": 0.38146061863820535,
+    "f1": 0.4984504132231405
+  },
+  "per_class": {
+    "person": {
+      "tp": 1286,
+      "fp": 599,
+      "fn": 2652,
+      "ignored": 608,
+      "precision": 0.6822281167108754,
+      "recall": 0.3265617064499746,
+      "f1": 0.44169671990382964
+    },
+    "vehicle": {
+      "tp": 2574,
+      "fp": 910,
+      "fn": 3607,
+      "ignored": 464,
+      "precision": 0.7388059701492538,
+      "recall": 0.41643746966510276,
+      "f1": 0.5326435592343508
+    }
+  },
+  "size_recall": {
+    "lt2": {
+      "total": 2668,
+      "matched": 542,
+      "recall": 0.20314842578710646,
+      "per_class": {
+        "person": {
+          "total": 1601,
+          "matched": 276,
+          "recall": 0.17239225484072454
+        },
+        "vehicle": {
+          "total": 1067,
+          "matched": 266,
+          "recall": 0.2492970946579194
+        }
+      }
+    },
+    "2to4": {
+      "total": 2940,
+      "matched": 915,
+      "recall": 0.3112244897959184,
+      "per_class": {
+        "person": {
+          "total": 1305,
+          "matched": 449,
+          "recall": 0.34406130268199236
+        },
+        "vehicle": {
+          "total": 1635,
+          "matched": 466,
+          "recall": 0.2850152905198777
+        }
+      }
+    },
+    "4to8": {
+      "total": 2317,
+      "matched": 1025,
+      "recall": 0.4423823910228744,
+      "per_class": {
+        "person": {
+          "total": 758,
+          "matched": 394,
+          "recall": 0.5197889182058048
+        },
+        "vehicle": {
+          "total": 1559,
+          "matched": 631,
+          "recall": 0.404746632456703
+        }
+      }
+    },
+    "8to16": {
+      "total": 1393,
+      "matched": 858,
+      "recall": 0.6159368269921034,
+      "per_class": {
+        "person": {
+          "total": 241,
+          "matched": 148,
+          "recall": 0.6141078838174274
+        },
+        "vehicle": {
+          "total": 1152,
+          "matched": 710,
+          "recall": 0.6163194444444444
+        }
+      }
+    },
+    "ge16": {
+      "total": 801,
+      "matched": 520,
+      "recall": 0.6491885143570537,
+      "per_class": {
+        "person": {
+          "total": 33,
+          "matched": 19,
+          "recall": 0.5757575757575758
+        },
+        "vehicle": {
+          "total": 768,
+          "matched": 501,
+          "recall": 0.65234375
+        }
+      }
+    }
+  },
+  "experiment": "weight10",
+  "decoder": "cells",
+  "coarse_size_recall": {
+    "lt2": {
+      "total": 2668,
+      "matched": 542,
+      "recall": 0.20314842578710646
+    },
+    "2to8": {
+      "total": 5257,
+      "matched": 1940,
+      "recall": 0.36903176716758607
+    },
+    "ge8": {
+      "total": 2194,
+      "matched": 1378,
+      "recall": 0.6280765724703737
+    }
+  }
+}

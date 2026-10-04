@@ -1,0 +1,188 @@
+{
+  "contract": {
+    "implementation": "local-fomo-inspired-cityscapes-grid-v3",
+    "class_names": [
+      "person",
+      "vehicle"
+    ],
+    "background_channel": 0,
+    "object_channel_offset": 1,
+    "input": "RGB float32 [0,1], direct resize, NHWC",
+    "output": "40x40x3 softmax; background, person, vehicle",
+    "image_size": 160,
+    "grid_size": 40,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "crop_size": 96,
+    "collision_policy": "same-class centers share a positive cell; mixed-class cells ignored",
+    "cut_point": "block_3_expand_relu"
+  },
+  "synthetic": false,
+  "sanity": true,
+  "manifest": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\grid40-targets-20261004\\manifest.json",
+  "manifest_sha256": "bdfbcc74fb851f735b677b44a3f64fc5948eb0690c1cffa25c2883cd5640f174",
+  "settings": {
+    "image_size": 160,
+    "crop_size": 96,
+    "stride": 4,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "epochs": 20,
+    "object_weight": 20.0,
+    "patience": 5,
+    "lr_patience": 2,
+    "min_learning_rate": 1e-05,
+    "confidence_threshold": 0.6,
+    "max_detections": 0,
+    "decoder": "cell_nms",
+    "nms_radius_pixels": 8.0,
+    "seed": 42,
+    "match_radius": 8.0,
+    "calibration_images": 100
+  },
+  "batch_size": 8,
+  "requested_epochs": 20,
+  "initialization": "imagenet",
+  "tensorflow": "2.21.0",
+  "keras": "3.15.1",
+  "devices": [],
+  "parameters": 6339,
+  "train_images": 12,
+  "validation_images": 12,
+  "initial_batch_loss": 1.3730502128601074,
+  "checkpoint_selection": "maximum validation centroid F1 at threshold 0.60",
+  "decoding": {
+    "version": 2,
+    "decoder": "cell_nms",
+    "threshold": 0.6,
+    "max_detections": 0,
+    "nms_distance": "same class, Chebyshev distance in 160x160 input pixels",
+    "nms_radius_input_pixels": 8.0,
+    "consumer": "PathClear decision logic",
+    "creates_classifier_crops": false
+  },
+  "source_sha256": {
+    "config.py": "1237064ed20d96cafcda480b50ff287ebe80760291103b39515c6ba5a2c600fe",
+    "dataset.py": "bffd18f26562edaee9bc79b64d1f392d3092cb9e30792966bde94f160d030b20",
+    "diagnose.py": "67a3e674c898e6e485e244daa1815f3946d3358f0ed09d298d19e2e60268bdc4",
+    "evaluate.py": "aeeb4a6925a82604025bd723de96196b557460caadba0679b3d912810f9a3886",
+    "export.py": "74238136e383e318eded6f7f405b07f543f574a2a79c9b786dd9badcacd3bb83",
+    "inference.py": "7f1e8a46379619b9a389ef4d43b76de394f9288037afb47c08714dc318a2220c",
+    "inspect_dataset.py": "04576e0cc90f1de4063e57232f9b67e792b9277de8efee04b9f8b217b36eddb7",
+    "model.py": "c86ea39b8143c6f8b607be8debffbfe915bfe00406a4e8c7a081e68651aa3d17",
+    "prepare_cityscapes.py": "95e2c41e1ee78ca068918e68fae07ef5e4041e5190d35df754d533b98da59f23",
+    "refine_targets.py": "e39c86daf60867acd33119d924427be6d08710c2bd2cf326563a1a024937336a",
+    "test_cityscapes.py": "d31a01b2f6438546f7ac3e4026527e6b43df5ba078e1d6cb3d8a3b8dfdd11fe1",
+    "test_grid_resolution.py": "7eb0bfe36bc0c8f44a0dc6a6aca0081ecea3ba43fa1cb20a24f5ca079c08e5ee",
+    "test_pipeline.py": "c4fb008310d93591346a3e73b83f21ea8b5168c4e30551471c7ce4786e4d8560",
+    "train.py": "2d6bce6d3bbec1b1c491a18fbba46026591201ba4e25db46a0a0f72f05830222"
+  },
+  "pretrained_weight_sha256": {
+    "mobilenet_v2_weights_tf_dim_ordering_tf_kernels_0.35_160_no_top.h5": "d579c5d3e0e5f4b71db0cda1a156bbd74fe8317e62ea577594b78faf39847639"
+  },
+  "sanity_gate_passed": true,
+  "duration_seconds": 8.303527999989456,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6618902683258057,
+      "validation_loss": 0.5470482707023621,
+      "validation_f1": 0.05106382978723404,
+      "validation_precision": 0.20689655172413793,
+      "validation_recall": 0.02912621359223301,
+      "per_class": {
+        "person": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 81,
+          "ignored": 0,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "vehicle": {
+          "tp": 6,
+          "fp": 23,
+          "fn": 119,
+          "ignored": 9,
+          "precision": 0.20689655172413793,
+          "recall": 0.048,
+          "f1": 0.07792207792207792
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 7.625742100004572
+    }
+  ],
+  "best_epoch": 1,
+  "max_trainable_weight_change": 0.029439058154821396,
+  "updates": 30,
+  "metrics": {
+    "images": 12,
+    "confidence_threshold": 0.6,
+    "radius_input_pixels": 8.0,
+    "uncapped_micro": {
+      "tp": 6,
+      "fp": 23,
+      "fn": 200,
+      "ignored": 9,
+      "precision": 0.20689655172413793,
+      "recall": 0.02912621359223301,
+      "f1": 0.05106382978723404
+    },
+    "legacy_top3_micro": {
+      "tp": 3,
+      "fp": 17,
+      "fn": 203,
+      "ignored": 7,
+      "precision": 0.15,
+      "recall": 0.014563106796116505,
+      "f1": 0.02654867256637168
+    },
+    "decoding": {
+      "version": 2,
+      "decoder": "cell_nms",
+      "threshold": 0.6,
+      "max_detections": 0,
+      "nms_distance": "same class, Chebyshev distance in 160x160 input pixels",
+      "nms_radius_input_pixels": 8.0,
+      "consumer": "PathClear decision logic",
+      "creates_classifier_crops": false
+    },
+    "per_class": {
+      "person": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 81,
+        "ignored": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "vehicle": {
+        "tp": 6,
+        "fp": 23,
+        "fn": 119,
+        "ignored": 9,
+        "precision": 0.20689655172413793,
+        "recall": 0.048,
+        "f1": 0.07792207792207792
+      }
+    },
+    "matched_center_error_input_pixels_mean": 3.9320298915088157,
+    "matched_center_error_input_pixels_median": 3.743677248802139,
+    "matched_center_error_input_pixels_p95": 6.55141921721388,
+    "detection_confidence_mean": 0.6635994942564714,
+    "detection_confidence_quantiles": [
+      0.6000546216964722,
+      0.6189398914575577,
+      0.6543132364749908,
+      0.6910566985607147,
+      0.782249927520752
+    ],
+    "detection_count": 38
+  },
+  "best_model_bytes": 230218
+}

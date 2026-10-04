@@ -1,0 +1,52 @@
+{
+  "model_sha256": "359473f21233165ccbc6ea64689a645490d819bb07dd2905ed6dd5fa76f4e372",
+  "warmup": 20,
+  "iterations_per_policy": 200,
+  "runtime": "Desktop TFLite CPU, one thread, alternating policy order; same model and prepared input",
+  "scope": "Includes quantize, invoke, output copy and decode. Excludes camera, resize, decision logic and MicroSeg.",
+  "results": [
+    {
+      "name": "baseline_v1",
+      "decoder": "cell_nms",
+      "threshold": 0.6,
+      "model_call_ms": {
+        "median": 2.1812499908264726,
+        "p95": 3.461715010053012,
+        "samples": 200
+      },
+      "decode_ms": {
+        "median": 0.33674998849164695,
+        "p95": 0.5785800036392171,
+        "samples": 200
+      },
+      "total_ms": {
+        "median": 2.539149994845502,
+        "p95": 3.87810999091016,
+        "samples": 200
+      }
+    },
+    {
+      "name": "v2_inference_candidate",
+      "decoder": "cells",
+      "threshold": 0.8,
+      "model_call_ms": {
+        "median": 2.214700012700632,
+        "p95": 3.22468000667868,
+        "samples": 200
+      },
+      "decode_ms": {
+        "median": 0.2894999925047159,
+        "p95": 0.48614500265102817,
+        "samples": 200
+      },
+      "total_ms": {
+        "median": 2.478449998307042,
+        "p95": 3.6772950013983063,
+        "samples": 200
+      }
+    }
+  ],
+  "embedded_peak_ram": null,
+  "embedded_latency": null,
+  "embedded_fps": null
+}

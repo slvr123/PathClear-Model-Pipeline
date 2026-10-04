@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "5413a0b9bede94170269f841d27c9ec570e73acecc1e74ebf8c1fc6d49c84764",
+  "valid": true,
+  "visual_review_note": "Codex inspected four train/validation previews across scenes; boxes and centers align with people and vehicles. Structural checks passed for all 24 pilot images.",
+  "inspection": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-pilot-approved-20261004",
+  "source_pixels_reverified": false
+}

@@ -1,0 +1,38 @@
+{
+  "train": {
+    "images": 2975,
+    "cells": {
+      "ignored": 118308,
+      "background": 1040719,
+      "person": 10340,
+      "vehicle": 20633
+    },
+    "normalized_weight_mass": {
+      "ignored": 0.0,
+      "background": 767678.4145427138,
+      "person": 136564.51753087444,
+      "vehicle": 285757.0679264081
+    },
+    "background_per_positive": 33.60084589804023,
+    "nominal_weighted_object_to_background": 0.5952231101767144,
+    "normalized_object_to_background": 0.5501282535198655
+  },
+  "validation": {
+    "images": 500,
+    "cells": {
+      "ignored": 22058,
+      "background": 172140,
+      "person": 2040,
+      "vehicle": 3762
+    },
+    "normalized_weight_mass": {
+      "ignored": 0.0,
+      "background": 124245.17063901495,
+      "person": 25522.914904447804,
+      "vehicle": 50231.91445653737
+    },
+    "background_per_positive": 29.66907962771458,
+    "nominal_weighted_object_to_background": 0.6741024747298711,
+    "normalized_object_to_background": 0.6097205144583459
+  }
+}

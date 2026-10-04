@@ -1,0 +1,22 @@
+{
+  "public_detection_ids": {
+    "0": "person",
+    "1": "vehicle"
+  },
+  "internal_output_channels": {
+    "0": "background",
+    "1": "person",
+    "2": "vehicle"
+  },
+  "cityscapes_semantic_id_to_public_id": {
+    "24": 0,
+    "25": 0,
+    "26": 1,
+    "27": 1,
+    "28": 1,
+    "31": 1,
+    "32": 1,
+    "33": 1
+  },
+  "microseg_taxonomy_included": false
+}

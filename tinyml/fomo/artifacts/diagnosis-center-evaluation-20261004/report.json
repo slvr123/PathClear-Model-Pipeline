@@ -1,0 +1,108 @@
+{
+  "images": 500,
+  "confidence_threshold": 0.6,
+  "radius_input_pixels": 8.0,
+  "uncapped_micro": {
+    "tp": 2567,
+    "fp": 1083,
+    "fn": 7552,
+    "ignored": 1036,
+    "precision": 0.7032876712328767,
+    "recall": 0.2536811937938531,
+    "f1": 0.3728665843561624
+  },
+  "legacy_top3_micro": {
+    "tp": 1178,
+    "fp": 162,
+    "fn": 8941,
+    "ignored": 144,
+    "precision": 0.8791044776119403,
+    "recall": 0.11641466548077874,
+    "f1": 0.2056025831224365
+  },
+  "decoding": {
+    "version": 1,
+    "decoder": "cell_nms",
+    "threshold": 0.6,
+    "max_detections": 0,
+    "nms_distance": "same class, Chebyshev <= 1 output cell",
+    "consumer": "PathClear decision logic",
+    "creates_classifier_crops": false
+  },
+  "per_class": {
+    "person": {
+      "tp": 800,
+      "fp": 467,
+      "fn": 3138,
+      "ignored": 529,
+      "precision": 0.6314127861089187,
+      "recall": 0.2031488065007618,
+      "f1": 0.30739673390970224
+    },
+    "vehicle": {
+      "tp": 1767,
+      "fp": 616,
+      "fn": 4414,
+      "ignored": 507,
+      "precision": 0.741502308015107,
+      "recall": 0.2858760718330367,
+      "f1": 0.4126576366184026
+    }
+  },
+  "matched_center_error_input_pixels_mean": 3.8480468846802673,
+  "matched_center_error_input_pixels_median": 3.5879708967952872,
+  "matched_center_error_input_pixels_p95": 7.378559160632962,
+  "detection_confidence_mean": 0.8127566347939308,
+  "detection_confidence_quantiles": [
+    0.6001747846603394,
+    0.701796680688858,
+    0.8205382525920868,
+    0.9255268573760986,
+    0.9988173842430115
+  ],
+  "detection_count": 4686,
+  "split": "validation",
+  "synthetic": false,
+  "sanity_model": false,
+  "model_path": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\diagnosis-center-training-20261004\\best.keras",
+  "model_bytes": 511345,
+  "matching": "same-class confidence-greedy one-to-one, input-pixel distance; unmatched predictions in source void/group cells ignored",
+  "pc_single_frame_model_call_ms_median": 6.087000001571141,
+  "pc_single_frame_model_call_ms_p95": 6.816040002740919,
+  "pc_batch_inference_seconds": 0.6365703000046778,
+  "timing_samples": 30,
+  "runtime": "TensorFlow compiled inference",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')"
+  ],
+  "timing_scope": "normalized input already prepared; includes model call and output copy; excludes camera, decode, MicroSeg, and decision logic",
+  "threshold_diagnostics": {
+    "0.3": {
+      "tp": 3044,
+      "fp": 2100,
+      "fn": 7075,
+      "ignored": 2068,
+      "precision": 0.5917573872472783,
+      "recall": 0.3008202391540666,
+      "f1": 0.3988730917906047
+    },
+    "0.6": {
+      "tp": 2567,
+      "fp": 1083,
+      "fn": 7552,
+      "ignored": 1036,
+      "precision": 0.7032876712328767,
+      "recall": 0.2536811937938531,
+      "f1": 0.3728665843561624
+    },
+    "0.8": {
+      "tp": 1841,
+      "fp": 384,
+      "fn": 8278,
+      "ignored": 325,
+      "precision": 0.8274157303370786,
+      "recall": 0.18193497381164148,
+      "f1": 0.29828256642903433
+    }
+  }
+}

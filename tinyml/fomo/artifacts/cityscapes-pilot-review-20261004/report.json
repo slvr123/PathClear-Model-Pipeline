@@ -1,0 +1,47 @@
+{
+  "images": 24,
+  "annotations": 430,
+  "classes": {
+    "person": 150,
+    "vehicle": 280
+  },
+  "splits": {
+    "train": 12,
+    "validation": 12,
+    "test": 0
+  },
+  "split_classes": {
+    "train": {
+      "person": 69,
+      "vehicle": 155
+    },
+    "validation": {
+      "person": 81,
+      "vehicle": 125
+    },
+    "test": {
+      "person": 0,
+      "vehicle": 0
+    }
+  },
+  "missing_images": 0,
+  "broken_images": 0,
+  "invalid_annotations": 0,
+  "errors": [],
+  "source_images": {
+    "train": 2975,
+    "validation": 500
+  },
+  "converted_images": 24,
+  "images_without_relevant_objects": 0,
+  "average_objects_per_image": 17.916666666666668,
+  "grid_diagnostics": {
+    "images_with_collisions": 21,
+    "collision_cells": 93,
+    "extra_centers_in_shared_cells": 146,
+    "mixed_class_cells_ignored": 15,
+    "centers_in_mixed_cells": 35
+  },
+  "synthetic": false,
+  "reviewed": false
+}

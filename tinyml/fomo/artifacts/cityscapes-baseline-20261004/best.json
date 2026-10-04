@@ -1,0 +1,374 @@
+{
+  "contract": {
+    "implementation": "local-fomo-inspired-cityscapes-v2",
+    "class_names": [
+      "person",
+      "vehicle"
+    ],
+    "background_channel": 0,
+    "object_channel_offset": 1,
+    "input": "RGB float32 [0,1], direct resize, NHWC",
+    "output": "20x20x3 softmax; background, person, vehicle",
+    "image_size": 160,
+    "grid_size": 20,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "crop_size": 96,
+    "collision_policy": "same-class centers share a positive cell; mixed-class cells ignored"
+  },
+  "synthetic": false,
+  "sanity": false,
+  "manifest": "/mnt/c/Users/Asus/OneDrive/Desktop/Code/PathClear/tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json",
+  "manifest_sha256": "2dda2563cda15e4b0df9dbaef1fd078076010bc93e33d7a660a4b36bb16f3924",
+  "settings": {
+    "image_size": 160,
+    "crop_size": 96,
+    "stride": 8,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "epochs": 20,
+    "object_weight": 20.0,
+    "patience": 5,
+    "lr_patience": 2,
+    "min_learning_rate": 1e-05,
+    "confidence_threshold": 0.6,
+    "max_detections": 3,
+    "seed": 42,
+    "match_radius": 8.0,
+    "calibration_images": 100
+  },
+  "batch_size": 32,
+  "requested_epochs": 20,
+  "initialization": "imagenet",
+  "tensorflow": "2.21.0",
+  "keras": "3.15.1",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "parameters": 20787,
+  "train_images": 2975,
+  "validation_images": 500,
+  "initial_batch_loss": 1.8200360536575317,
+  "checkpoint_selection": "maximum validation centroid F1 at threshold 0.60",
+  "source_sha256": {
+    "config.py": "fa6f7716a844feca596bcd5f350398773c8d675c9b5432579ab2f6a751b97365",
+    "dataset.py": "21bb057cf8d52fc5eb20597d4965ddcf7c891432586377d3b87941914cc1b212",
+    "evaluate.py": "99dab066b67db7e1be41fb4860b9bb92421da27c1e0d14a9ae657cf663a920d9",
+    "export.py": "e1ec63f5885e76f5d7287828fbc4fa77ac1aaa21942bb0fbe028c748862ac5c4",
+    "inference.py": "fefb2cb58fb301e3e2dff85bdb41a86d6f129c1ef4de3618256bfa1ce935520c",
+    "inspect_dataset.py": "04576e0cc90f1de4063e57232f9b67e792b9277de8efee04b9f8b217b36eddb7",
+    "model.py": "1cee78c20a7a640e264a4cb29ba0cf2a8a811a57b7453f1121c8fa424d488945",
+    "prepare_cityscapes.py": "adf09a658e1501fd5f0a26ff44b1ec4b7cfa572b835775bc54d54baa2f6ffeaf",
+    "test_cityscapes.py": "502a1745ea50e02fdb9a0634ca62fb0ff516dc575a61ef6ede24d620ca8b8eb1",
+    "test_pipeline.py": "441f547a05ce4443ce37fd74c176a18a92da4d902ebe2e68bc293dcb39904fb5",
+    "train.py": "ea94061725950f5aeb9f66d5da69d035d76768e718bdb68ad2d9f7a36e4f573a"
+  },
+  "pretrained_weight_sha256": {
+    "mobilenet_v2_weights_tf_dim_ordering_tf_kernels_0.35_160_no_top.h5": "d579c5d3e0e5f4b71db0cda1a156bbd74fe8317e62ea577594b78faf39847639"
+  },
+  "sanity_gate_passed": true,
+  "duration_seconds": 88.29538403500001,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6391997337341309,
+      "validation_loss": 0.5047385096549988,
+      "validation_f1": 0.19459811259355678,
+      "validation_precision": 0.5503911642890014,
+      "validation_recall": 0.11819349738116415,
+      "per_class": {
+        "person": {
+          "tp": 424,
+          "fp": 435,
+          "fn": 3514,
+          "ignored": 1002,
+          "precision": 0.4935972060535506,
+          "recall": 0.10766886744540376,
+          "f1": 0.1767771523869085
+        },
+        "vehicle": {
+          "tp": 772,
+          "fp": 542,
+          "fn": 5409,
+          "ignored": 2708,
+          "precision": 0.5875190258751902,
+          "recall": 0.12489888367578061,
+          "f1": 0.20600400266844562
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 19.411583464000017
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.43268847465515137,
+      "validation_loss": 0.44397151470184326,
+      "validation_f1": 0.19019462921901947,
+      "validation_precision": 0.5626822157434402,
+      "validation_recall": 0.11443818559146161,
+      "per_class": {
+        "person": {
+          "tp": 453,
+          "fp": 456,
+          "fn": 3485,
+          "ignored": 1222,
+          "precision": 0.49834983498349833,
+          "recall": 0.11503301168105637,
+          "f1": 0.18691974417165258
+        },
+        "vehicle": {
+          "tp": 705,
+          "fp": 444,
+          "fn": 5476,
+          "ignored": 2748,
+          "precision": 0.6135770234986945,
+          "recall": 0.11405921371946287,
+          "f1": 0.19236016371077763
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 28.70699881600001
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3911832869052887,
+      "validation_loss": 0.42087069153785706,
+      "validation_f1": 0.195743254566784,
+      "validation_precision": 0.6435261707988981,
+      "validation_recall": 0.11542642553612018,
+      "per_class": {
+        "person": {
+          "tp": 453,
+          "fp": 301,
+          "fn": 3485,
+          "ignored": 1045,
+          "precision": 0.6007957559681698,
+          "recall": 0.11503301168105637,
+          "f1": 0.19309462915601022
+        },
+        "vehicle": {
+          "tp": 715,
+          "fp": 346,
+          "fn": 5466,
+          "ignored": 2945,
+          "precision": 0.6738925541941565,
+          "recall": 0.11567707490697299,
+          "f1": 0.19745926539629938
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 38.377309478
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.36978796124458313,
+      "validation_loss": 0.4008249044418335,
+      "validation_f1": 0.1845615205068356,
+      "validation_precision": 0.5897709110282365,
+      "validation_recall": 0.10939816187370294,
+      "per_class": {
+        "person": {
+          "tp": 435,
+          "fp": 345,
+          "fn": 3503,
+          "ignored": 1228,
+          "precision": 0.5576923076923077,
+          "recall": 0.11046216353478923,
+          "f1": 0.18440016956337432
+        },
+        "vehicle": {
+          "tp": 672,
+          "fp": 425,
+          "fn": 5509,
+          "ignored": 3093,
+          "precision": 0.6125797629899726,
+          "recall": 0.1087202718006795,
+          "f1": 0.18466611706512778
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 48.139837989
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.35460877418518066,
+      "validation_loss": 0.3892405331134796,
+      "validation_f1": 0.19160675472329042,
+      "validation_precision": 0.6218122626153011,
+      "validation_recall": 0.11325229765787133,
+      "per_class": {
+        "person": {
+          "tp": 469,
+          "fp": 346,
+          "fn": 3469,
+          "ignored": 1364,
+          "precision": 0.5754601226993865,
+          "recall": 0.11909598781107161,
+          "f1": 0.19734904270986744
+        },
+        "vehicle": {
+          "tp": 677,
+          "fp": 351,
+          "fn": 5504,
+          "ignored": 3029,
+          "precision": 0.6585603112840467,
+          "recall": 0.10952920239443456,
+          "f1": 0.1878207795810792
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 57.766471026000005
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.34184083342552185,
+      "validation_loss": 0.3833397924900055,
+      "validation_f1": 0.18053335576680407,
+      "validation_precision": 0.6069004524886877,
+      "validation_recall": 0.10603814606186382,
+      "per_class": {
+        "person": {
+          "tp": 474,
+          "fp": 287,
+          "fn": 3464,
+          "ignored": 1235,
+          "precision": 0.6228646517739816,
+          "recall": 0.12036566785170137,
+          "f1": 0.20174505213875293
+        },
+        "vehicle": {
+          "tp": 599,
+          "fp": 408,
+          "fn": 5582,
+          "ignored": 3103,
+          "precision": 0.5948361469712016,
+          "recall": 0.09690988513185568,
+          "f1": 0.16666666666666666
+        }
+      },
+      "learning_rate": 0.0005000000237487257,
+      "elapsed_seconds": 67.31378033300001
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.33723121881484985,
+      "validation_loss": 0.37996578216552734,
+      "validation_f1": 0.18851570964247022,
+      "validation_precision": 0.6015957446808511,
+      "validation_recall": 0.1117699377408835,
+      "per_class": {
+        "person": {
+          "tp": 493,
+          "fp": 361,
+          "fn": 3445,
+          "ignored": 1420,
+          "precision": 0.5772833723653396,
+          "recall": 0.12519045200609447,
+          "f1": 0.20575959933222038
+        },
+        "vehicle": {
+          "tp": 638,
+          "fp": 388,
+          "fn": 5543,
+          "ignored": 2999,
+          "precision": 0.621832358674464,
+          "recall": 0.10321954376314513,
+          "f1": 0.17705009019009296
+        }
+      },
+      "learning_rate": 0.0005000000237487257,
+      "elapsed_seconds": 76.80103773900001
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.33072835206985474,
+      "validation_loss": 0.3768214285373688,
+      "validation_f1": 0.1889300134589502,
+      "validation_precision": 0.6348219332956473,
+      "validation_recall": 0.11097934578515664,
+      "per_class": {
+        "person": {
+          "tp": 480,
+          "fp": 287,
+          "fn": 3458,
+          "ignored": 1392,
+          "precision": 0.6258148631029987,
+          "recall": 0.12188928390045708,
+          "f1": 0.20403825717321997
+        },
+        "vehicle": {
+          "tp": 643,
+          "fp": 359,
+          "fn": 5538,
+          "ignored": 3075,
+          "precision": 0.6417165668662674,
+          "recall": 0.10402847435690017,
+          "f1": 0.17903382987609634
+        }
+      },
+      "learning_rate": 0.0002500000118743628,
+      "elapsed_seconds": 86.66968323600003
+    }
+  ],
+  "best_epoch": 3,
+  "max_trainable_weight_change": null,
+  "updates": 744,
+  "metrics": {
+    "images": 500,
+    "confidence_threshold": 0.6,
+    "radius_input_pixels": 8.0,
+    "uncapped_micro": {
+      "tp": 1168,
+      "fp": 647,
+      "fn": 8951,
+      "ignored": 3991,
+      "precision": 0.6435261707988981,
+      "recall": 0.11542642553612018,
+      "f1": 0.195743254566784
+    },
+    "handoff_top3_micro": {
+      "tp": 576,
+      "fp": 137,
+      "fn": 9543,
+      "ignored": 787,
+      "precision": 0.8078541374474053,
+      "recall": 0.056922620812333236,
+      "f1": 0.10635155096011817
+    },
+    "per_class": {
+      "person": {
+        "tp": 453,
+        "fp": 301,
+        "fn": 3485,
+        "ignored": 1045,
+        "precision": 0.6007957559681698,
+        "recall": 0.11503301168105637,
+        "f1": 0.19309462915601022
+      },
+      "vehicle": {
+        "tp": 715,
+        "fp": 346,
+        "fn": 5466,
+        "ignored": 2946,
+        "precision": 0.6738925541941565,
+        "recall": 0.11567707490697299,
+        "f1": 0.19745926539629938
+      }
+    },
+    "matched_center_error_input_pixels_mean": 4.095398123302102,
+    "matched_center_error_input_pixels_median": 3.9706293173806895,
+    "matched_center_error_input_pixels_p95": 7.358924693715494,
+    "detection_confidence_mean": 0.7757089860965743,
+    "detection_confidence_quantiles": [
+      0.600018322467804,
+      0.679670661687851,
+      0.7674100697040558,
+      0.8674755096435547,
+      0.9963622689247131
+    ],
+    "detection_count": 5806
+  },
+  "best_model_bytes": 511345
+}

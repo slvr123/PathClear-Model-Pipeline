@@ -1,0 +1,966 @@
+{
+  "name": "baseline_v1",
+  "model": "local FOMO-inspired MobileNetV2 alpha 0.35",
+  "dataset": "Cityscapes official train/validation",
+  "classes": [
+    "person",
+    "vehicle"
+  ],
+  "input_size": [
+    160,
+    160,
+    3
+  ],
+  "grid_size": [
+    20,
+    20
+  ],
+  "evaluation": {
+    "threshold": 0.6,
+    "micro": {
+      "tp": 2573,
+      "fp": 1069,
+      "fn": 7546,
+      "ignored": 1039,
+      "precision": 0.7064799560680944,
+      "recall": 0.2542741377606483,
+      "f1": 0.37395538114962573
+    },
+    "per_class": {
+      "person": {
+        "tp": 900,
+        "fp": 516,
+        "fn": 3038,
+        "ignored": 610,
+        "precision": 0.635593220338983,
+        "recall": 0.22854240731335704,
+        "f1": 0.33619723571161747
+      },
+      "vehicle": {
+        "tp": 1673,
+        "fp": 553,
+        "fn": 4508,
+        "ignored": 429,
+        "precision": 0.7515723270440252,
+        "recall": 0.2706681766704417,
+        "f1": 0.3980016652789342
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 330,
+        "recall": 0.12368815592203898,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 221,
+            "recall": 0.13803872579637727
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 109,
+            "recall": 0.1021555763823805
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 532,
+        "recall": 0.18095238095238095,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 307,
+            "recall": 0.23524904214559386
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 225,
+            "recall": 0.13761467889908258
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 600,
+        "recall": 0.2589555459646094,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 253,
+            "recall": 0.3337730870712401
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 347,
+            "recall": 0.22257857601026299
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 643,
+        "recall": 0.46159368269921036,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 106,
+            "recall": 0.43983402489626555
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 537,
+            "recall": 0.4661458333333333
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 468,
+        "recall": 0.5842696629213483,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 13,
+            "recall": 0.3939393939393939
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 455,
+            "recall": 0.5924479166666666
+          }
+        }
+      }
+    }
+  },
+  "size_stratified_recall": {
+    "lt2": {
+      "total": 2668,
+      "matched": 330,
+      "recall": 0.12368815592203898
+    },
+    "2to8": {
+      "total": 5257,
+      "matched": 1132,
+      "recall": 0.21533193836789044
+    },
+    "ge8": {
+      "total": 2194,
+      "matched": 1111,
+      "recall": 0.5063810391978122
+    }
+  },
+  "model_size": 70736,
+  "checkpoint_path": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\diagnosis-center-training-20261004\\best.keras",
+  "int8_path": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\diagnosis-center-export-20261004\\model.int8.tflite",
+  "training_configuration": {
+    "contract": {
+      "implementation": "local-fomo-inspired-cityscapes-v2",
+      "class_names": [
+        "person",
+        "vehicle"
+      ],
+      "background_channel": 0,
+      "object_channel_offset": 1,
+      "input": "RGB float32 [0,1], direct resize, NHWC",
+      "output": "20x20x3 softmax; background, person, vehicle",
+      "image_size": 160,
+      "grid_size": 20,
+      "alpha": 0.35,
+      "head_channels": 32,
+      "crop_size": 96,
+      "collision_policy": "same-class centers share a positive cell; mixed-class cells ignored"
+    },
+    "synthetic": false,
+    "sanity": false,
+    "manifest": "/mnt/c/Users/Asus/OneDrive/Desktop/Code/PathClear/tinyml/fomo/artifacts/cityscapes-center-targets-20261004/manifest.json",
+    "manifest_sha256": "72e092415105c07c5cb4ccce141354c1248a437c71b8f13af0203429e0842b9a",
+    "settings": {
+      "image_size": 160,
+      "crop_size": 96,
+      "stride": 8,
+      "alpha": 0.35,
+      "head_channels": 32,
+      "batch_size": 32,
+      "learning_rate": 0.001,
+      "epochs": 20,
+      "object_weight": 20.0,
+      "patience": 5,
+      "lr_patience": 2,
+      "min_learning_rate": 1e-05,
+      "confidence_threshold": 0.6,
+      "max_detections": 0,
+      "decoder": "cell_nms",
+      "seed": 42,
+      "match_radius": 8.0,
+      "calibration_images": 100
+    },
+    "batch_size": 32,
+    "requested_epochs": 20,
+    "initialization": "imagenet",
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "devices": [
+      "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+    ],
+    "parameters": 20787,
+    "train_images": 2975,
+    "validation_images": 500,
+    "initial_batch_loss": 1.6253242492675781,
+    "checkpoint_selection": "maximum validation centroid F1 at threshold 0.60",
+    "decoding": {
+      "version": 1,
+      "decoder": "cell_nms",
+      "threshold": 0.6,
+      "max_detections": 0,
+      "nms_distance": "same class, Chebyshev <= 1 output cell",
+      "consumer": "PathClear decision logic",
+      "creates_classifier_crops": false
+    },
+    "source_sha256": {
+      "config.py": "ed98bacb3f5fc24c1a8b2b79d692b0ea5a2ad141978b3558e811f9320b0328b7",
+      "dataset.py": "1a819a45f67ceb8a77c4623332ba92c1dce0502ffd9c463aa637249a1899d170",
+      "diagnose.py": "67a3e674c898e6e485e244daa1815f3946d3358f0ed09d298d19e2e60268bdc4",
+      "evaluate.py": "aeeb4a6925a82604025bd723de96196b557460caadba0679b3d912810f9a3886",
+      "export.py": "3793e73db87f6eb0245967fdb15890d1039dce3dcb357ea41e12dcf933a7e5fa",
+      "inference.py": "b651a974191f08035a6cd8d88ca537e17074c18f0dc0a05f2c2492b5b29a0c96",
+      "inspect_dataset.py": "04576e0cc90f1de4063e57232f9b67e792b9277de8efee04b9f8b217b36eddb7",
+      "model.py": "a755bb0c5904a3c36c2e6ebfcb3ec1b0897cb9606193f568e69bd15f7a1327e8",
+      "prepare_cityscapes.py": "95e2c41e1ee78ca068918e68fae07ef5e4041e5190d35df754d533b98da59f23",
+      "refine_targets.py": "1a99ccb1b8955514cb3bed79e7bb231553de611db4ac49125e46a5458f56cdda",
+      "test_cityscapes.py": "d31a01b2f6438546f7ac3e4026527e6b43df5ba078e1d6cb3d8a3b8dfdd11fe1",
+      "test_pipeline.py": "c4fb008310d93591346a3e73b83f21ea8b5168c4e30551471c7ce4786e4d8560",
+      "train.py": "308691add693b198cbad6700f6430242c51f6565003ee70c989b4679e8b51f1a"
+    },
+    "pretrained_weight_sha256": {
+      "mobilenet_v2_weights_tf_dim_ordering_tf_kernels_0.35_160_no_top.h5": "d579c5d3e0e5f4b71db0cda1a156bbd74fe8317e62ea577594b78faf39847639"
+    },
+    "sanity_gate_passed": true,
+    "duration_seconds": 217.19383889900007,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.5910919308662415,
+        "validation_loss": 0.47807222604751587,
+        "validation_f1": 0.2936431584400207,
+        "validation_precision": 0.5845609899823218,
+        "validation_recall": 0.19606680502025892,
+        "per_class": {
+          "person": {
+            "tp": 435,
+            "fp": 423,
+            "fn": 3503,
+            "ignored": 326,
+            "precision": 0.506993006993007,
+            "recall": 0.11046216353478923,
+            "f1": 0.18140116763969974
+          },
+          "vehicle": {
+            "tp": 1549,
+            "fp": 987,
+            "fn": 4632,
+            "ignored": 767,
+            "precision": 0.6108044164037855,
+            "recall": 0.2506066979453163,
+            "f1": 0.35539749913961227
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 19.973024722000105
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.4148959815502167,
+        "validation_loss": 0.4295026659965515,
+        "validation_f1": 0.3274596182085169,
+        "validation_precision": 0.6369608683233362,
+        "validation_recall": 0.22037750765885958,
+        "per_class": {
+          "person": {
+            "tp": 618,
+            "fp": 500,
+            "fn": 3320,
+            "ignored": 446,
+            "precision": 0.552772808586762,
+            "recall": 0.1569324530218385,
+            "f1": 0.2444620253164557
+          },
+          "vehicle": {
+            "tp": 1612,
+            "fp": 771,
+            "fn": 4569,
+            "ignored": 537,
+            "precision": 0.6764582459085187,
+            "recall": 0.26079922342663,
+            "f1": 0.37645959831854275
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 29.812705787000027
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.3785426914691925,
+        "validation_loss": 0.40902966260910034,
+        "validation_f1": 0.33550123346041716,
+        "validation_precision": 0.6887661141804788,
+        "validation_recall": 0.22176104358138157,
+        "per_class": {
+          "person": {
+            "tp": 561,
+            "fp": 311,
+            "fn": 3377,
+            "ignored": 275,
+            "precision": 0.643348623853211,
+            "recall": 0.1424581005586592,
+            "f1": 0.23326403326403328
+          },
+          "vehicle": {
+            "tp": 1683,
+            "fp": 703,
+            "fn": 4498,
+            "ignored": 511,
+            "precision": 0.7053646269907795,
+            "recall": 0.2722860378579518,
+            "f1": 0.39290299988327304
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 40.029861957000094
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.35920727252960205,
+        "validation_loss": 0.39395007491111755,
+        "validation_f1": 0.3493722331083533,
+        "validation_precision": 0.6576502732240437,
+        "validation_recall": 0.23786935467931614,
+        "per_class": {
+          "person": {
+            "tp": 584,
+            "fp": 365,
+            "fn": 3354,
+            "ignored": 343,
+            "precision": 0.6153846153846154,
+            "recall": 0.14829862874555613,
+            "f1": 0.23900143237159813
+          },
+          "vehicle": {
+            "tp": 1823,
+            "fp": 888,
+            "fn": 4358,
+            "ignored": 690,
+            "precision": 0.6724455920324603,
+            "recall": 0.2949360944830933,
+            "f1": 0.4100314889788574
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 50.110376341000006
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.34624049067497253,
+        "validation_loss": 0.3955835998058319,
+        "validation_f1": 0.3405393018104041,
+        "validation_precision": 0.75,
+        "validation_recall": 0.2202786836643937,
+        "per_class": {
+          "person": {
+            "tp": 594,
+            "fp": 254,
+            "fn": 3344,
+            "ignored": 282,
+            "precision": 0.7004716981132075,
+            "recall": 0.15083798882681565,
+            "f1": 0.248223986627664
+          },
+          "vehicle": {
+            "tp": 1635,
+            "fp": 489,
+            "fn": 4546,
+            "ignored": 381,
+            "precision": 0.769774011299435,
+            "recall": 0.26452030415790323,
+            "f1": 0.3937387116195063
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 60.374478834
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.33584511280059814,
+        "validation_loss": 0.3850778639316559,
+        "validation_f1": 0.34523095380923813,
+        "validation_precision": 0.7155735156978551,
+        "validation_recall": 0.22749283526040123,
+        "per_class": {
+          "person": {
+            "tp": 556,
+            "fp": 210,
+            "fn": 3382,
+            "ignored": 259,
+            "precision": 0.7258485639686684,
+            "recall": 0.14118842051802946,
+            "f1": 0.23639455782312926
+          },
+          "vehicle": {
+            "tp": 1746,
+            "fp": 705,
+            "fn": 4435,
+            "ignored": 558,
+            "precision": 0.7123623011015912,
+            "recall": 0.28247856333926546,
+            "f1": 0.4045412418906395
+          }
+        },
+        "learning_rate": 0.0010000000474974513,
+        "elapsed_seconds": 70.51065195400008
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.3270430564880371,
+        "validation_loss": 0.37321794033050537,
+        "validation_f1": 0.35935328114712123,
+        "validation_precision": 0.691830985915493,
+        "validation_recall": 0.2427117304081431,
+        "per_class": {
+          "person": {
+            "tp": 774,
+            "fp": 444,
+            "fn": 3164,
+            "ignored": 478,
+            "precision": 0.6354679802955665,
+            "recall": 0.19654647028948705,
+            "f1": 0.30023273855702093
+          },
+          "vehicle": {
+            "tp": 1682,
+            "fp": 650,
+            "fn": 4499,
+            "ignored": 450,
+            "precision": 0.7212692967409948,
+            "recall": 0.2721242517392008,
+            "f1": 0.3951603430048162
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 80.82433742300009
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.3224972188472748,
+        "validation_loss": 0.37104663252830505,
+        "validation_f1": 0.3585185185185185,
+        "validation_precision": 0.7157645666962437,
+        "validation_recall": 0.23915406660737226,
+        "per_class": {
+          "person": {
+            "tp": 712,
+            "fp": 316,
+            "fn": 3226,
+            "ignored": 401,
+            "precision": 0.6926070038910506,
+            "recall": 0.180802437785678,
+            "f1": 0.28674989931534434
+          },
+          "vehicle": {
+            "tp": 1708,
+            "fp": 645,
+            "fn": 4473,
+            "ignored": 450,
+            "precision": 0.7258818529536761,
+            "recall": 0.27633069082672707,
+            "f1": 0.40028122802906024
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 91.04466433800008
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.321073442697525,
+        "validation_loss": 0.36944523453712463,
+        "validation_f1": 0.36020710059171596,
+        "validation_precision": 0.7159658923845927,
+        "validation_recall": 0.24063642652436013,
+        "per_class": {
+          "person": {
+            "tp": 768,
+            "fp": 388,
+            "fn": 3170,
+            "ignored": 447,
+            "precision": 0.6643598615916955,
+            "recall": 0.19502285424073135,
+            "f1": 0.30153121319199055
+          },
+          "vehicle": {
+            "tp": 1667,
+            "fp": 578,
+            "fn": 4514,
+            "ignored": 420,
+            "precision": 0.7425389755011136,
+            "recall": 0.2696974599579356,
+            "f1": 0.3956800379776881
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 101.07701856300002
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.31681033968925476,
+        "validation_loss": 0.3667668104171753,
+        "validation_f1": 0.3614708947446777,
+        "validation_precision": 0.7324283559577677,
+        "validation_recall": 0.23994465856309913,
+        "per_class": {
+          "person": {
+            "tp": 673,
+            "fp": 300,
+            "fn": 3265,
+            "ignored": 334,
+            "precision": 0.6916752312435765,
+            "recall": 0.17089893346876586,
+            "f1": 0.2740785990633272
+          },
+          "vehicle": {
+            "tp": 1755,
+            "fp": 587,
+            "fn": 4426,
+            "ignored": 500,
+            "precision": 0.7493595217762596,
+            "recall": 0.2839346384080246,
+            "f1": 0.4118268215417107
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 111.24622106800007
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.314579576253891,
+        "validation_loss": 0.3659517765045166,
+        "validation_f1": 0.3645377661125693,
+        "validation_precision": 0.6950236308034473,
+        "validation_recall": 0.24705998616464078,
+        "per_class": {
+          "person": {
+            "tp": 742,
+            "fp": 411,
+            "fn": 3196,
+            "ignored": 461,
+            "precision": 0.6435385949696444,
+            "recall": 0.18842051802945659,
+            "f1": 0.2914947947358083
+          },
+          "vehicle": {
+            "tp": 1758,
+            "fp": 686,
+            "fn": 4423,
+            "ignored": 526,
+            "precision": 0.7193126022913257,
+            "recall": 0.28441999676427765,
+            "f1": 0.4076521739130435
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 121.567866815
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.31243017315864563,
+        "validation_loss": 0.364692360162735,
+        "validation_f1": 0.3628723090533766,
+        "validation_precision": 0.7143686502177068,
+        "validation_recall": 0.24320585038047238,
+        "per_class": {
+          "person": {
+            "tp": 726,
+            "fp": 359,
+            "fn": 3212,
+            "ignored": 435,
+            "precision": 0.6691244239631337,
+            "recall": 0.18435754189944134,
+            "f1": 0.28907027672705554
+          },
+          "vehicle": {
+            "tp": 1735,
+            "fp": 625,
+            "fn": 4446,
+            "ignored": 469,
+            "precision": 0.7351694915254238,
+            "recall": 0.28069891603300434,
+            "f1": 0.4062756117550638
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 131.9628903040001
+      },
+      {
+        "epoch": 13,
+        "train_loss": 0.3101120889186859,
+        "validation_loss": 0.3646586239337921,
+        "validation_f1": 0.3612932061978546,
+        "validation_precision": 0.7337367624810892,
+        "validation_recall": 0.23964818657970155,
+        "per_class": {
+          "person": {
+            "tp": 737,
+            "fp": 342,
+            "fn": 3201,
+            "ignored": 408,
+            "precision": 0.6830398517145505,
+            "recall": 0.1871508379888268,
+            "f1": 0.2938010763404425
+          },
+          "vehicle": {
+            "tp": 1688,
+            "fp": 538,
+            "fn": 4493,
+            "ignored": 411,
+            "precision": 0.7583108715184187,
+            "recall": 0.27309496845170683,
+            "f1": 0.40157012013798027
+          }
+        },
+        "learning_rate": 0.0005000000237487257,
+        "elapsed_seconds": 142.02833124400001
+      },
+      {
+        "epoch": 14,
+        "train_loss": 0.3064693212509155,
+        "validation_loss": 0.3604351878166199,
+        "validation_f1": 0.3669043807306069,
+        "validation_precision": 0.6958321832735302,
+        "validation_recall": 0.24913529004842375,
+        "per_class": {
+          "person": {
+            "tp": 751,
+            "fp": 463,
+            "fn": 3187,
+            "ignored": 515,
+            "precision": 0.6186161449752883,
+            "recall": 0.19070594210259015,
+            "f1": 0.29153726708074534
+          },
+          "vehicle": {
+            "tp": 1770,
+            "fp": 639,
+            "fn": 4411,
+            "ignored": 507,
+            "precision": 0.7347447073474471,
+            "recall": 0.2863614301892898,
+            "f1": 0.4121071012805588
+          }
+        },
+        "learning_rate": 0.0002500000118743628,
+        "elapsed_seconds": 152.21345684300002
+      },
+      {
+        "epoch": 15,
+        "train_loss": 0.3043169677257538,
+        "validation_loss": 0.3635074198246002,
+        "validation_f1": 0.3647528854690737,
+        "validation_precision": 0.7256402708272005,
+        "validation_recall": 0.2436011463583358,
+        "per_class": {
+          "person": {
+            "tp": 756,
+            "fp": 377,
+            "fn": 3182,
+            "ignored": 454,
+            "precision": 0.6672550750220653,
+            "recall": 0.19197562214321992,
+            "f1": 0.2981660422007494
+          },
+          "vehicle": {
+            "tp": 1709,
+            "fp": 555,
+            "fn": 4472,
+            "ignored": 419,
+            "precision": 0.7548586572438163,
+            "recall": 0.27649247694547807,
+            "f1": 0.40473653049141506
+          }
+        },
+        "learning_rate": 0.0002500000118743628,
+        "elapsed_seconds": 162.93563226900005
+      },
+      {
+        "epoch": 16,
+        "train_loss": 0.30362585186958313,
+        "validation_loss": 0.3633567988872528,
+        "validation_f1": 0.36741589540179226,
+        "validation_precision": 0.7155937052932761,
+        "validation_recall": 0.24715881015910662,
+        "per_class": {
+          "person": {
+            "tp": 809,
+            "fp": 451,
+            "fn": 3129,
+            "ignored": 516,
+            "precision": 0.6420634920634921,
+            "recall": 0.20543423057389537,
+            "f1": 0.3112735667564448
+          },
+          "vehicle": {
+            "tp": 1692,
+            "fp": 543,
+            "fn": 4489,
+            "ignored": 418,
+            "precision": 0.7570469798657719,
+            "recall": 0.2737421129267109,
+            "f1": 0.40209125475285173
+          }
+        },
+        "learning_rate": 0.0002500000118743628,
+        "elapsed_seconds": 173.10078953000004
+      },
+      {
+        "epoch": 17,
+        "train_loss": 0.30225950479507446,
+        "validation_loss": 0.36125651001930237,
+        "validation_f1": 0.3628121284185494,
+        "validation_precision": 0.7314953551093797,
+        "validation_recall": 0.24122937049115525,
+        "per_class": {
+          "person": {
+            "tp": 604,
+            "fp": 228,
+            "fn": 3334,
+            "ignored": 290,
+            "precision": 0.7259615384615384,
+            "recall": 0.15337734890807517,
+            "f1": 0.25324947589098534
+          },
+          "vehicle": {
+            "tp": 1837,
+            "fp": 668,
+            "fn": 4344,
+            "ignored": 559,
+            "precision": 0.7333333333333333,
+            "recall": 0.2972011001456075,
+            "f1": 0.4229795072530509
+          }
+        },
+        "learning_rate": 0.0002500000118743628,
+        "elapsed_seconds": 183.84323001300004
+      },
+      {
+        "epoch": 18,
+        "train_loss": 0.3013368546962738,
+        "validation_loss": 0.35875117778778076,
+        "validation_f1": 0.3668249908659116,
+        "validation_precision": 0.7038698822209759,
+        "validation_recall": 0.24804822610929933,
+        "per_class": {
+          "person": {
+            "tp": 697,
+            "fp": 352,
+            "fn": 3241,
+            "ignored": 402,
+            "precision": 0.6644423260247855,
+            "recall": 0.17699339766378872,
+            "f1": 0.2795267696009625
+          },
+          "vehicle": {
+            "tp": 1813,
+            "fp": 704,
+            "fn": 4368,
+            "ignored": 578,
+            "precision": 0.7203019467620183,
+            "recall": 0.29331823329558326,
+            "f1": 0.4168774430903656
+          }
+        },
+        "learning_rate": 0.0002500000118743628,
+        "elapsed_seconds": 193.722469326
+      },
+      {
+        "epoch": 19,
+        "train_loss": 0.3000394403934479,
+        "validation_loss": 0.3595266044139862,
+        "validation_f1": 0.3730118381872322,
+        "validation_precision": 0.7035616438356165,
+        "validation_recall": 0.253780017788319,
+        "per_class": {
+          "person": {
+            "tp": 801,
+            "fp": 467,
+            "fn": 3137,
+            "ignored": 529,
+            "precision": 0.6317034700315457,
+            "recall": 0.20340274250888776,
+            "f1": 0.30772185939300806
+          },
+          "vehicle": {
+            "tp": 1767,
+            "fp": 615,
+            "fn": 4414,
+            "ignored": 505,
+            "precision": 0.7418136020151134,
+            "recall": 0.2858760718330367,
+            "f1": 0.41270582739694034
+          }
+        },
+        "learning_rate": 0.0001250000059371814,
+        "elapsed_seconds": 204.02547964000007
+      },
+      {
+        "epoch": 20,
+        "train_loss": 0.2986353933811188,
+        "validation_loss": 0.35842201113700867,
+        "validation_f1": 0.37152113090855543,
+        "validation_precision": 0.7285590528443546,
+        "validation_recall": 0.24933293803735548,
+        "per_class": {
+          "person": {
+            "tp": 722,
+            "fp": 322,
+            "fn": 3216,
+            "ignored": 402,
+            "precision": 0.6915708812260536,
+            "recall": 0.18334179786693752,
+            "f1": 0.28984343637093535
+          },
+          "vehicle": {
+            "tp": 1801,
+            "fp": 618,
+            "fn": 4380,
+            "ignored": 506,
+            "precision": 0.7445225299710624,
+            "recall": 0.2913767998705711,
+            "f1": 0.4188372093023256
+          }
+        },
+        "learning_rate": 0.0001250000059371814,
+        "elapsed_seconds": 214.526618063
+      }
+    ],
+    "best_epoch": 19,
+    "max_trainable_weight_change": null,
+    "updates": 1860,
+    "metrics": {
+      "images": 500,
+      "confidence_threshold": 0.6,
+      "radius_input_pixels": 8.0,
+      "uncapped_micro": {
+        "tp": 2568,
+        "fp": 1082,
+        "fn": 7551,
+        "ignored": 1034,
+        "precision": 0.7035616438356165,
+        "recall": 0.253780017788319,
+        "f1": 0.3730118381872322
+      },
+      "legacy_top3_micro": {
+        "tp": 1178,
+        "fp": 162,
+        "fn": 8941,
+        "ignored": 144,
+        "precision": 0.8791044776119403,
+        "recall": 0.11641466548077874,
+        "f1": 0.2056025831224365
+      },
+      "decoding": {
+        "version": 1,
+        "decoder": "cell_nms",
+        "threshold": 0.6,
+        "max_detections": 0,
+        "nms_distance": "same class, Chebyshev <= 1 output cell",
+        "consumer": "PathClear decision logic",
+        "creates_classifier_crops": false
+      },
+      "per_class": {
+        "person": {
+          "tp": 801,
+          "fp": 467,
+          "fn": 3137,
+          "ignored": 529,
+          "precision": 0.6317034700315457,
+          "recall": 0.20340274250888776,
+          "f1": 0.30772185939300806
+        },
+        "vehicle": {
+          "tp": 1767,
+          "fp": 615,
+          "fn": 4414,
+          "ignored": 505,
+          "precision": 0.7418136020151134,
+          "recall": 0.2858760718330367,
+          "f1": 0.41270582739694034
+        }
+      },
+      "matched_center_error_input_pixels_mean": 3.848070720260759,
+      "matched_center_error_input_pixels_median": 3.5903551123940503,
+      "matched_center_error_input_pixels_p95": 7.377274457496187,
+      "detection_confidence_mean": 0.8128003781290771,
+      "detection_confidence_quantiles": [
+        0.600095272064209,
+        0.7019463181495667,
+        0.8209443390369415,
+        0.925434023141861,
+        0.9988151788711548
+      ],
+      "detection_count": 4684
+    },
+    "best_model_bytes": 511345
+  },
+  "protected_files": {
+    "artifacts\\diagnosis-center-training-20261004\\best.json": "89b9793f7727413271303d73aebec480a2e71e93bca101b5fc8634156349d46c",
+    "artifacts\\diagnosis-center-training-20261004\\best.keras": "b91d83182ea043567443d41396af7085543a3c8860cc1fd320a2b167cf8f68bd",
+    "artifacts\\diagnosis-center-training-20261004\\history.json": "e53599ad1ea095b0e022b38c4bd80e077d0f42213c480443ecf688e165ae9c20",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0000.png": "e42e2c3224f8180ea5abca06057a872b54eafe8eeba9f578f978fc6b7ab9f375",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0045.png": "1b2221b5cca1755afdfdaff484e96ba96496b563ec9c3632836e32fa995a78cc",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0090.png": "11b4f5a114545c9301360859844cc73f1fd20d60e57ee0e5a760618ed27f2d12",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0136.png": "70d78f009381afad90958f1a406616eb31b940397686c1b39e0dd7cec7305b69",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0181.png": "05a70e034c2f9003fe15baff62b0af3af7fa2aa45af085db19a3ce0ac24be43a",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0226.png": "09bb6b3776a1fbee5228d6ab0d3197447506c013a9a436f93c71df1d22897366",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0272.png": "7edc2bad55c9876e7193bb9cec83f80fcb41ae5fa5ee5af1e6f4ef7bc4934c45",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0317.png": "e2547ae8ed67624b336256c23989164b7c9428ca38a9adbd6ae4e5cec1d4062d",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0362.png": "39d425e3759a4242e7baf2b0765063dd5f2183c63106f53e0e9c81a646d6cbbe",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0408.png": "37fa159b19369bd332e70d5a6729244852bff941715d7d8365a723a402bb5db0",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0453.png": "6181e479f799fea003bfc5b2b57db5b658ee122b0a8684f1ea87c279de372fb8",
+    "artifacts\\diagnosis-center-training-20261004\\prediction-0499.png": "7d4a6684bcabbeff99a9ffc7f562c13a40b4ed1a4d77a407fe96cec7fded288d",
+    "artifacts\\diagnosis-center-export-20261004\\model.float32.tflite": "a5459b749cfe227f15c00279ce989facd6018f3c01f80c8cf37f9b692d2c1b21",
+    "artifacts\\diagnosis-center-export-20261004\\model.int8.tflite": "359473f21233165ccbc6ea64689a645490d819bb07dd2905ed6dd5fa76f4e372",
+    "artifacts\\diagnosis-center-export-20261004\\report.json": "592f4c9832f0ee05a48adfb43356a39ac0e2bde0e41976d3cd18f2113bcf6be3",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\detections.json": "03c15993dee7d1f12b39951f75bf877d53486bcd30aa09786bceced3d619fb68",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0000.png": "33d77986dc8d32049ee1f4459ee05d9602bac56c12860e004adb7f5e6dd5c4ee",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0045.png": "16ded8d4bb0d86a38592b416c090fdfe5ef5b9f69017f4e303e3a80148d142f5",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0090.png": "630aeef5561bf7060d62cf54467403c276df8f0469e48840632935bbfcba0727",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0136.png": "50b3fdf41682d2d73d5e2b097aa8a5b19ce74b80a32a5c388c4c4fc2dcb0c8d9",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0181.png": "51decfdb2da6f33e4c7fe30aefcb2506a802b361fd9d365bb2e968b4dcf8d95b",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0226.png": "54ecdc1233b0582174cd5322c90a65d6d7faaecb6027c52d3704b75798a1e80d",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0272.png": "791884f8584e73a264c5aad165e234e44e907848d6aa09cbd09f09a927c41ea0",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0317.png": "c4f03b3058384d87ea3a1f15e516db41d038533faf1d2ba1b8c9dc260499d850",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0362.png": "d0d531d4ce81588c4c739cf162d3f23ec7320cee10cb0424611481d4c11e1d91",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0408.png": "b1e94c7b0f5390c25a8c1f67b8dcaf5e3d4ab10b683a4a3e3b73f3c7ae6f75a9",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0453.png": "49835be41ebc96296c91fe79d9521c65ba6be78886effa88c0500570d8fbe374",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\prediction-0499.png": "83a94ab8a7e0f4b608920c934c43cf945c6fb205bebc370418473c788c39dc12",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\probabilities.npy": "40dc1e3f478c2e45ed875a739d2c149c6ca2f2e72f03d0e215a79a4c72093e81",
+    "artifacts\\diagnosis-center-int8-evaluation-20261004\\report.json": "efc241391f0b1ccd1a09e86dad6ba4e78920287665655726e4072e27599b645d",
+    "artifacts\\diagnosis-center-evaluation-20261004\\detections.json": "fc6e5e5faad2d05ed5ab6e678824c7e70635dc6528cb2fb62e674e89374320e5",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0000.png": "b52ef6859e6640a5ed3941a10a7b0c4a1d9b3bfc0dd1daba043fe1fefb31d6ac",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0045.png": "28fe6e785df807104c1bae617683f4003468e23bd77457625760bc514a081c95",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0090.png": "5b87a997ff7509b1ab23a65e132beeeb1517cd778d12e200806e7ebb9d975c28",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0136.png": "00efd862e038e2e705d51e1fe5ba6b40156cd1d1b4c2601300ec80a0cafcde85",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0181.png": "2a364a8a5589fd28f58c0d2d7e22bb12246f2423d5b6bd17f1176ff595d9a941",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0226.png": "218d4a31d0199b3fea7ab63a8411f6b28663725a55d3046a78302aa4da0b13a8",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0272.png": "e22f11f0b3c266f3dc737826b6ac8cb5d31e44b8ff92ab795a8b3459f9b0a7b4",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0317.png": "75bceccebb25c3418278f57a81975dcc9f8ab6a5f70b4ffd7372be7b0b9438ac",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0362.png": "864c01bb36b7cec258b69fb8da214df564fec9cd5137fa9cdd7668083e01f84d",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0408.png": "8aeede313ca942899646884ab4790e5348cfc82358cd3fb41ebf48abd4e7e85f",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0453.png": "6b8cac44a84db4d28d471bc31fc0cc573f8d9626ccf5951fc83921f149e4143d",
+    "artifacts\\diagnosis-center-evaluation-20261004\\prediction-0499.png": "44b2bed996d789423285530d0a4c0c274a1f5aa774058704f16b03724d38576d",
+    "artifacts\\diagnosis-center-evaluation-20261004\\probabilities.npy": "63bb7a80e2584750b5131d4eb098e2c6a3a478d30086b2db91c8c53c671b2c94",
+    "artifacts\\diagnosis-center-evaluation-20261004\\report.json": "3589b2cf53ccda30f24444ad99dc288f617221f12907d28f40d5523c5fefcbde"
+  },
+  "training_manifest_sha256": "72e092415105c07c5cb4ccce141354c1248a437c71b8f13af0203429e0842b9a",
+  "evaluation_manifest_sha256": "2dda2563cda15e4b0df9dbaef1fd078076010bc93e33d7a660a4b36bb16f3924",
+  "protocol": "Same-class confidence-greedy one-to-one, Euclidean match <=8 input pixels; same-class Chebyshev NMS <=8; all objects; fixed original ignore cells; no output cap",
+  "scope": "Development validation already used for model selection, not independent test accuracy"
+}

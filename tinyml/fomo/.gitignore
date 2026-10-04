@@ -1,0 +1,27 @@
+artifacts/
+data/
+*.tflite
+*.keras
+*.weights.h5
+__pycache__/
+
+# Only this named frozen checkpoint is versioned. Other experiments remain ignored.
+!/checkpoints/
+/checkpoints/*
+!/checkpoints/cityscapes_v2/
+/checkpoints/cityscapes_v2/*
+!/checkpoints/cityscapes_v2/README.md
+!/checkpoints/cityscapes_v2/SHA256SUMS.txt
+!/checkpoints/cityscapes_v2/best.json
+!/checkpoints/cityscapes_v2/best.keras
+!/checkpoints/cityscapes_v2/classes.json
+!/checkpoints/cityscapes_v2/config.json
+!/checkpoints/cityscapes_v2/environment.json
+!/checkpoints/cityscapes_v2/history.json
+!/checkpoints/cityscapes_v2/metrics.json
+!/checkpoints/cityscapes_v2/model.float32.tflite
+!/checkpoints/cityscapes_v2/model.int8.tflite
+!/checkpoints/cityscapes_v2/report.json
+!/checkpoints/cityscapes_v2/source_artifacts.json
+!/checkpoints/cityscapes_v2/split_ids.json
+!/checkpoints/cityscapes_v2/verification.json

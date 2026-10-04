@@ -1,0 +1,107 @@
+{
+  "model_name": "PathClear local FOMO-inspired",
+  "version": "cityscapes_v2",
+  "dataset": "Cityscapes fine instanceIds",
+  "dataset_split": {
+    "train": "official train",
+    "validation": "official val",
+    "train_images": 2975,
+    "validation_images": 500,
+    "test": "withheld labels, unused"
+  },
+  "input_width": 160,
+  "input_height": 160,
+  "channels": 3,
+  "grid_width": 20,
+  "grid_height": 20,
+  "classes": {
+    "public_detection_ids": {
+      "0": "person",
+      "1": "vehicle"
+    },
+    "internal_output_channels": {
+      "0": "background",
+      "1": "person",
+      "2": "vehicle"
+    },
+    "cityscapes_semantic_id_to_public_id": {
+      "24": 0,
+      "25": 0,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1
+    },
+    "microseg_taxonomy_included": false
+  },
+  "object_weight": 10,
+  "learning_rate": 0.001,
+  "batch_size": 32,
+  "epoch_budget": 20,
+  "completed_epochs": 19,
+  "selected_epoch": 14,
+  "decoder": "cells",
+  "confidence_threshold": 0.7,
+  "nms_enabled": false,
+  "max_detections": 0,
+  "matching_radius_input_pixels": 8,
+  "matching": "same-class confidence-greedy one-to-one, Euclidean distance; unmatched predictions in original void/group cells ignored",
+  "random_seed": 42,
+  "pretrained_initialization": "ImageNet MobileNetV2",
+  "pretrained_weight_sha256": {
+    "mobilenet_v2_weights_tf_dim_ordering_tf_kernels_0.35_160_no_top.h5": "d579c5d3e0e5f4b71db0cda1a156bbd74fe8317e62ea577594b78faf39847639"
+  },
+  "quantization_type": "full INT8 weights and I/O",
+  "input_quantization": [
+    0.003921568859368563,
+    -128
+  ],
+  "output_quantization": [
+    0.00390625,
+    -128
+  ],
+  "calibration_train_images": 100,
+  "calibration_ids_reference": "report.json",
+  "model_size_bytes": 70736,
+  "creation_date": "2026-10-04",
+  "git_branch": "tinyml-fomo",
+  "git_commit": "refs/tags/fomo-cityscapes-v2^{commit}",
+  "git_commit_format": "Git commit-ish resolved after creating the annotated tag; see README",
+  "pre_freeze_git_commit": "53ac53240ab3df8fcd45340b075ec2bd90df04e2",
+  "architecture": {
+    "backbone": "MobileNetV2",
+    "alpha": 0.35,
+    "cut_point": "block_6_expand_relu",
+    "head_channels": 32,
+    "parameters": 20787,
+    "output": "20x20x3 softmax"
+  },
+  "preprocessing": {
+    "color": "RGB",
+    "resize": "Pillow bilinear direct stretch to 160x160, no crop or letterbox",
+    "public_input": "float32 RGB / 255",
+    "embedded_rescaling": "2*x-1 in model",
+    "exif_rotation": false,
+    "int8_input": "clip(rint(input / scale + zero_point), -128, 127)",
+    "int8_output": "dequantize and renormalize softmax sums"
+  },
+  "training": {
+    "target_ignore_mask": "source pixel at each 20x20 cell center; original evaluation ignore mask unchanged",
+    "augmentation": "horizontal flip image and targets together",
+    "loss": "sparse categorical cross-entropy, foreground weight 10, background weight 1, ignored weight 0, normalize per image",
+    "optimizer": "Adam",
+    "early_stopping_patience": 5,
+    "lr_patience": 2,
+    "lr_factor": 0.5,
+    "min_learning_rate": 1e-05,
+    "checkpoint_selection": "maximum validation centroid F1 at threshold 0.60",
+    "checkpoint_selection_decoder": "cell_nms",
+    "checkpoint_selection_threshold": 0.6,
+    "final_operating_point_selection": "Highest recall among tested 0.20:0.05:0.95 thresholds with overall precision >=0.70, identical rule for all three models"
+  },
+  "embedded_ram_bytes": null,
+  "embedded_latency_ms": null,
+  "embedded_fps": null
+}

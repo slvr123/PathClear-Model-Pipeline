@@ -1,0 +1,136 @@
+{
+  "sources": {
+    "training_run": "tinyml/fomo/artifacts/v2-weight10-training-20261004",
+    "keras_checkpoint": "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.keras",
+    "int8_model": "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.int8.tflite",
+    "float32_model": "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.float32.tflite",
+    "training_history": "tinyml/fomo/artifacts/v2-weight10-training-20261004/history.json",
+    "evaluation": "tinyml/fomo/artifacts/v2-selected-evaluation-20261004/report.json",
+    "threshold_sweep": "tinyml/fomo/artifacts/v2-operating-points-20261004/sweep.json",
+    "comparison_report": "tinyml/fomo/artifacts/v2-comparison-20261004/comparison.json",
+    "selection": "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json",
+    "training_manifest": "tinyml/fomo/artifacts/cityscapes-center-targets-20261004/manifest.json",
+    "evaluation_manifest": "tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json"
+  },
+  "original_source_hashes": {
+    "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.keras": "67ca138bf4b2fb5ed282b590353aed9cd31d8696404bbdc63ab8a459460d5264",
+    "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.int8.tflite": "c1758ffe2ae920c808290a10e8835539a6b1f21e26e734e31954b0188ff51e6e",
+    "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.float32.tflite": "5d69598b1f271f0d0530f5cfba1fe94f0e4c0b0477e6a01a0de1d4bcf800de60",
+    "tinyml/fomo/artifacts/v2-weight10-training-20261004/history.json": "8b0f1fa4a21904fa2fffeb05c94d1397ce0659cc0f78657404baca242dc18572",
+    "tinyml/fomo/artifacts/v2-selected-evaluation-20261004/report.json": "88b8a8e9d656083f5bee41ef1c8fbe85ebc10fad5c02b4834d4a41ad4f39d9bb",
+    "tinyml/fomo/artifacts/v2-operating-points-20261004/sweep.json": "419efa70cd43a5c1c0f3de6c89203b17ceda1dc718e6954de31d985a61c0d705",
+    "tinyml/fomo/artifacts/v2-comparison-20261004/comparison.json": "b535df9ace339f4feea7a9456b21e2c02a3bff51deb2acea9a0c6ef95c9d38ee",
+    "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json": "35420868e49114bf1e8c440eed8eab43e88a8f634a5a40e0762f27368eb9f5d5",
+    "tinyml/fomo/artifacts/cityscapes-center-targets-20261004/manifest.json": "72e092415105c07c5cb4ccce141354c1248a437c71b8f13af0203429e0842b9a",
+    "tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json": "2dda2563cda15e4b0df9dbaef1fd078076010bc93e33d7a660a4b36bb16f3924"
+  },
+  "files": {
+    "best.keras": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.keras",
+      "sha256": "67ca138bf4b2fb5ed282b590353aed9cd31d8696404bbdc63ab8a459460d5264"
+    },
+    "best.json": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.json",
+      "sha256": "ae363104f24892e2f5ca3c8e90e8ba06371202a1d7c0d79301fe54565775f588"
+    },
+    "history.json": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-training-20261004/history.json",
+      "sha256": "8b0f1fa4a21904fa2fffeb05c94d1397ce0659cc0f78657404baca242dc18572"
+    },
+    "model.int8.tflite": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.int8.tflite",
+      "sha256": "c1758ffe2ae920c808290a10e8835539a6b1f21e26e734e31954b0188ff51e6e"
+    },
+    "model.float32.tflite": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.float32.tflite",
+      "sha256": "5d69598b1f271f0d0530f5cfba1fe94f0e4c0b0477e6a01a0de1d4bcf800de60"
+    },
+    "report.json": {
+      "method": "byte-for-byte copy",
+      "source": "tinyml/fomo/artifacts/v2-weight10-export-20261004/report.json",
+      "sha256": "04502e619ba0edf94b0e7ddbc4134d340da9d9b86a3b9fd5f0276f31ddc9a23a"
+    },
+    "metrics.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json",
+        "tinyml/fomo/artifacts/v2-selected-evaluation-20261004/report.json"
+      ]
+    },
+    "config.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.json",
+        "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json",
+        "tinyml/fomo/artifacts/v2-weight10-export-20261004/report.json",
+        "tinyml/fomo/config.py",
+        "tinyml/fomo/dataset.py",
+        "tinyml/fomo/model.py"
+      ]
+    },
+    "classes.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/config.py",
+        "tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json"
+      ]
+    },
+    "split_ids.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json"
+      ]
+    },
+    "environment.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/requirements.txt",
+        "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.json"
+      ]
+    },
+    "README.md": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/BASELINE_V1_V2_REPORT.md",
+        "tinyml/fomo/GRID_RESOLUTION_REPORT.md",
+        "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json"
+      ]
+    },
+    "verification.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/artifacts/v2-selected-evaluation-20261004/report.json",
+        "tinyml/fomo/artifacts/frozen-v2-verification-20261004/report.json"
+      ]
+    },
+    "SHA256SUMS.txt": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/checkpoints/cityscapes_v2/"
+      ]
+    },
+    "source_artifacts.json": {
+      "method": "generated metadata or documentation during freeze",
+      "sources": [
+        "tinyml/fomo/artifacts/v2-weight10-training-20261004",
+        "tinyml/fomo/artifacts/v2-weight10-training-20261004/best.keras",
+        "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.int8.tflite",
+        "tinyml/fomo/artifacts/v2-weight10-export-20261004/model.float32.tflite",
+        "tinyml/fomo/artifacts/v2-weight10-training-20261004/history.json",
+        "tinyml/fomo/artifacts/v2-selected-evaluation-20261004/report.json",
+        "tinyml/fomo/artifacts/v2-operating-points-20261004/sweep.json",
+        "tinyml/fomo/artifacts/v2-comparison-20261004/comparison.json",
+        "tinyml/fomo/artifacts/v2-operating-points-20261004/v2_candidate.json",
+        "tinyml/fomo/artifacts/cityscapes-center-targets-20261004/manifest.json",
+        "tinyml/fomo/artifacts/cityscapes-data-20261004/manifest.json"
+      ]
+    }
+  },
+  "all_previous_artifacts_retained_in_place": true,
+  "raw_dataset_and_generated_caches_committed": false
+}

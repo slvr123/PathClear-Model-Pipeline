@@ -1,0 +1,21 @@
+{
+  "source_images": {
+    "train": 2975,
+    "validation": 500
+  },
+  "converted_images": 24,
+  "annotation_count": 430,
+  "classes": {
+    "person": 150,
+    "vehicle": 280
+  },
+  "images_without_relevant_objects": 0,
+  "invalid_missing_files": [],
+  "skipped": {
+    "group_pixels": 50964,
+    "void_pixels": 6736304,
+    "group_semantic_regions": 17
+  },
+  "seconds": 1.5079122000024654,
+  "manifest": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-pilot-20261004\\manifest.json"
+}

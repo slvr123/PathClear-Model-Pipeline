@@ -1,0 +1,32 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.6618902683258057,
+    "validation_loss": 0.5470482707023621,
+    "validation_f1": 0.05106382978723404,
+    "validation_precision": 0.20689655172413793,
+    "validation_recall": 0.02912621359223301,
+    "per_class": {
+      "person": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 81,
+        "ignored": 0,
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "vehicle": {
+        "tp": 6,
+        "fp": 23,
+        "fn": 119,
+        "ignored": 9,
+        "precision": 0.20689655172413793,
+        "recall": 0.048,
+        "f1": 0.07792207792207792
+      }
+    },
+    "learning_rate": 0.0010000000474974513,
+    "elapsed_seconds": 7.625742100004572
+  }
+]

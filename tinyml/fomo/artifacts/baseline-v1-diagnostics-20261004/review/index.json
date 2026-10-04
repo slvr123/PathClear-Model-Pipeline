@@ -1,0 +1,722 @@
+[
+  {
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "kind": "tp",
+    "annotation_index": 1,
+    "detection": {
+      "centroid_x": 1177.6,
+      "centroid_y": 435.2,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.92578125
+    },
+    "file": "review\\tp\\00-person-example.jpg"
+  },
+  {
+    "record_index": 2,
+    "image_id": "frankfurt_000000_001016",
+    "kind": "tp",
+    "annotation_index": 2,
+    "detection": {
+      "centroid_x": 1484.8,
+      "centroid_y": 486.4,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.80859375
+    },
+    "file": "review\\tp\\01-person-example.jpg"
+  },
+  {
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "kind": "tp",
+    "annotation_index": 6,
+    "detection": {
+      "centroid_x": 972.8,
+      "centroid_y": 384.0,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.6392157077789307
+    },
+    "file": "review\\tp\\02-person-example.jpg"
+  },
+  {
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "kind": "tp",
+    "annotation_index": 5,
+    "detection": {
+      "centroid_x": 460.8,
+      "centroid_y": 435.2,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8203125
+    },
+    "file": "review\\tp\\03-person-example.jpg"
+  },
+  {
+    "record_index": 5,
+    "image_id": "frankfurt_000000_002196",
+    "kind": "tp",
+    "annotation_index": 4,
+    "detection": {
+      "centroid_x": 153.6,
+      "centroid_y": 435.2,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.98828125
+    },
+    "file": "review\\tp\\04-person-example.jpg"
+  },
+  {
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "kind": "tp",
+    "annotation_index": 5,
+    "detection": {
+      "centroid_x": 1075.2,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.6796875
+    },
+    "file": "review\\tp\\05-vehicle-example.jpg"
+  },
+  {
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "kind": "tp",
+    "annotation_index": 6,
+    "detection": {
+      "centroid_x": 1280.0,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.9921875
+    },
+    "file": "review\\tp\\06-vehicle-example.jpg"
+  },
+  {
+    "record_index": 2,
+    "image_id": "frankfurt_000000_001016",
+    "kind": "tp",
+    "annotation_index": 6,
+    "detection": {
+      "centroid_x": 1587.2,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.94921875
+    },
+    "file": "review\\tp\\07-vehicle-example.jpg"
+  },
+  {
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "kind": "tp",
+    "annotation_index": 21,
+    "detection": {
+      "centroid_x": 1484.8,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.95703125
+    },
+    "file": "review\\tp\\08-vehicle-example.jpg"
+  },
+  {
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "kind": "tp",
+    "annotation_index": 15,
+    "detection": {
+      "centroid_x": 768.0,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.98828125
+    },
+    "file": "review\\tp\\09-vehicle-example.jpg"
+  },
+  {
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1792.0,
+      "centroid_y": 537.6,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.71875
+    },
+    "file": "review\\fp\\10-person-example.jpg"
+  },
+  {
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 665.6,
+      "centroid_y": 384.0,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.71875
+    },
+    "file": "review\\fp\\11-person-example.jpg"
+  },
+  {
+    "record_index": 2,
+    "image_id": "frankfurt_000000_001016",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1894.4,
+      "centroid_y": 332.8,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7529411911964417
+    },
+    "file": "review\\fp\\12-person-example.jpg"
+  },
+  {
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1792.0,
+      "centroid_y": 588.8,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7392995953559875
+    },
+    "file": "review\\fp\\13-person-example.jpg"
+  },
+  {
+    "record_index": 5,
+    "image_id": "frankfurt_000000_002196",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1075.2,
+      "centroid_y": 332.8,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.66015625
+    },
+    "file": "review\\fp\\14-person-example.jpg"
+  },
+  {
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1382.4,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.8359375
+    },
+    "file": "review\\fp\\15-vehicle-example.jpg"
+  },
+  {
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 358.4,
+      "centroid_y": 537.6,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.921875
+    },
+    "file": "review\\fp\\16-vehicle-example.jpg"
+  },
+  {
+    "record_index": 2,
+    "image_id": "frankfurt_000000_001016",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1792.0,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.9296875
+    },
+    "file": "review\\fp\\17-vehicle-example.jpg"
+  },
+  {
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1177.6,
+      "centroid_y": 179.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.79296875
+    },
+    "file": "review\\fp\\18-vehicle-example.jpg"
+  },
+  {
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "kind": "fp",
+    "detection": {
+      "centroid_x": 1280.0,
+      "centroid_y": 486.4,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.73828125
+    },
+    "file": "review\\fp\\19-vehicle-example.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 0,
+    "class_name": "person",
+    "minimum_dimension": 1.71875,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 5,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.11328125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\20-person-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 0,
+    "class_name": "person",
+    "minimum_dimension": 1.40625,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 8,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.390625,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\21-person-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "annotation_index": 0,
+    "class_name": "person",
+    "minimum_dimension": 1.40625,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 6,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.1796875,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\22-person-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "annotation_index": 2,
+    "class_name": "person",
+    "minimum_dimension": 2.265625,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 2,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.92578125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\23-person-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 5,
+    "class_name": "person",
+    "minimum_dimension": 3.359375,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 4,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.4453125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\24-person-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 5,
+    "image_id": "frankfurt_000000_002196",
+    "annotation_index": 0,
+    "class_name": "person",
+    "minimum_dimension": 3.203125,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.9221789836883545,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\25-person-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 1,
+    "class_name": "person",
+    "minimum_dimension": 4.84375,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 4,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.0234375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\26-person-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 8,
+    "class_name": "person",
+    "minimum_dimension": 4.921875,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 2,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.5097275972366333,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\27-person-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 5,
+    "image_id": "frankfurt_000000_002196",
+    "annotation_index": 1,
+    "class_name": "person",
+    "minimum_dimension": 4.140625,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.7734375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\28-person-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 24,
+    "image_id": "frankfurt_000000_011074",
+    "annotation_index": 1,
+    "class_name": "person",
+    "minimum_dimension": 9.765625,
+    "size_bin": "8to16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.66015625,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\29-person-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 29,
+    "image_id": "frankfurt_000000_012868",
+    "annotation_index": 8,
+    "class_name": "person",
+    "minimum_dimension": 8.984375,
+    "size_bin": "8to16",
+    "edge_within_4px": true,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.5058823823928833,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\30-person-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 42,
+    "image_id": "frankfurt_000000_019607",
+    "annotation_index": 10,
+    "class_name": "person",
+    "minimum_dimension": 8.359375,
+    "size_bin": "8to16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.828125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\31-person-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 34,
+    "image_id": "frankfurt_000000_014480",
+    "annotation_index": 0,
+    "class_name": "person",
+    "minimum_dimension": 22.578125,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.640625,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\32-person-ge16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 38,
+    "image_id": "frankfurt_000000_016286",
+    "annotation_index": 1,
+    "class_name": "person",
+    "minimum_dimension": 16.71875,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "background",
+    "center_class_probability": 0.13671875,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\33-person-ge16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 80,
+    "image_id": "frankfurt_000001_011835",
+    "annotation_index": 5,
+    "class_name": "person",
+    "minimum_dimension": 21.640625,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.93359375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\34-person-ge16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "annotation_index": 4,
+    "class_name": "vehicle",
+    "minimum_dimension": 1.71875,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 2,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.19921875,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\35-vehicle-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 19,
+    "class_name": "vehicle",
+    "minimum_dimension": 0.703125,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 5,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.7215686440467834,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\36-vehicle-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 13,
+    "class_name": "vehicle",
+    "minimum_dimension": 1.71875,
+    "size_bin": "lt2",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 7,
+    "center_cell_winner": "person",
+    "center_class_probability": 0.26274511218070984,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\37-vehicle-lt2.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 3,
+    "class_name": "vehicle",
+    "minimum_dimension": 3.359375,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 5,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.7215686440467834,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\38-vehicle-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 15,
+    "class_name": "vehicle",
+    "minimum_dimension": 2.03125,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 9,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.658823549747467,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\39-vehicle-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "annotation_index": 7,
+    "class_name": "vehicle",
+    "minimum_dimension": 3.359375,
+    "size_bin": "2to4",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 8,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.74609375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\40-vehicle-2to4.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 5,
+    "class_name": "vehicle",
+    "minimum_dimension": 6.640625,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 4,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.9453125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\41-vehicle-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 2,
+    "image_id": "frankfurt_000000_001016",
+    "annotation_index": 8,
+    "class_name": "vehicle",
+    "minimum_dimension": 4.140625,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "background",
+    "center_class_probability": 0.2578125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\42-vehicle-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 3,
+    "image_id": "frankfurt_000000_001236",
+    "annotation_index": 16,
+    "class_name": "vehicle",
+    "minimum_dimension": 4.140625,
+    "size_bin": "4to8",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 7,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.658823549747467,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\43-vehicle-4to8.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 7,
+    "class_name": "vehicle",
+    "minimum_dimension": 13.59375,
+    "size_bin": "8to16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.9921875,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\44-vehicle-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "annotation_index": 20,
+    "class_name": "vehicle",
+    "minimum_dimension": 10.9375,
+    "size_bin": "8to16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 1,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.8359375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\45-vehicle-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 5,
+    "image_id": "frankfurt_000000_002196",
+    "annotation_index": 20,
+    "class_name": "vehicle",
+    "minimum_dimension": 10.390625,
+    "size_bin": "8to16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 2,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.95703125,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\46-vehicle-8to16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 0,
+    "image_id": "frankfurt_000000_000294",
+    "annotation_index": 6,
+    "class_name": "vehicle",
+    "minimum_dimension": 40.3125,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "background",
+    "center_class_probability": 0.41015625,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\47-vehicle-ge16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 1,
+    "image_id": "frankfurt_000000_000576",
+    "annotation_index": 18,
+    "class_name": "vehicle",
+    "minimum_dimension": 30.859375,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "vehicle",
+    "center_class_probability": 0.8984375,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\48-vehicle-ge16.jpg"
+  },
+  {
+    "kind": "fn",
+    "record_index": 4,
+    "image_id": "frankfurt_000000_001751",
+    "annotation_index": 12,
+    "class_name": "vehicle",
+    "minimum_dimension": 33.125,
+    "size_bin": "ge16",
+    "edge_within_4px": false,
+    "nearby_centers_within_8px": 0,
+    "center_cell_winner": "background",
+    "center_class_probability": 0.031128404662013054,
+    "occlusion": "unavailable in retained box annotations",
+    "file": "review\\fn\\49-vehicle-ge16.jpg"
+  }
+]

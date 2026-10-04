@@ -8,6 +8,13 @@ DEFAULT_CITYSCAPES_ROOT = (
 )
 CITYSCAPES_ROOT = Path(os.environ.get("CITYSCAPES_ROOT", DEFAULT_CITYSCAPES_ROOT))
 
+DEFAULT_KAGGLE_CROSSWALK_ROOT = (
+    "C:/datasets/crosswalks" if os.name == "nt" else "/mnt/c/datasets/crosswalks"
+)
+KAGGLE_CROSSWALK_ROOT = Path(
+    os.environ.get("KAGGLE_CROSSWALK_ROOT", DEFAULT_KAGGLE_CROSSWALK_ROOT)
+)
+
 
 def validate_cityscapes():
     """Return the root once the training and validation folders exist."""

@@ -23,7 +23,9 @@ def conv_bn_relu(
     strides=1,
     dilation_rate=1,
     groups=1,
-    name=None
+    name=None,
+    normalization=layers.BatchNormalization,
+    normalization_kwargs=None,
 ):
     """
     Conv2D -> BatchNorm -> ReLU
@@ -40,7 +42,8 @@ def conv_bn_relu(
         name=f"{name}_conv" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    x = normalization(
+        **(normalization_kwargs or {}),
         name=f"{name}_bn" if name else None
     )(x)
 
@@ -60,7 +63,9 @@ def depthwise_separable_conv(
     filters,
     kernel_size=3,
     strides=1,
-    name=None
+    name=None,
+    normalization=layers.BatchNormalization,
+    normalization_kwargs=None,
 ):
     """
     Fast-SCNN depthwise separable convolution.
@@ -93,7 +98,9 @@ def depthwise_separable_conv(
         name=f"{name}_depthwise" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    normalization_kwargs = normalization_kwargs or {}
+    x = normalization(
+        **normalization_kwargs,
         name=f"{name}_depthwise_bn" if name else None
     )(x)
 
@@ -111,7 +118,8 @@ def depthwise_separable_conv(
         name=f"{name}_pointwise" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    x = normalization(
+        **normalization_kwargs,
         name=f"{name}_pointwise_bn" if name else None
     )(x)
 
@@ -131,7 +139,9 @@ def inverted_residual(
     output_channels,
     stride,
     expansion_factor=6,
-    name=None
+    name=None,
+    normalization=layers.BatchNormalization,
+    normalization_kwargs=None,
 ):
     """
     MobileNetV2-style inverted residual block used by Fast-SCNN.
@@ -158,6 +168,7 @@ def inverted_residual(
     )
 
     residual = x
+    normalization_kwargs = normalization_kwargs or {}
 
 
     # ========================================================
@@ -173,7 +184,8 @@ def inverted_residual(
         name=f"{name}_expand_conv" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    x = normalization(
+        **normalization_kwargs,
         name=f"{name}_expand_bn" if name else None
     )(x)
 
@@ -195,7 +207,8 @@ def inverted_residual(
         name=f"{name}_depthwise" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    x = normalization(
+        **normalization_kwargs,
         name=f"{name}_depthwise_bn" if name else None
     )(x)
 
@@ -217,7 +230,8 @@ def inverted_residual(
         name=f"{name}_project_conv" if name else None
     )(x)
 
-    x = layers.BatchNormalization(
+    x = normalization(
+        **normalization_kwargs,
         name=f"{name}_project_bn" if name else None
     )(x)
 

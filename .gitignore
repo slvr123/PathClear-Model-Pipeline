@@ -49,3 +49,5 @@ Thumbs.db
 desktop.ini
 /ptxas
 /cityscapes_check.png
+# Personal working notes and exported reports; kept locally, not in Git.
+/docs/notes/

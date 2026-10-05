@@ -27,6 +27,12 @@ def _arguments(argv=None):
         type=Path,
         default=Path("docs/images/microseg_groupnorm_pilot_examples.png"),
     )
+    parser.add_argument(
+        "--images",
+        type=Path,
+        nargs="+",
+        help="Run inference on these standalone RGB images instead of validation samples",
+    )
     parser.add_argument("--cityscapes-root", type=Path, default=CITYSCAPES_ROOT)
     parser.add_argument("--crosswalk-root", type=Path, default=KAGGLE_CROSSWALK_ROOT)
     return parser.parse_args(argv)
@@ -69,15 +75,41 @@ def _load_crosswalk_example(model, image_path, mask_path):
     )
 
 
+def _load_unlabeled_example(model, image_path):
+    if not image_path.is_file():
+        raise FileNotFoundError(f"Input image does not exist: {image_path}")
+    with Image.open(image_path) as source:
+        image = source.convert("RGB")
+        original_size = image.size
+        image = image.resize((96, 96), resample=Image.Resampling.BILINEAR)
+        image = np.asarray(image, dtype=np.float32) / 255.0
+    example = _example(
+        model,
+        image,
+        np.zeros(image.shape[:2], dtype=np.uint8),
+        np.zeros(image.shape[:2], dtype=bool),
+        image_path.name,
+    )
+    example["has_reference"] = False
+    example["original_size"] = original_size
+    return example
+
+
 def _example(model, image, target, valid, name):
     logits = model(np.expand_dims(image, axis=0), training=False)
-    prediction = np.argmax(np.asarray(logits), axis=-1)[0].astype(np.uint8)
+    probabilities = np.asarray(keras.ops.softmax(logits, axis=-1))[0]
+    prediction = np.argmax(probabilities, axis=-1).astype(np.uint8)
+    class_counts = np.bincount(prediction.reshape(-1), minlength=len(CLASS_NAMES))
     return {
         "name": name,
         "image": np.clip(image * 255.0, 0, 255).astype(np.uint8),
         "target": target.astype(np.uint8),
         "valid": valid,
         "prediction": prediction,
+        "has_reference": True,
+        "class_counts": class_counts.tolist(),
+        "class_percentages": (class_counts / prediction.size * 100.0).tolist(),
+        "mean_confidence": float(np.mean(np.max(probabilities, axis=-1))),
     }
 
 
@@ -115,10 +147,24 @@ def _tile(array):
     )
 
 
-def _render(examples, output):
+def _describe_run(run_dir, config, checkpoint_path):
+    """Build a figure title that describes the actual run, not a hardcoded one."""
+    normalization = config.get("normalization") or {}
+    norm = normalization.get("type", "normalization unknown")
+    groups = normalization.get("groups")
+    if groups:
+        norm = f"{norm} (groups={groups})"
+    metric = config.get("checkpoint_metric", "checkpoint metric unrecorded")
+    return (
+        f"MicroSeg pilot - {run_dir.name} - {norm} - "
+        f"checkpoint {checkpoint_path.name} - monitored {metric}"
+    )
+
+
+def _render(examples, output, title="MicroSeg pilot - inference examples"):
     columns = (
         "Input",
-        "Ground truth\n(gray = ignored)",
+        "Reference mask\n(gray = ignored / unavailable)",
         "Predicted classes",
         "Prediction overlay",
     )
@@ -130,7 +176,7 @@ def _render(examples, output):
     canvas = Image.new("RGB", (width, height), _BACKGROUND)
     draw = ImageDraw.Draw(canvas)
 
-    draw.text((16, 14), "MicroSeg GroupNorm pilot - inference examples", fill="white")
+    draw.text((16, 14), title, fill="white")
     draw.text(
         (16, 42),
         "96x96 inputs enlarged with nearest-neighbor; deterministic validation samples",
@@ -156,15 +202,27 @@ def _render(examples, output):
         target = example["target"]
         valid = example["valid"]
         prediction = example["prediction"]
-        tiles = (
-            example["image"],
-            _colorize(target, valid),
-            _colorize(prediction),
-            _overlay(example["image"], prediction),
-        )
+        reference = Image.fromarray(_colorize(target, valid))
+        if not example.get("has_reference", True):
+            ImageDraw.Draw(reference).text(
+                (3, 3), "No reference mask", fill="white"
+            )
+        tiles = [
+            Image.fromarray(example["image"]),
+            reference,
+            Image.fromarray(_colorize(prediction)),
+            Image.fromarray(_overlay(example["image"], prediction)),
+        ]
         for column, array in enumerate(tiles):
             x = label_width + column * (_TILE_SIZE + _PADDING)
-            canvas.paste(_tile(array), (x, top))
+            if isinstance(array, Image.Image):
+                tile = array.resize(
+                    (_TILE_SIZE, _TILE_SIZE),
+                    resample=Image.Resampling.NEAREST,
+                )
+            else:
+                tile = _tile(array)
+            canvas.paste(tile, (x, top))
 
     legend_top = height - 65
     draw.text((16, legend_top), "Class colors:", fill="white")
@@ -188,68 +246,112 @@ def main(argv=None):
     city_manifest_path = run_dir / "cityscapes_pairs.json"
     crosswalk_manifest_path = run_dir / "crosswalk_split.json"
     checkpoint_path = run_dir / "best.keras"
-    for path in (
-        config_path,
-        city_manifest_path,
-        crosswalk_manifest_path,
-        checkpoint_path,
-    ):
-        _require_file(path)
-
-    config = json.loads(config_path.read_text(encoding="utf-8"))
-    cityscapes_root = args.cityscapes_root
-    crosswalk_root = args.crosswalk_root
-    if not cityscapes_root.is_dir():
-        raise FileNotFoundError(f"Cityscapes root does not exist: {cityscapes_root}")
-    if not crosswalk_root.is_dir():
-        raise FileNotFoundError(f"Crosswalk root does not exist: {crosswalk_root}")
-
-    city_manifest = json.loads(city_manifest_path.read_text(encoding="utf-8"))
-    city_entries = city_manifest.get("splits", {}).get("val")
-    if not isinstance(city_entries, list) or not city_entries:
-        raise ValueError(f"Cityscapes validation split is empty: {city_manifest_path}")
-    crosswalk_manifest = json.loads(
-        crosswalk_manifest_path.read_text(encoding="utf-8")
-    )
-    crosswalk_entries = [
-        item for item in crosswalk_manifest.get("items", [])
-        if item.get("split") == "validation" and item.get("source") == "real"
-    ]
-    if not crosswalk_entries:
-        raise ValueError(
-            f"Held-out real Crosswalk split is empty: {crosswalk_manifest_path}"
-        )
-
+    _require_file(checkpoint_path)
     model = keras.models.load_model(checkpoint_path, compile=False)
+    config = (
+        json.loads(config_path.read_text(encoding="utf-8"))
+        if config_path.is_file()
+        else {}
+    )
     examples = []
-    for index in _sample_indices(len(city_entries)):
-        entry = city_entries[index]
-        image_path = cityscapes_root / entry["image"]
-        mask_path = cityscapes_root / entry["mask"]
-        ignore_path = cityscapes_root / entry["ignore_mask"] if entry.get(
-            "ignore_mask"
-        ) else None
-        example = _load_city_example(model, image_path, mask_path, ignore_path)
-        example["domain"] = "Cityscapes"
-        examples.append(example)
+    if args.images:
+        for path in args.images:
+            example = _load_unlabeled_example(model, path)
+            example["domain"] = "User image"
+            examples.append(example)
+    else:
+        for path in (city_manifest_path, crosswalk_manifest_path):
+            _require_file(path)
+        cityscapes_root = args.cityscapes_root
+        crosswalk_root = args.crosswalk_root
+        if not cityscapes_root.is_dir():
+            raise FileNotFoundError(
+                f"Cityscapes root does not exist: {cityscapes_root}"
+            )
+        if not crosswalk_root.is_dir():
+            raise FileNotFoundError(
+                f"Crosswalk root does not exist: {crosswalk_root}"
+            )
 
-    for index in _sample_indices(len(crosswalk_entries)):
-        entry = crosswalk_entries[index]
-        example = _load_crosswalk_example(
-            model,
-            crosswalk_root / entry["image"],
-            crosswalk_root / entry["mask"],
+        city_manifest = json.loads(city_manifest_path.read_text(encoding="utf-8"))
+        city_entries = city_manifest.get("splits", {}).get("val")
+        if not isinstance(city_entries, list) or not city_entries:
+            raise ValueError(
+                f"Cityscapes validation split is empty: {city_manifest_path}"
+            )
+        crosswalk_manifest = json.loads(
+            crosswalk_manifest_path.read_text(encoding="utf-8")
         )
-        example["domain"] = "Held-out KPV"
-        examples.append(example)
+        crosswalk_entries = [
+            item for item in crosswalk_manifest.get("items", [])
+            if item.get("split") == "validation" and item.get("source") == "real"
+        ]
+        if not crosswalk_entries:
+            raise ValueError(
+                f"Held-out real Crosswalk split is empty: "
+                f"{crosswalk_manifest_path}"
+            )
+        for index in _sample_indices(len(city_entries)):
+            entry = city_entries[index]
+            image_path = cityscapes_root / entry["image"]
+            mask_path = cityscapes_root / entry["mask"]
+            ignore_path = cityscapes_root / entry["ignore_mask"] if entry.get(
+                "ignore_mask"
+            ) else None
+            example = _load_city_example(model, image_path, mask_path, ignore_path)
+            example["domain"] = "Cityscapes"
+            examples.append(example)
+
+        for index in _sample_indices(len(crosswalk_entries)):
+            entry = crosswalk_entries[index]
+            example = _load_crosswalk_example(
+                model,
+                crosswalk_root / entry["image"],
+                crosswalk_root / entry["mask"],
+            )
+            example["domain"] = "Held-out KPV"
+            examples.append(example)
 
     output = args.output.resolve()
-    _render(examples, output)
+    title = _describe_run(run_dir, config, checkpoint_path)
+    _render(examples, output, title)
+    report_path = output.with_suffix(".json")
+    report = {
+        "checkpoint": str(checkpoint_path),
+        "title": title,
+        "input_size": [96, 96],
+        "images": [
+            {
+                "image": str(path.resolve()),
+                "original_size": list(example.get("original_size", (96, 96))),
+                "class_pixels": dict(zip(CLASS_NAMES, example["class_counts"])),
+                "class_percentages": dict(
+                    zip(CLASS_NAMES, example["class_percentages"])
+                ),
+                "mean_max_softmax_confidence": example["mean_confidence"],
+            }
+            for path, example in zip(args.images or [], examples)
+        ] if args.images else [],
+    }
+    if args.images:
+        report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        for record in report["images"]:
+            percentages = ", ".join(
+                f"{name}={value:.1f}%"
+                for name, value in record["class_percentages"].items()
+            )
+            print(
+                f"{Path(record['image']).name}: {percentages}; "
+                "mean max-softmax="
+                f"{record['mean_max_softmax_confidence']:.3f}"
+            )
     print(
         f"Saved {len(examples)} inference examples to {output} "
         f"(checkpoint: {checkpoint_path}; epoch count: "
         f"{config.get('epochs_requested', 'unknown')})."
     )
+    if args.images:
+        print(f"Saved prediction summary to {report_path}")
 
 
 if __name__ == "__main__":

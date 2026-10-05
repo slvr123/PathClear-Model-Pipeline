@@ -63,8 +63,9 @@ class TaxonomyTests(unittest.TestCase):
                 remap_pathclear_ids(bad)
 
     def test_cityscapes_chain(self):
-        # road(0)->1, sidewalk(1)->0, building(2)->ignored, wall(3)->2,
-        # fence(4)->2, sky(10)->ignored, person(11)->ignored, void 255->ignored.
+        # road(0)->1, sidewalk(1)->0, building(2)->2 (Boundary via trainId chain),
+        # wall(3)->2, fence(4)->2, sky(10)->1 (Non-walkable via trainId chain),
+        # person(11)->ignored, void 255->ignored.
         source = np.array([0, 1, 2, 3, 4, 10, 11, 255], dtype=np.uint8)
         np.testing.assert_array_equal(
             remap_cityscapes_ids(source),
@@ -72,23 +73,27 @@ class TaxonomyTests(unittest.TestCase):
         )
 
     def test_original_cityscapes_label_ids_mapping(self):
-        # Original labelIds: road(7)->1, sidewalk(8)->0, wall(12)->2,
-        # fence(13)->2. Unsupported surfaces and objects are ignored.
+        # Original labelIds:
+        #   road(7)->1, sidewalk(8)->0,
+        #   building(11)->2 (Boundary, shorelining anchor),
+        #   wall(12)->2, fence(13)->2,
+        #   sky(23)->1 (Non-walkable, stops sky->Walkable predictions).
         source = np.array(
-            [0, 7, 8, 11, 12, 13, 24, 26, 255], dtype=np.uint8
+            [0, 7, 8, 11, 12, 13, 23, 24, 26, 255], dtype=np.uint8
         )
         np.testing.assert_array_equal(
             remap_cityscapes_label_ids(source),
-            np.array([255, 1, 0, 255, 2, 2, 255, 255, 255], dtype=np.uint8),
+            np.array([255, 1, 0, 2, 2, 2, 1, 255, 255, 255], dtype=np.uint8),
         )
 
     def test_original_label_ids_lookup_ignores_unmapped_ids(self):
         lookup = cityscapes_label_ids_lookup()
         self.assertEqual(lookup.shape, (256,))
-        for source, target in {7: 1, 8: 0, 12: 2, 13: 2}.items():
+        for source, target in {7: 1, 8: 0, 11: 2, 12: 2, 13: 2, 23: 1}.items():
             self.assertEqual(int(lookup[source]), target)
-        for source in (0, 11, 24, 26, 255):
+        for source in (0, 24, 26, 255):
             self.assertEqual(int(lookup[source]), IGNORE_LABEL)
+
 
     def test_colorize_keeps_ignore_black(self):
         rgb = colorize(np.array([[0, 1, 2, 3, 255]], dtype=np.uint8))

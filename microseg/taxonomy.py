@@ -30,11 +30,22 @@ PATHCLEAR_TO_MICROSEG = {
 
 # Cityscapes original labelId -> MicroSeg ID. These are annotation IDs from
 # *_gtFine_labelIds.png, not trainIds. All unsupported/void IDs stay ignored.
+#
+# Boundary (ID 2): building, wall, and fence are all lateral navigation anchors
+# for tactile shorelining. Building facades are the dominant vertical surface
+# in urban scenes and provide a strong consistent boundary signal.
+#
+# Sky (labelId 23) -> Non-walkable (ID 1): sky pixels were previously Ignore,
+# which gave the model no signal to distinguish sky from sidewalk. The GroupNorm
+# pilot predicted Walkable for upper-frame sky regions. Mapping sky to
+# Non-walkable adds an explicit corrective gradient without a new class.
 CITYSCAPES_LABEL_IDS_TO_MICROSEG = {
-    7: 1,   # road -> Non-walkable
-    8: 0,   # sidewalk -> Walkable
-    12: 2,  # wall -> Boundary
-    13: 2,  # fence -> Boundary
+    7:  1,  # road      -> Non-walkable
+    8:  0,  # sidewalk  -> Walkable
+    11: 2,  # building  -> Boundary   (shorelining anchor; was Ignore)
+    12: 2,  # wall      -> Boundary
+    13: 2,  # fence     -> Boundary
+    23: 1,  # sky       -> Non-walkable  (was Ignore; stops sky->Walkable collapse)
 }
 
 COLORS = np.array([

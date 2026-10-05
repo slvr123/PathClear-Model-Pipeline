@@ -7,6 +7,7 @@ can provide Crosswalk-only supervision; unmarked mask pixels receive zero
 sample weight and do not become Background labels.
 """
 import os
+from functools import partial
 from pathlib import Path
 
 import tensorflow as tf
@@ -22,6 +23,11 @@ from microseg.taxonomy import (
 
 IMAGE_HEIGHT = 96
 IMAGE_WIDTH = 96
+
+# Weak negative supervision for unmarked Crosswalk pixels. Non-walkable is the
+# safest of the four classes for an unmarked first-person road scene: it is the
+# dominant surface class and it is never Crosswalk.
+NEGATIVE_CLASS_ID = 1
 
 BATCH_SIZE = int(os.environ.get("MICROSEG_BATCH_SIZE", "8"))
 if BATCH_SIZE < 1:
@@ -165,11 +171,26 @@ def collect_crosswalk_pairs(root=None):
     return [image for image, _ in pairs], [mask for _, mask in pairs]
 
 
-def load_crosswalk_pair(image_path, mask_path):
+def load_crosswalk_pair(
+    image_path,
+    mask_path,
+    negative_weight=0.0,
+    negative_class_id=NEGATIVE_CLASS_ID,
+):
     """Load a Kaggle pair; supervise positive Crosswalk pixels only.
 
-    Source mask values above 127 map to MicroSeg Crosswalk ID 3. All other
-    pixels map to Ignore (255), with zero sample weight.
+    Source mask values above 127 map to MicroSeg Crosswalk ID 3. By default
+    every other pixel becomes Ignore (255) with zero sample weight, which
+    leaves the model free to paint Crosswalk anywhere in the frame without
+    penalty, because ignored pixels never enter the loss.
+
+    When ``negative_weight`` is greater than zero the unmarked pixels become
+    weak negative evidence instead: they carry ``negative_class_id`` with
+    that reduced weight, so the unmarked part of a Crosswalk frame pushes the
+    Crosswalk logit down. The weight stays below 1 because the unmarked area
+    of a first-person frame also contains sidewalk, buildings and sky that
+    this class does not describe correctly. It is pressure against Crosswalk
+    flooding, not a claim about those surfaces.
     """
     raw_image = tf.io.read_file(image_path)
     image = tf.io.decode_image(raw_image, channels=3, expand_animations=False)
@@ -185,18 +206,33 @@ def load_crosswalk_pair(image_path, mask_path):
         method=tf.image.ResizeMethod.NEAREST_NEIGHBOR,
     )
     mask = tf.cast(tf.squeeze(mask, axis=-1), tf.int32)
+    positive = mask > 127
     crosswalk = tf.fill(tf.shape(mask), CROSSWALK_CLASS_ID)
-    ignored = tf.fill(tf.shape(mask), IGNORE_LABEL)
-    mask = tf.where(mask > 127, crosswalk, ignored)
-    targets, weights = prepare_targets(mask)
+    if negative_weight > 0:
+        negative = tf.fill(tf.shape(mask), negative_class_id)
+        targets_raw = tf.where(positive, crosswalk, negative)
+        weights_raw = tf.where(
+            positive,
+            tf.constant(1.0, tf.float32),
+            tf.constant(negative_weight, tf.float32),
+        )
+    else:
+        ignored = tf.fill(tf.shape(mask), IGNORE_LABEL)
+        targets_raw = tf.where(positive, crosswalk, ignored)
+        weights_raw = None
+    targets, weights = prepare_targets(targets_raw, weights_raw)
     return image, targets, weights
 
 
-def make_crosswalk_dataset(training=False, batch_size=None, root=None, pairs=None):
+def make_crosswalk_dataset(
+    training=False, batch_size=None, root=None, pairs=None, negative_weight=0.0
+):
     """Build the Kaggle Crosswalk dataset at MicroSeg input resolution."""
     batch_size = BATCH_SIZE if batch_size is None else batch_size
     if batch_size < 1:
         raise ValueError("batch_size must be at least 1.")
+    if not 0.0 <= negative_weight <= 1.0:
+        raise ValueError("negative_weight must be between 0 and 1.")
     if pairs is None:
         image_paths, mask_paths = collect_crosswalk_pairs(root)
     else:
@@ -207,7 +243,10 @@ def make_crosswalk_dataset(training=False, batch_size=None, root=None, pairs=Non
     dataset = tf.data.Dataset.from_tensor_slices((image_paths, mask_paths))
     if training:
         dataset = dataset.shuffle(len(image_paths), reshuffle_each_iteration=True)
-    dataset = dataset.map(load_crosswalk_pair, num_parallel_calls=AUTOTUNE)
+    dataset = dataset.map(
+        partial(load_crosswalk_pair, negative_weight=negative_weight),
+        num_parallel_calls=AUTOTUNE,
+    )
     dataset = dataset.batch(batch_size)
     dataset = dataset.prefetch(AUTOTUNE)
     return dataset
@@ -321,8 +360,14 @@ def remap_cityscapes_label_ids_tensor(mask):
     return tf.where(valid, mapped, IGNORE_LABEL)
 
 
-def prepare_targets(mask):
-    """Return safe class IDs and weights; always keep both together."""
+def prepare_targets(mask, weights=None):
+    """Return safe class IDs and sample weights; always keep both together.
+
+    ``weights`` optionally scales per-pixel supervision. Values above zero
+    mark a pixel as supervised and scale its contribution, which lets a
+    source contribute weak evidence without claiming full confidence.
+    ``None`` keeps full weight on every supervised pixel.
+    """
     mask = tf.convert_to_tensor(mask)
     if not mask.dtype.is_integer:
         raise TypeError("MicroSeg masks must contain integer IDs.")
@@ -332,7 +377,12 @@ def prepare_targets(mask):
         tf.reduce_all(valid | (mask == IGNORE_LABEL)), True,
         message="MicroSeg masks must contain only 0..3 or 255",
     )
-    return tf.where(valid, mask, 0), tf.cast(valid, tf.float32)
+    supervised = tf.cast(valid, tf.float32)
+    if weights is None:
+        scaled = supervised
+    else:
+        scaled = supervised * tf.cast(weights, tf.float32)
+    return tf.where(valid, mask, 0), scaled
 
 
 def load_pair(image_path, mask_path, label_format="auto", ignore_mask_path=None):
@@ -491,6 +541,7 @@ def make_combined_dataset(
     crosswalk_real_weight=0.5,
     cityscapes_pairs=None,
     cityscapes_ignore_root=None,
+    crosswalk_negative_weight=0.0,
 ):
     """Interleave Cityscapes and Kaggle batches for MicroSeg training.
 
@@ -530,12 +581,14 @@ def make_combined_dataset(
             batch_size=batch_size,
             root=crosswalk_root,
             pairs=crosswalk_real_pairs,
+            negative_weight=crosswalk_negative_weight,
         )
         synthetic_crosswalk = make_crosswalk_dataset(
             training=training,
             batch_size=batch_size,
             root=crosswalk_root,
             pairs=crosswalk_synthetic_pairs,
+            negative_weight=crosswalk_negative_weight,
         )
         if training:
             real_crosswalk = real_crosswalk.repeat()
@@ -551,6 +604,7 @@ def make_combined_dataset(
             batch_size=batch_size,
             root=crosswalk_root,
             pairs=crosswalk_pairs,
+            negative_weight=crosswalk_negative_weight,
         )
     return tf.data.Dataset.sample_from_datasets(
         [cityscapes, crosswalk],

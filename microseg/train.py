@@ -286,6 +286,166 @@ class CrosswalkValidation(keras.callbacks.Callback):
         )
 
 
+class CrosswalkFullFrameMetrics(keras.callbacks.Callback):
+    """Score Crosswalk across the whole frame so over-prediction is visible.
+
+    The Kaggle label contract marks only the crossing and ignores every other
+    pixel, so the weighted validation metrics can only ever see the marked
+    quad. A model that paints Crosswalk across the whole image is not
+    penalised, because the flood lands on pixels with zero sample weight: it
+    scores perfect recall and a near-perfect pixel accuracy while being
+    completely wrong. This callback recomputes the Crosswalk confusion matrix
+    over every pixel, so a prediction on an unmarked pixel counts as a false
+    positive. Precision and the predicted-pixel fraction are therefore honest
+    flooding measures, and the full-frame IoU is safe to monitor.
+    """
+
+    def __init__(self, dataset, class_id=3):
+        super().__init__()
+        self.dataset = dataset
+        self.class_id = class_id
+
+    def on_epoch_end(self, epoch, logs=None):
+        if logs is None:
+            return
+        true_positive = false_positive = false_negative = true_negative = 0
+        for images, targets, _ in self.dataset:
+            predicted = np.argmax(
+                np.asarray(self.model(images, training=False)), axis=-1
+            )
+            truth = np.asarray(targets)
+            predicted_crosswalk = predicted == self.class_id
+            true_crosswalk = truth == self.class_id
+            true_positive += int(np.count_nonzero(predicted_crosswalk & true_crosswalk))
+            false_positive += int(np.count_nonzero(predicted_crosswalk & ~true_crosswalk))
+            false_negative += int(np.count_nonzero(~predicted_crosswalk & true_crosswalk))
+            true_negative += int(np.count_nonzero(~predicted_crosswalk & ~true_crosswalk))
+
+        total = true_positive + false_positive + false_negative + true_negative
+        if total == 0:
+            raise ValueError("Crosswalk full-frame evaluation saw no pixels.")
+        predicted_pixels = true_positive + false_positive
+        marked_pixels = true_positive + false_negative
+        union = true_positive + false_positive + false_negative
+        precision = true_positive / predicted_pixels if predicted_pixels else 0.0
+        recall = true_positive / marked_pixels if marked_pixels else 0.0
+        iou = true_positive / union if union else 0.0
+        logs["val_crosswalk_fullframe_precision"] = float(precision)
+        logs["val_crosswalk_fullframe_recall"] = float(recall)
+        logs["val_crosswalk_fullframe_iou"] = float(iou)
+        logs["val_crosswalk_predicted_fraction"] = float(predicted_pixels / total)
+        logs["val_crosswalk_true_fraction"] = float(marked_pixels / total)
+        print(
+            "Crosswalk full-frame: "
+            f"IoU={iou:.4f} precision={precision:.4f} recall={recall:.4f} "
+            f"predicted={predicted_pixels / total:.2%} of frame "
+            f"(marked={marked_pixels / total:.2%})",
+            flush=True,
+        )
+
+
+COMBINED_SCORE = "val_combined_score"
+
+
+class CombinedScore(keras.callbacks.Callback):
+    """Blend both validation sources into one checkpoint/LR metric.
+
+    The Cityscapes split only supervises Walkable, Non-walkable and Boundary,
+    and the held-out real Crosswalk split only supervises Crosswalk. Selecting
+    a checkpoint on one source alone can therefore promote a model that has
+    collapsed the other half of the taxonomy, which is exactly how a strong
+    Cityscapes score was paired with a decaying Crosswalk score.
+    """
+
+    def __init__(
+        self,
+        cityscapes_key="val_mean_iou",
+        crosswalk_key="val_crosswalk_fullframe_iou",
+        cityscapes_weight=0.5,
+    ):
+        super().__init__()
+        if not 0.0 <= cityscapes_weight <= 1.0:
+            raise ValueError("cityscapes_weight must be between 0 and 1.")
+        self.cityscapes_key = cityscapes_key
+        self.crosswalk_key = crosswalk_key
+        self.cityscapes_weight = cityscapes_weight
+
+    def on_epoch_end(self, epoch, logs=None):
+        if logs is None:
+            return
+        missing = [
+            key for key in (self.cityscapes_key, self.crosswalk_key) if key not in logs
+        ]
+        if missing:
+            raise ValueError(f"Combined score is missing validation metrics: {missing}")
+        score = (
+            self.cityscapes_weight * float(logs[self.cityscapes_key])
+            + (1.0 - self.cityscapes_weight) * float(logs[self.crosswalk_key])
+        )
+        if not math.isfinite(score):
+            raise FloatingPointError(
+                f"Non-finite combined score at epoch {epoch}: {score}"
+            )
+        logs[COMBINED_SCORE] = score
+
+
+class ValidationDriftGuard(keras.callbacks.Callback):
+    """Fail fast when validation decisions freeze or Crosswalk collapses.
+
+    IoU, Dice and pixel accuracy are derived from an argmax confusion matrix,
+    so they only move when a predicted class changes. If they stay exactly
+    equal while the validation loss keeps improving, the model is still
+    refining logits without changing a single decision: a class-collapse
+    signature that a best-checkpoint rule would otherwise keep selecting
+    without comment. A Crosswalk mean IoU of exactly zero means the model
+    predicted no Crosswalk pixel at all on the held-out real split.
+    """
+
+    def __init__(self, patience=3):
+        super().__init__()
+        if patience < 0:
+            raise ValueError("patience must not be negative.")
+        self.patience = patience
+        self.previous = None
+        self.frozen_epochs = 0
+        self.empty_crosswalk_epochs = 0
+
+    def on_epoch_end(self, epoch, logs=None):
+        if logs is None or not self.patience:
+            return
+        current = (
+            float(logs["val_mean_iou"]),
+            float(logs["val_pixel_accuracy"]),
+            float(logs["val_dice"]),
+        )
+        if self.previous is not None and current == self.previous:
+            self.frozen_epochs += 1
+        else:
+            self.frozen_epochs = 0
+        self.previous = current
+
+        if float(logs["val_crosswalk_fullframe_iou"]) == 0.0:
+            self.empty_crosswalk_epochs += 1
+        else:
+            self.empty_crosswalk_epochs = 0
+
+        if self.frozen_epochs >= self.patience:
+            raise RuntimeError(
+                f"Cityscapes validation decisions did not change for "
+                f"{self.frozen_epochs} consecutive epochs while the model kept "
+                f"training. mIoU/pixel accuracy/Dice are frozen at {current}, so "
+                f"the run is refining logits without changing predictions. "
+                f"Stop and inspect the training signal before spending more epochs."
+            )
+        if self.empty_crosswalk_epochs >= self.patience:
+            raise RuntimeError(
+                f"Held-out real Crosswalk mean IoU stayed exactly 0.0 for "
+                f"{self.empty_crosswalk_epochs} consecutive epochs: the model "
+                f"predicts no Crosswalk pixels at all. Stop and rebalance the "
+                f"Crosswalk sampling weight or fix the Crosswalk label contract."
+            )
+
+
 class SaveLatestState(keras.callbacks.Callback):
     def __init__(self, output):
         super().__init__()
@@ -302,6 +462,13 @@ class SaveLatestState(keras.callbacks.Callback):
         temporary = self.output / "state.pending.json"
         temporary.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
         temporary.replace(self.output / _STATE_NAME)
+
+
+def _unit_interval(value):
+    number = float(value)
+    if not 0.0 <= number <= 1.0:
+        raise argparse.ArgumentTypeError("must be between 0 and 1")
+    return number
 
 
 def parse_args(argv=None):
@@ -322,6 +489,34 @@ def parse_args(argv=None):
         type=_sampling_weight,
         default=0.5,
         help="Fraction of sampled Crosswalk batches drawn from real training images",
+    )
+    parser.add_argument(
+        "--cityscapes-score-weight",
+        type=float,
+        default=0.5,
+        help=(
+            "Weight of the Cityscapes validation mIoU inside the combined "
+            "checkpoint score; the remainder is the held-out Crosswalk mIoU"
+        ),
+    )
+    parser.add_argument(
+        "--crosswalk-negative-weight",
+        type=_unit_interval,
+        default=0.25,
+        help=(
+            "Sample weight for unmarked pixels in Crosswalk training frames, "
+            "which become weak negative evidence against a Crosswalk flood. "
+            "0 disables negative supervision. Evaluation is never affected."
+        ),
+    )
+    parser.add_argument(
+        "--frozen-metric-patience",
+        type=int,
+        default=3,
+        help=(
+            "Consecutive epochs with bit-identical validation decisions, or a "
+            "Crosswalk mIoU of exactly 0, that abort the run. Use 0 to disable."
+        ),
     )
     parser.add_argument("--crosswalk-root", type=Path, default=KAGGLE_CROSSWALK_ROOT)
     parser.add_argument(
@@ -495,6 +690,7 @@ def main(argv=None):
         batch_size=args.batch_size,
         root=root,
         pairs=crosswalk_train_pairs,
+        negative_weight=args.crosswalk_negative_weight,
     )
     cityscape_validation = make_dataset(
         "val",
@@ -544,6 +740,7 @@ def main(argv=None):
             crosswalk_real_pairs=crosswalk_train_real_pairs,
             crosswalk_synthetic_pairs=crosswalk_train_synthetic_pairs,
             cityscapes_pairs=cityscape_train_pairs,
+            crosswalk_negative_weight=args.crosswalk_negative_weight,
         )
         validation_data = cityscape_validation
         cityscape_batches = math.ceil(
@@ -612,6 +809,10 @@ def main(argv=None):
         "crosswalk_sampling_weight": (
             0.5 if args.smoke_test else args.crosswalk_weight
         ),
+        "checkpoint_metric": COMBINED_SCORE,
+        "cityscapes_score_weight": args.cityscapes_score_weight,
+        "crosswalk_negative_weight": args.crosswalk_negative_weight,
+        "frozen_metric_patience": args.frozen_metric_patience,
         "crosswalk_train_real_pairs": crosswalk_train_real_count,
         "crosswalk_train_synthetic_pairs": crosswalk_train_synthetic_count,
         "crosswalk_validation_real_pairs": len(crosswalk_validation_pairs),
@@ -633,17 +834,26 @@ def main(argv=None):
         config_path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
 
     scheduler = keras.callbacks.ReduceLROnPlateau(
-        monitor="val_mean_iou", mode="max", factor=0.5, patience=3,
+        monitor=COMBINED_SCORE, mode="max", factor=0.5, patience=3,
         min_lr=1e-6, verbose=1,
     )
     callbacks = [
         keras.callbacks.TerminateOnNaN(),
+        # CrosswalkValidation publishes val_crosswalk_* first, then the
+        # full-frame pass, which cannot be gamed by ignore-as-supervision.
+        # CombinedScore derives val_combined_score, and the guard runs before
+        # anything is saved.
         CrosswalkValidation(crosswalk_eval, smoke_test=args.smoke_test),
+        CrosswalkFullFrameMetrics(crosswalk_eval),
+        CombinedScore(cityscapes_weight=args.cityscapes_score_weight),
+        ValidationDriftGuard(
+            patience=0 if args.smoke_test else args.frozen_metric_patience
+        ),
         VerifyFinite(),
         scheduler,
         keras.callbacks.ModelCheckpoint(
             str(output / "best.keras"),
-            monitor="val_mean_iou",
+            monitor=COMBINED_SCORE,
             mode="max",
             save_best_only=True,
             verbose=1,

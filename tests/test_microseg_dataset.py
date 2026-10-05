@@ -492,7 +492,8 @@ class DatasetTests(unittest.TestCase):
              tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH)))
         )
 
-        def crosswalk_batch(training, batch_size, root, pairs):
+        def crosswalk_batch(training, batch_size, root, pairs, negative_weight=0.0):
+            self.assertEqual(negative_weight, 0.0)
             pixel_value = 0.25 if pairs == [("real", "real_mask")] else 0.75
             return tf.data.Dataset.from_tensors(
                 (tf.fill((1, IMAGE_HEIGHT, IMAGE_WIDTH, 3), pixel_value),
@@ -532,6 +533,90 @@ class DatasetTests(unittest.TestCase):
         self.assertLessEqual(
             real_count / (real_count + synthetic_count), 0.65
         )
+
+
+class CrosswalkNegativeSupervisionTests(unittest.TestCase):
+    """Unmarked Crosswalk pixels must be able to push the Crosswalk logit down."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def write_masked_pair(self):
+        image_path = self.root / "frame.png"
+        mask_path = self.root / "frame_mask.png"
+        Image.fromarray(np.zeros((4, 4, 3), dtype=np.uint8)).save(image_path)
+        Image.fromarray(
+            np.array([[0, 0], [255, 255]], dtype=np.uint8)
+        ).save(mask_path)
+        return image_path, mask_path
+
+    def test_default_contract_keeps_unmarked_pixels_ignored(self):
+        image_path, mask_path = self.write_masked_pair()
+        _, targets, weights = load_crosswalk_pair(str(image_path), str(mask_path))
+
+        # Unmarked pixel: safe placeholder target and zero weight.
+        self.assertEqual(int(targets[0, 0]), 0)
+        self.assertEqual(float(weights[0, 0]), 0.0)
+        # Marked pixel: Crosswalk at full weight.
+        self.assertEqual(int(targets[-1, 0]), 3)
+        self.assertEqual(float(weights[-1, 0]), 1.0)
+
+    def test_negative_weight_turns_unmarked_pixels_into_weak_evidence(self):
+        image_path, mask_path = self.write_masked_pair()
+        _, targets, weights = load_crosswalk_pair(
+            str(image_path), str(mask_path), negative_weight=0.25
+        )
+
+        negative_id = microseg_dataset.NEGATIVE_CLASS_ID
+        self.assertEqual(int(targets[0, 0]), negative_id)
+        self.assertAlmostEqual(float(weights[0, 0]), 0.25, places=6)
+        # Marked pixels keep full weight.
+        self.assertEqual(int(targets[-1, -1]), 3)
+        self.assertAlmostEqual(float(weights[-1, -1]), 1.0, places=6)
+        # Nothing is unsupervised any more, so a Crosswalk flood cannot hide.
+        self.assertFalse(bool(tf.reduce_any(weights == 0.0)))
+
+    def test_dataset_propagates_the_negative_weight(self):
+        image_path = self.root / "images" / "frame.png"
+        mask_path = self.root / "masks" / "frame.png"
+        image_path.parent.mkdir(parents=True)
+        mask_path.parent.mkdir(parents=True)
+        Image.fromarray(np.full((4, 4, 3), 128, dtype=np.uint8)).save(image_path)
+        mask_image = np.zeros((4, 4), dtype=np.uint8)
+        mask_image[1:3, 1:3] = 255
+        Image.fromarray(mask_image).save(mask_path)
+
+        dataset = make_crosswalk_dataset(
+            batch_size=1, root=self.root, negative_weight=0.5
+        )
+        _, targets, weights = next(iter(dataset))
+
+        self.assertAlmostEqual(float(tf.reduce_min(weights)), 0.5, places=6)
+        self.assertAlmostEqual(float(tf.reduce_max(weights)), 1.0, places=6)
+        self.assertTrue(bool(tf.reduce_any(tf.equal(targets, 3))))
+
+    def test_out_of_range_negative_weight_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "between 0 and 1"):
+            make_crosswalk_dataset(batch_size=1, root=self.root, negative_weight=1.5)
+
+    def test_prepare_targets_scales_supervision(self):
+        targets, weights = prepare_targets(
+            tf.constant([[0, 3, IGNORE_LABEL]], dtype=tf.int32),
+            tf.constant([[1.0, 1.0, 0.25]], dtype=tf.float32),
+        )
+
+        np.testing.assert_array_equal(np.asarray(targets), [[0, 3, 0]])
+        # Ignored pixels stay at zero weight even when a weight map is given.
+        np.testing.assert_allclose(np.asarray(weights), [[1.0, 1.0, 0.0]])
+
+    def test_prepare_targets_defaults_to_full_weight(self):
+        _, weights = prepare_targets(tf.constant([[0, IGNORE_LABEL]], dtype=tf.int32))
+
+        np.testing.assert_allclose(np.asarray(weights), [[1.0, 0.0]])
 
 
 if __name__ == "__main__":

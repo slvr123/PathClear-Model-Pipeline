@@ -19,9 +19,10 @@ class MappingTests(unittest.TestCase):
     def test_every_cityscapes_class_and_void(self):
         original = np.array(list(range(19)) + [255], dtype=np.uint8)
         before = original.copy()
-        # Independent expectation covers car, motorcycle, rider, wall, fence,
-        # pole, sign, vegetation, building, terrain, sky and source void.
-        expected = [0, 1, 255, 4, 4, 5, 5, 5, 6, 255, 255, 2, 2, 3, 3, 3, 3, 3, 3, 255]
+        # Independent expectation covers car, motorcycle, rider, building (now
+        # Boundary), wall, fence, pole, sign, vegetation, terrain, sky and
+        # source void.
+        expected = [0, 1, 4, 4, 4, 5, 5, 5, 6, 255, 255, 2, 2, 3, 3, 3, 3, 3, 3, 255]
         np.testing.assert_array_equal(remap_cityscapes_train_ids(original), expected)
         np.testing.assert_array_equal(remap_cityscapes_tensor(original).numpy(), expected)
         np.testing.assert_array_equal(original, before)

@@ -75,7 +75,7 @@ def main():
     result = {"old_best_epoch": 19, "new_best_adaptation_epoch": 11,
               "old_rescored_on_seven_classes": old_scores, "new_on_seven_classes": new_scores,
               "matching_ground_truth_support_verified": True,
-              "method": "Map the old model's already-selected argmax class to the seven-class taxonomy. Ignore truth building/sky/terrain; count old predictions of those classes on valid truth as errors. No probabilities were pooled or new predictions generated.",
+              "method": "Map the old model's already-selected argmax class to the seven-class taxonomy. Ignore truth sky/terrain; count old predictions of those classes on valid truth as errors. Building is Boundary under the shared mapping. No probabilities were pooled or new predictions generated.",
               "limitation": "This compares remapped hard predictions, not a probability-summing adapter. Same validation support was verified; validation has been used for model selection.",
               "baseline_history": baseline_history, "adaptation_history": adaptation_history}
     OUT.mkdir(parents=True)

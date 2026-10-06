@@ -14,8 +14,11 @@ CITYSCAPES_NAMES = (
     "truck", "bus", "train", "motorcycle", "bicycle",
 )
 # These keys are Cityscapes trainIds, NOT the original labelIds.
+# Boundary (ID 4) is building + wall + fence: facades are the dominant
+# vertical surface and the shared lateral anchor for shorelining, matching
+# the MicroSeg labelId mapping (building/wall/fence -> Boundary).
 CITYSCAPES_TO_PATHCLEAR = {
-    0: 0, 1: 1, 2: 255, 3: 4, 4: 4, 5: 5, 6: 5, 7: 5,
+    0: 0, 1: 1, 2: 4, 3: 4, 4: 4, 5: 5, 6: 5, 7: 5,
     8: 6, 9: 255, 10: 255, 11: 2, 12: 2, 13: 3, 14: 3,
     15: 3, 16: 3, 17: 3, 18: 3,
 }

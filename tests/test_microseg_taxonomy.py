@@ -63,13 +63,14 @@ class TaxonomyTests(unittest.TestCase):
                 remap_pathclear_ids(bad)
 
     def test_cityscapes_chain(self):
-        # road(0)->1, sidewalk(1)->0, building(2)->2 (Boundary via trainId chain),
+        # road(0)->1, sidewalk(1)->0, building(2)->2 (Boundary via shared
+        # trainId chain: building is now Boundary, matching MicroSeg),
         # wall(3)->2, fence(4)->2, sky(10)->1 (Non-walkable via trainId chain),
         # person(11)->ignored, void 255->ignored.
         source = np.array([0, 1, 2, 3, 4, 10, 11, 255], dtype=np.uint8)
         np.testing.assert_array_equal(
             remap_cityscapes_ids(source),
-            np.array([1, 0, 255, 2, 2, 255, 255, 255], dtype=np.uint8),
+            np.array([1, 0, 2, 2, 2, 255, 255, 255], dtype=np.uint8),
         )
 
     def test_original_cityscapes_label_ids_mapping(self):

@@ -22,8 +22,8 @@ classes:
     cityscapes_train_ids: [13, 14, 15, 16, 17, 18]
   - id: 4
     name: Boundary
-    description: Walls and fences under the existing mapping.
-    cityscapes_train_ids: [3, 4]
+    description: Buildings, walls, and fences; shared lateral anchor for shorelining.
+    cityscapes_train_ids: [2, 3, 4]
   - id: 5
     name: Obstacle
     description: Poles, traffic lights, and signs; local obstacles need annotation.

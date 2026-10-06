@@ -114,8 +114,10 @@ def run(args, output):
     before_hashes = {str(path): sha256(path) for path in protected}
     keras.utils.set_random_seed(args.seed)
     gpus = tf.config.list_physical_devices("GPU")
-    if not gpus:
+    if not gpus and not args.allow_cpu:
         raise RuntimeError("Expected the verified WSL GPU; stopping before training.")
+    if not gpus:
+        print("WARNING: no GPU detected; continuing on CPU.")
     for gpu in gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
     pairs = {split: collect_pairs(split) for split in ("train", "val")}
@@ -204,7 +206,10 @@ def run(args, output):
               "local_reactivation_verified_without_training": True,
               "baseline_files_unchanged": before_hashes == after_hashes, "baseline_hashes_after": after_hashes,
               "best_checkpoint": str(output / "best.keras"), "checkpoint_sha256": sha256(output / "best.keras"),
-              "gpu_memory": tf.config.experimental.get_memory_info("GPU:0"),
+              "gpu_memory": (
+                  tf.config.experimental.get_memory_info("GPU:0")
+                  if gpus else {"cpu_fallback": True}
+              ),
               "note": "Seven-class Cityscapes adaptation only. No local training or TFLite export. Loss/IoU are not comparable to the original 19-class scores."}
     write_json(output / "result.json", report)
     print(json.dumps(report, indent=2), flush=True)
@@ -215,6 +220,7 @@ def main():
     parser.add_argument("--mode", choices=("smoke", "full"), required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--allow-cpu", action="store_true")
     args = parser.parse_args()
     output = args.output_dir.resolve()
     if output.is_relative_to(BASELINE.parent.resolve()):

@@ -346,6 +346,12 @@ class CrosswalkFullFrameMetrics(keras.callbacks.Callback):
 
 COMBINED_SCORE = "val_combined_score"
 
+# Checkpoint-metric modes for CombinedScore.
+SCORE_ARITHMETIC = "arithmetic"
+SCORE_HARMONIC = "harmonic"
+SCORE_HARMONIC_FLOOD = "harmonic_flood"
+SCORE_MODES = (SCORE_ARITHMETIC, SCORE_HARMONIC, SCORE_HARMONIC_FLOOD)
+
 
 class CombinedScore(keras.callbacks.Callback):
     """Blend both validation sources into one checkpoint/LR metric.
@@ -355,6 +361,41 @@ class CombinedScore(keras.callbacks.Callback):
     a checkpoint on one source alone can therefore promote a model that has
     collapsed the other half of the taxonomy, which is exactly how a strong
     Cityscapes score was paired with a decaying Crosswalk score.
+
+    Three modes are available:
+
+    ``arithmetic``
+        The original ``w*a + (1-w)*b``. It cannot tell a balanced model from
+        one that is excellent at Crosswalk and mediocre at Cityscapes, because
+        the two sources move on very different scales: Crosswalk full-frame IoU
+        swings across ~0.6 while Cityscapes mIoU moves ~0.05. A small
+        Cityscapes loss therefore always buys a large Crosswalk gain and the sum
+        keeps selecting the checkpoint that trades Cityscapes quality away.
+        Retained for reproducibility of earlier runs, not the default.
+
+    ``harmonic``
+        ``1 / (w/a + (1-w)/b)``. The weaker axis dominates the denominator, so a
+        checkpoint cannot be propped up by one strong source.
+
+    ``harmonic_flood``
+        The harmonic mean with an explicit penalty for over-coverage, and the
+        default. The penalty uses a *deadband*: coverage up to
+        ``flood_tolerance`` times the true marked fraction is free, and only
+        genuine excess is charged. A ratio scaled from zero instead of a
+        deadband is dominated by ordinary sampling noise -- a healthy run sits
+        at ~1.5x its true coverage, so an unbanded penalty swamps the harmonic
+        term and reverts selection to whichever epoch happens to predict the
+        least Crosswalk.
+
+        Measured behaviour: a healthy 200-step checkpoint (28.4% coverage) is
+        charged nothing and scores 0.5363, while the weight-0 flood run (99.4%
+        coverage) is charged 2.83 and scores -2.5740. So this is a strict
+        superset of ``harmonic``: identical on healthy runs, decisive on floods.
+
+        Note that the score is unbounded below, since the penalty is a linear
+        function of the coverage ratio. That is intentional -- a flooding model
+        should rank far below any healthy one, not merely slightly below -- but
+        it means values are not comparable with ``arithmetic`` runs.
     """
 
     def __init__(
@@ -362,13 +403,34 @@ class CombinedScore(keras.callbacks.Callback):
         cityscapes_key="val_mean_iou",
         crosswalk_key="val_crosswalk_fullframe_iou",
         cityscapes_weight=0.5,
+        mode=SCORE_HARMONIC_FLOOD,
+        flood_weight=1.0,
+        flood_tolerance=2.0,
     ):
         super().__init__()
         if not 0.0 <= cityscapes_weight <= 1.0:
             raise ValueError("cityscapes_weight must be between 0 and 1.")
+        if mode not in SCORE_MODES:
+            raise ValueError(
+                f"mode must be one of {SCORE_MODES}, got {mode!r}."
+            )
+        if flood_weight < 0.0:
+            raise ValueError("flood_weight must not be negative.")
+        if flood_tolerance < 1.0:
+            raise ValueError("flood_tolerance must be at least 1.0.")
         self.cityscapes_key = cityscapes_key
         self.crosswalk_key = crosswalk_key
         self.cityscapes_weight = cityscapes_weight
+        self.mode = mode
+        self.flood_weight = flood_weight
+        self.flood_tolerance = flood_tolerance
+
+    @staticmethod
+    def _harmonic(cityscapes, crosswalk, weight):
+        """Weighted harmonic mean; 0.0 if either source is non-positive."""
+        if cityscapes <= 0.0 or crosswalk <= 0.0:
+            return 0.0
+        return 1.0 / (weight / cityscapes + (1.0 - weight) / crosswalk)
 
     def on_epoch_end(self, epoch, logs=None):
         if logs is None:
@@ -378,10 +440,34 @@ class CombinedScore(keras.callbacks.Callback):
         ]
         if missing:
             raise ValueError(f"Combined score is missing validation metrics: {missing}")
-        score = (
-            self.cityscapes_weight * float(logs[self.cityscapes_key])
-            + (1.0 - self.cityscapes_weight) * float(logs[self.crosswalk_key])
-        )
+        cityscapes = float(logs[self.cityscapes_key])
+        crosswalk = float(logs[self.crosswalk_key])
+        if self.mode == SCORE_ARITHMETIC:
+            score = (
+                self.cityscapes_weight * cityscapes
+                + (1.0 - self.cityscapes_weight) * crosswalk
+            )
+        else:
+            score = self._harmonic(cityscapes, crosswalk, self.cityscapes_weight)
+            if self.mode == SCORE_HARMONIC_FLOOD:
+                predicted_key = "val_crosswalk_predicted_fraction"
+                true_key = "val_crosswalk_true_fraction"
+                absent = [
+                    key for key in (predicted_key, true_key) if key not in logs
+                ]
+                if absent:
+                    raise ValueError(
+                        "Flood-penalised score is missing validation metrics: "
+                        f"{absent}"
+                    )
+                predicted = float(logs[predicted_key])
+                true_fraction = float(logs[true_key])
+                if true_fraction > 0.0:
+                    excess = max(
+                        0.0, predicted / true_fraction - self.flood_tolerance
+                    )
+                    logs["val_crosswalk_flood_excess"] = float(excess)
+                    score -= self.flood_weight * excess
         if not math.isfinite(score):
             raise FloatingPointError(
                 f"Non-finite combined score at epoch {epoch}: {score}"
@@ -471,6 +557,13 @@ def _unit_interval(value):
     return number
 
 
+def _horizon_fraction(value):
+    number = float(value)
+    if not 0.0 <= number <= 1.0:
+        raise argparse.ArgumentTypeError("must be between 0 and 1")
+    return number
+
+
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--epochs", type=_positive_int, default=50)
@@ -500,6 +593,41 @@ def parse_args(argv=None):
         ),
     )
     parser.add_argument(
+        "--score-mode",
+        choices=SCORE_MODES,
+        default=SCORE_HARMONIC_FLOOD,
+        help=(
+            "How the two validation sources are combined. The default "
+            "'harmonic_flood' lets the weaker source dominate and charges for "
+            "predicting Crosswalk on far more of the frame than is marked, so a "
+            "flooding checkpoint cannot be selected while a healthy one pays "
+            "nothing. 'harmonic' is that metric without the flood penalty. "
+            "'arithmetic' is the original weighted sum, which can trade "
+            "Cityscapes quality for Crosswalk gains because the two sources "
+            "move on different scales; retained only to reproduce earlier runs."
+        ),
+    )
+    parser.add_argument(
+        "--crosswalk-flood-weight",
+        type=float,
+        default=1.0,
+        help=(
+            "Strength of the over-coverage penalty used by --score-mode "
+            "harmonic_flood. Ignored by the other modes."
+        ),
+    )
+    parser.add_argument(
+        "--crosswalk-flood-tolerance",
+        type=float,
+        default=2.0,
+        help=(
+            "Deadband for --score-mode harmonic_flood, as a multiple of the "
+            "true marked fraction. Predicted coverage below this multiple is "
+            "not penalised, so ordinary sampling noise does not dominate the "
+            "score. Must be at least 1.0."
+        ),
+    )
+    parser.add_argument(
         "--crosswalk-negative-weight",
         type=_unit_interval,
         default=0.25,
@@ -507,6 +635,24 @@ def parse_args(argv=None):
             "Sample weight for unmarked pixels in Crosswalk training frames, "
             "which become weak negative evidence against a Crosswalk flood. "
             "0 disables negative supervision. Evaluation is never affected."
+        ),
+    )
+    parser.add_argument(
+        "--crosswalk-horizon-fraction",
+        type=_horizon_fraction,
+        default=microseg_dataset.CROSSWALK_HORIZON_FRACTION,
+        help=(
+            "Row fraction where unmarked Crosswalk pixels switch from "
+            "Boundary (above) to Non-walkable (below). 0 disables the split."
+        ),
+    )
+    parser.add_argument(
+        "--augment",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "Label-safe training augmentation: horizontal flip plus mild "
+            "brightness/contrast jitter. Use --no-augment to disable."
         ),
     )
     parser.add_argument(
@@ -691,6 +837,9 @@ def main(argv=None):
         root=root,
         pairs=crosswalk_train_pairs,
         negative_weight=args.crosswalk_negative_weight,
+        horizon_fraction=args.crosswalk_horizon_fraction,
+        augment=args.augment,
+        seed=args.seed,
     )
     cityscape_validation = make_dataset(
         "val",
@@ -741,6 +890,9 @@ def main(argv=None):
             crosswalk_synthetic_pairs=crosswalk_train_synthetic_pairs,
             cityscapes_pairs=cityscape_train_pairs,
             crosswalk_negative_weight=args.crosswalk_negative_weight,
+            crosswalk_horizon_fraction=args.crosswalk_horizon_fraction,
+            augment=args.augment,
+            seed=args.seed,
         )
         validation_data = cityscape_validation
         cityscape_batches = math.ceil(
@@ -769,6 +921,20 @@ def main(argv=None):
         f"steps/epoch={steps_per_epoch}, validation_steps={validation_steps}",
         flush=True,
     )
+    if not args.smoke_test:
+        samples_per_epoch = steps_per_epoch * args.batch_size
+        available = len(cityscape_train_images) + len(crosswalk_train_pairs)
+        run_coverage = min(1.0, samples_per_epoch * args.epochs / available)
+        print(
+            f"Coverage: {samples_per_epoch} samples/epoch over ~{available} "
+            f"available = {samples_per_epoch / available:.1%} per epoch, "
+            f"{run_coverage:.1%} across {args.epochs} epochs. "
+            f"Augmentation is {'on' if args.augment else 'off'}. "
+            f"Low per-epoch coverage is expected; near-100% train accuracy "
+            f"means the model is memorising the subset it sees rather than "
+            f"generalising.",
+            flush=True,
+        )
 
     state = {}
     if args.resume:
@@ -810,8 +976,13 @@ def main(argv=None):
             0.5 if args.smoke_test else args.crosswalk_weight
         ),
         "checkpoint_metric": COMBINED_SCORE,
+        "score_mode": args.score_mode,
+        "crosswalk_flood_weight": args.crosswalk_flood_weight,
+        "crosswalk_flood_tolerance": args.crosswalk_flood_tolerance,
         "cityscapes_score_weight": args.cityscapes_score_weight,
         "crosswalk_negative_weight": args.crosswalk_negative_weight,
+        "crosswalk_horizon_fraction": args.crosswalk_horizon_fraction,
+        "augment": args.augment,
         "frozen_metric_patience": args.frozen_metric_patience,
         "crosswalk_train_real_pairs": crosswalk_train_real_count,
         "crosswalk_train_synthetic_pairs": crosswalk_train_synthetic_count,
@@ -845,7 +1016,12 @@ def main(argv=None):
         # anything is saved.
         CrosswalkValidation(crosswalk_eval, smoke_test=args.smoke_test),
         CrosswalkFullFrameMetrics(crosswalk_eval),
-        CombinedScore(cityscapes_weight=args.cityscapes_score_weight),
+        CombinedScore(
+            cityscapes_weight=args.cityscapes_score_weight,
+            mode=args.score_mode,
+            flood_weight=args.crosswalk_flood_weight,
+            flood_tolerance=args.crosswalk_flood_tolerance,
+        ),
         ValidationDriftGuard(
             patience=0 if args.smoke_test else args.frozen_metric_patience
         ),

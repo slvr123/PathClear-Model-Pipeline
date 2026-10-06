@@ -444,6 +444,70 @@ class DatasetTests(unittest.TestCase):
         self.assertTrue(bool(tf.reduce_any(tf.equal(targets, 3))))
         self.assertTrue(bool(tf.reduce_any(tf.equal(weights, 0.0))))
 
+    def test_combined_training_repeats_the_cityscapes_stream(self):
+        """The Cityscapes branch must be repeated during training.
+
+        The Crosswalk branches are .repeat()ed. Without a matching repeat,
+        the finite Cityscapes stream is exhausted partway through a long
+        epoch and sample_from_datasets restarts it from its first element,
+        so the realised Crosswalk share drifts with steps_per_epoch
+        (measured 33% at 100 steps versus 49% at 800 against a requested
+        50%). Repeating the branch keeps the requested mix at any length.
+        """
+        finite_cityscapes = tf.data.Dataset.from_tensors(
+            (tf.fill((1, IMAGE_HEIGHT, IMAGE_WIDTH, 3), 0.2),
+             tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH), dtype=tf.int32),
+             tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH)))
+        ).concatenate(
+            tf.data.Dataset.from_tensors(
+                (tf.fill((1, IMAGE_HEIGHT, IMAGE_WIDTH, 3), 0.3),
+                 tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH), dtype=tf.int32),
+                 tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH)))
+            )
+        )
+        crosswalk_batch = tf.data.Dataset.from_tensors(
+            (tf.fill((1, IMAGE_HEIGHT, IMAGE_WIDTH, 3), 0.8),
+             tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH), dtype=tf.int32),
+             tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH)))
+        )
+
+        def infinite_crosswalk(**kwargs):
+            return crosswalk_batch.repeat()
+
+        with mock.patch(
+            "microseg.dataset.make_dataset", return_value=finite_cityscapes
+        ), mock.patch(
+            "microseg.dataset.make_crosswalk_dataset", side_effect=infinite_crosswalk
+        ):
+            combined = make_combined_dataset(
+                "train",
+                training=True,
+                batch_size=1,
+                crosswalk_weight=0.5,
+                crosswalk_real_pairs=[("real.png", "real_mask.png")],
+                crosswalk_synthetic_pairs=[("syn.png", "syn_mask.png")],
+                cityscapes_pairs=[("a.png", "b.png")],
+            )
+            # The fixed pipeline repeats every branch, so the combined
+            # stream is infinite and a long take() must not end early.
+            means = [
+                float(tf.reduce_mean(images)) for images, _, _ in combined.take(100)
+            ]
+
+        # tf.fill produces float32, so 0.8 is not exactly representable: compare
+        # against the midpoint between the two branches rather than for equality.
+        crosswalk_share = sum(1 for value in means if value > 0.5) / len(means)
+        self.assertAlmostEqual(
+            crosswalk_share,
+            0.5,
+            delta=0.1,
+            msg=(
+                f"Realised Crosswalk share is {crosswalk_share:.1%}, not the "
+                "requested 50%: the finite Cityscapes branch was exhausted, so "
+                "longer runs silently train on a different mix."
+            ),
+        )
+
     def test_combined_validation_does_not_include_crosswalk_source(self):
         cityscapes_batch = tf.data.Dataset.from_tensors(
             (tf.zeros((1, IMAGE_HEIGHT, IMAGE_WIDTH, 3)),
@@ -479,10 +543,9 @@ class DatasetTests(unittest.TestCase):
             combined = make_combined_dataset(
                 "train", training=True, batch_size=1, crosswalk_weight=0.5
             )
-            batches = list(combined.as_numpy_iterator())
+            batches = list(combined.take(20).as_numpy_iterator())
 
         make_crosswalk.assert_called_once()
-        self.assertEqual(len(batches), 2)
         self.assertEqual({int(batch[1][0, 0, 0]) for batch in batches}, {1, 3})
 
     def test_combined_training_balances_real_and_synthetic_crosswalk_sources(self):
@@ -492,7 +555,10 @@ class DatasetTests(unittest.TestCase):
              tf.ones((1, IMAGE_HEIGHT, IMAGE_WIDTH)))
         )
 
-        def crosswalk_batch(training, batch_size, root, pairs, negative_weight=0.0):
+        def crosswalk_batch(
+            training, batch_size, root, pairs, negative_weight=0.0,
+            horizon_fraction=0.0, augment=False, seed=None,
+        ):
             self.assertEqual(negative_weight, 0.0)
             pixel_value = 0.25 if pairs == [("real", "real_mask")] else 0.75
             return tf.data.Dataset.from_tensors(
@@ -565,20 +631,89 @@ class CrosswalkNegativeSupervisionTests(unittest.TestCase):
         self.assertEqual(int(targets[-1, 0]), 3)
         self.assertEqual(float(weights[-1, 0]), 1.0)
 
-    def test_negative_weight_turns_unmarked_pixels_into_weak_evidence(self):
+    def test_negative_weight_uses_the_horizon_split(self):
         image_path, mask_path = self.write_masked_pair()
         _, targets, weights = load_crosswalk_pair(
             str(image_path), str(mask_path), negative_weight=0.25
         )
-
-        negative_id = microseg_dataset.NEGATIVE_CLASS_ID
-        self.assertEqual(int(targets[0, 0]), negative_id)
+        horizon_row = int(
+            round(IMAGE_HEIGHT * microseg_dataset.CROSSWALK_HORIZON_FRACTION)
+        )
+        # Above the horizon: facade and sky region, taught as Boundary.
+        self.assertEqual(int(targets[0, 0]), microseg_dataset.HORIZON_CLASS_ID)
+        # Below the horizon but still unmarked: road, taught as Non-walkable.
+        self.assertEqual(
+            int(targets[horizon_row + 2, 0]), microseg_dataset.NEGATIVE_CLASS_ID
+        )
+        # Marked crossing keeps full weight.
+        self.assertEqual(int(targets[-1, 0]), 3)
         self.assertAlmostEqual(float(weights[0, 0]), 0.25, places=6)
-        # Marked pixels keep full weight.
-        self.assertEqual(int(targets[-1, -1]), 3)
-        self.assertAlmostEqual(float(weights[-1, -1]), 1.0, places=6)
+        self.assertAlmostEqual(float(weights[-1, 0]), 1.0, places=6)
         # Nothing is unsupervised any more, so a Crosswalk flood cannot hide.
         self.assertFalse(bool(tf.reduce_any(weights == 0.0)))
+
+    def test_horizon_fraction_of_zero_disables_the_split(self):
+        image_path, mask_path = self.write_masked_pair()
+        _, targets, _ = load_crosswalk_pair(
+            str(image_path), str(mask_path),
+            negative_weight=0.25,
+            horizon_fraction=0.0,
+        )
+
+        self.assertEqual(int(targets[0, 0]), microseg_dataset.NEGATIVE_CLASS_ID)
+        self.assertEqual(int(targets[40, 0]), microseg_dataset.NEGATIVE_CLASS_ID)
+
+    def test_horizon_and_negative_classes_must_differ(self):
+        image_path, mask_path = self.write_masked_pair()
+
+        with self.assertRaisesRegex(ValueError, "must be different"):
+            load_crosswalk_pair(
+                str(image_path), str(mask_path),
+                negative_weight=0.25,
+                horizon_class_id=1,
+                negative_class_id=1,
+            )
+
+    def test_invalid_horizon_fraction_is_rejected(self):
+        for bad in (-0.2, 1.5):
+            with self.assertRaisesRegex(ValueError, "between 0 and 1"):
+                make_crosswalk_dataset(
+                    batch_size=1, root=self.root, horizon_fraction=bad
+                )
+
+    def test_augmentation_preserves_shapes_and_labels(self):
+        image_path = self.root / "images" / "frame.png"
+        mask_path = self.root / "masks" / "frame.png"
+        image_path.parent.mkdir(parents=True)
+        mask_path.parent.mkdir(parents=True)
+        Image.fromarray(np.full((4, 4, 3), 128, dtype=np.uint8)).save(image_path)
+        mask_image = np.zeros((4, 4), dtype=np.uint8)
+        mask_image[1:3, 1:3] = 255
+        Image.fromarray(mask_image).save(mask_path)
+
+        plain = next(
+            iter(make_crosswalk_dataset(
+                batch_size=1, root=self.root, training=True
+            ))
+        )
+        augmented = next(
+            iter(make_crosswalk_dataset(
+                batch_size=1, root=self.root, training=True, augment=True, seed=7
+            ))
+        )
+
+        for images, targets, weights in (plain, augmented):
+            self.assertEqual(tuple(images.shape), (1, IMAGE_HEIGHT, IMAGE_WIDTH, 3))
+            self.assertEqual(tuple(targets.shape), (1, IMAGE_HEIGHT, IMAGE_WIDTH))
+            self.assertGreaterEqual(float(tf.reduce_min(images)), 0.0)
+            self.assertLessEqual(float(tf.reduce_max(images)), 1.0)
+        # The label contract must survive augmentation untouched.
+        np.testing.assert_array_equal(
+            np.asarray(augmented[1]), np.asarray(plain[1])
+        )
+        np.testing.assert_allclose(
+            np.asarray(augmented[2]), np.asarray(plain[2])
+        )
 
     def test_dataset_propagates_the_negative_weight(self):
         image_path = self.root / "images" / "frame.png"

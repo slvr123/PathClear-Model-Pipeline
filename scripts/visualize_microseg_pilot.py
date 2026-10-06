@@ -155,9 +155,12 @@ def _describe_run(run_dir, config, checkpoint_path):
     if groups:
         norm = f"{norm} (groups={groups})"
     metric = config.get("checkpoint_metric", "checkpoint metric unrecorded")
+    # Runs before the score-mode flag existed recorded only the metric name, so
+    # a figure must not imply they were selected by the flood-penalised score.
+    mode = config.get("score_mode", "arithmetic (implicit, pre-harmonic_flood)")
     return (
         f"MicroSeg pilot - {run_dir.name} - {norm} - "
-        f"checkpoint {checkpoint_path.name} - monitored {metric}"
+        f"checkpoint {checkpoint_path.name} - monitored {metric} [{mode}]"
     )
 
 

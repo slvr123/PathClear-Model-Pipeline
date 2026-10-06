@@ -7,8 +7,12 @@ import unittest
 import numpy as np
 from PIL import Image
 
+from microseg.dataset import CROSSWALK_HORIZON_FRACTION
 from microseg.train import (
     COMBINED_SCORE,
+    SCORE_ARITHMETIC,
+    SCORE_HARMONIC,
+    SCORE_HARMONIC_FLOOD,
     CombinedScore,
     CrosswalkFullFrameMetrics,
     ValidationDriftGuard,
@@ -93,6 +97,18 @@ class CrosswalkSplitTests(unittest.TestCase):
     def test_cli_rejects_an_out_of_range_negative_weight(self):
         with self.assertRaises(SystemExit):
             parse_args(["--crosswalk-negative-weight", "1.5"])
+
+    def test_cli_horizon_and_augmentation_defaults(self):
+        args = parse_args([])
+
+        self.assertEqual(args.crosswalk_horizon_fraction, CROSSWALK_HORIZON_FRACTION)
+        self.assertTrue(args.augment)
+        self.assertFalse(parse_args(["--no-augment"]).augment)
+
+    def test_cli_rejects_an_invalid_horizon_fraction(self):
+        for bad in ("-0.2", "1.5"):
+            with self.assertRaises(SystemExit):
+                parse_args(["--crosswalk-horizon-fraction", bad])
 
     def test_cityscapes_manifest_resolves_relative_pair_paths(self):
         manifest_path = self.root / "cityscapes.json"
@@ -181,6 +197,16 @@ class CrosswalkSplitTests(unittest.TestCase):
 
 
 class CombinedScoreTests(unittest.TestCase):
+    """Blending behaviour that must hold regardless of which mode is selected.
+
+    The default is now ``harmonic_flood``, so these pin ``arithmetic``
+    explicitly to keep covering the original weighted-sum contract.
+    """
+
+    @staticmethod
+    def callback(**kwargs):
+        return CombinedScore(mode=SCORE_ARITHMETIC, **kwargs)
+
     @staticmethod
     def logs(cityscapes=0.4, crosswalk=0.2):
         return {
@@ -199,21 +225,21 @@ class CombinedScoreTests(unittest.TestCase):
 
     def test_blends_both_validation_sources_equally_by_default(self):
         logs = self.logs()
-        CombinedScore().on_epoch_end(0, logs)
+        self.callback().on_epoch_end(0, logs)
 
         self.assertAlmostEqual(logs[COMBINED_SCORE], 0.3, places=9)
 
     def test_honours_an_explicit_cityscapes_weight(self):
         logs = self.logs()
-        CombinedScore(cityscapes_weight=0.75).on_epoch_end(0, logs)
+        self.callback(cityscapes_weight=0.75).on_epoch_end(0, logs)
 
         self.assertAlmostEqual(logs[COMBINED_SCORE], 0.75 * 0.4 + 0.25 * 0.2, places=9)
 
     def test_penalises_a_collapsed_crosswalk_half(self):
         healthy = self.logs(cityscapes=0.30, crosswalk=0.30)
         collapsed = self.logs(cityscapes=0.40, crosswalk=0.0)
-        CombinedScore().on_epoch_end(0, healthy)
-        CombinedScore().on_epoch_end(0, collapsed)
+        self.callback().on_epoch_end(0, healthy)
+        self.callback().on_epoch_end(0, collapsed)
 
         self.assertAlmostEqual(healthy[COMBINED_SCORE], 0.30, places=9)
         self.assertAlmostEqual(collapsed[COMBINED_SCORE], 0.20, places=9)
@@ -225,17 +251,169 @@ class CombinedScoreTests(unittest.TestCase):
         logs = {"val_mean_iou": 0.4}
 
         with self.assertRaisesRegex(ValueError, "missing validation metrics"):
-            CombinedScore().on_epoch_end(0, logs)
+            self.callback().on_epoch_end(0, logs)
 
     def test_rejects_a_non_finite_score(self):
         logs = self.logs(cityscapes=float("nan"))
 
         with self.assertRaises(FloatingPointError):
-            CombinedScore().on_epoch_end(0, logs)
+            self.callback().on_epoch_end(0, logs)
 
     def test_rejects_an_out_of_range_weight(self):
         with self.assertRaises(ValueError):
             CombinedScore(cityscapes_weight=1.5)
+
+
+class CombinedScoreModeTests(unittest.TestCase):
+    """The arithmetic mean let a strong Crosswalk score mask a weak Cityscapes
+    one, because Crosswalk full-frame IoU moves ~0.6 across a run while
+    Cityscapes mIoU moves ~0.05. These tests pin the replacement behaviour."""
+
+    TRUE_FRACTION = 0.2058
+
+    def logs(self, cityscapes, crosswalk, predicted=None):
+        entry = {
+            "val_mean_iou": cityscapes,
+            "val_crosswalk_fullframe_iou": crosswalk,
+            "val_crosswalk_predicted_fraction": (
+                self.TRUE_FRACTION if predicted is None else predicted
+            ),
+            "val_crosswalk_true_fraction": self.TRUE_FRACTION,
+        }
+        return entry
+
+    def score(self, mode, cityscapes, crosswalk, predicted=None, **kwargs):
+        entry = self.logs(cityscapes, crosswalk, predicted)
+        CombinedScore(mode=mode, **kwargs).on_epoch_end(0, entry)
+        return entry[COMBINED_SCORE]
+
+    def test_arithmetic_is_preserved_for_earlier_runs(self):
+        # Not the default any more, but earlier runs were selected with it, so
+        # it must stay reachable and numerically unchanged.
+        entry = self.logs(0.4, 0.2)
+        CombinedScore(mode=SCORE_ARITHMETIC).on_epoch_end(0, entry)
+        self.assertAlmostEqual(entry[COMBINED_SCORE], 0.3, places=9)
+
+    def test_default_mode_is_the_flood_penalised_harmonic_mean(self):
+        entry = self.logs(0.4, 0.2)
+        CombinedScore().on_epoch_end(0, entry)
+        self.assertEqual(CombinedScore().mode, SCORE_HARMONIC_FLOOD)
+        # At 1.0x the true marked fraction the penalty must not apply.
+        self.assertAlmostEqual(
+            entry[COMBINED_SCORE], 1.0 / (0.5 / 0.4 + 0.5 / 0.2), places=9
+        )
+
+    def test_harmonic_is_below_the_arithmetic_mean(self):
+        arithmetic = self.score(SCORE_ARITHMETIC, 0.4, 0.6)
+        harmonic = self.score(SCORE_HARMONIC, 0.4, 0.6)
+        self.assertLess(harmonic, arithmetic)
+
+    def test_harmonic_refuses_the_cityscapes_for_crosswalk_trade(self):
+        # The observed failure: epoch 3 vs epoch 5 at 200 steps/epoch. The
+        # arithmetic mean preferred epoch 5, which lost 0.05 Cityscapes mIoU to
+        # gain 0.065 Crosswalk IoU. The harmonic mean must reject that trade.
+        epoch3 = self.score(SCORE_HARMONIC, 0.4482, 0.6675)
+        epoch5 = self.score(SCORE_HARMONIC, 0.3978, 0.7323)
+        self.assertGreater(epoch3, epoch5)
+
+        arithmetic3 = self.score(SCORE_ARITHMETIC, 0.4482, 0.6675)
+        arithmetic5 = self.score(SCORE_ARITHMETIC, 0.3978, 0.7323)
+        self.assertLess(arithmetic3, arithmetic5)
+
+    def test_harmonic_is_zero_when_either_source_collapses(self):
+        self.assertEqual(self.score(SCORE_HARMONIC, 0.4, 0.0), 0.0)
+        self.assertEqual(self.score(SCORE_HARMONIC, 0.0, 0.8), 0.0)
+
+    def test_flood_deadband_ignores_ordinary_over_coverage(self):
+        # A healthy run sits at ~1.5x its true marked fraction. Inside the
+        # deadband that must cost nothing at all, otherwise sampling noise
+        # dominates the score.
+        plain = self.score(SCORE_HARMONIC, 0.4482, 0.6675)
+        banded = self.score(
+            SCORE_HARMONIC_FLOOD, 0.4482, 0.6675, predicted=0.31
+        )
+        self.assertAlmostEqual(banded, plain, places=9)
+
+    def test_flood_penalty_charges_a_genuine_flood(self):
+        # The weight-0 ablation predicted 98.79% of the frame, ~4.8x its true
+        # coverage, and must be ranked far below a healthy checkpoint.
+        flooded = self.score(
+            SCORE_HARMONIC_FLOOD, 0.4384, 0.2357, predicted=0.9879
+        )
+        healthy = self.score(SCORE_HARMONIC_FLOOD, 0.4482, 0.6675)
+        self.assertLess(flooded, healthy)
+        # 0.9879 / 0.2058 - 2.0 is the excess charged at flood_weight 1.0.
+        self.assertAlmostEqual(
+            flooded,
+            self.score(SCORE_HARMONIC, 0.4384, 0.2357) - (0.9879 / 0.2058 - 2.0),
+            places=9,
+        )
+
+    def test_flood_excess_is_recorded_for_inspection(self):
+        entry = self.logs(0.44, 0.24, predicted=0.9879)
+        CombinedScore(mode=SCORE_HARMONIC_FLOOD).on_epoch_end(0, entry)
+        self.assertAlmostEqual(
+            entry["val_crosswalk_flood_excess"], 0.9879 / 0.2058 - 2.0, places=9
+        )
+
+    def test_flood_mode_requires_the_coverage_metrics(self):
+        logs = {
+            "val_mean_iou": 0.4,
+            "val_crosswalk_fullframe_iou": 0.2,
+        }
+        with self.assertRaisesRegex(ValueError, "missing validation metrics"):
+            CombinedScore(mode=SCORE_HARMONIC_FLOOD).on_epoch_end(0, logs)
+
+    def test_flood_modes_tolerate_an_empty_true_fraction(self):
+        # No marked pixels means there is no coverage ratio to form, so the
+        # penalty must be skipped rather than dividing by zero. The score then
+        # falls back to the plain harmonic mean.
+        logs = {
+            "val_mean_iou": 0.4,
+            "val_crosswalk_fullframe_iou": 0.2,
+            "val_crosswalk_predicted_fraction": 0.0,
+            "val_crosswalk_true_fraction": 0.0,
+        }
+        CombinedScore(mode=SCORE_HARMONIC_FLOOD).on_epoch_end(0, logs)
+        self.assertAlmostEqual(logs[COMBINED_SCORE], 1.0 / (0.5 / 0.4 + 0.5 / 0.2))
+        self.assertNotIn("val_crosswalk_flood_excess", logs)
+
+    def test_rejects_an_unknown_mode(self):
+        with self.assertRaisesRegex(ValueError, "mode must be one of"):
+            CombinedScore(mode="geometric")
+
+    def test_rejects_an_invalid_tolerance_or_weight(self):
+        with self.assertRaisesRegex(ValueError, "flood_tolerance"):
+            CombinedScore(flood_tolerance=0.5)
+        with self.assertRaisesRegex(ValueError, "flood_weight"):
+            CombinedScore(flood_weight=-1.0)
+
+    def test_score_mode_is_selectable_from_the_command_line(self):
+        args = parse_args([
+            "--score-mode", SCORE_HARMONIC,
+            "--crosswalk-flood-weight", "0.5",
+            "--crosswalk-flood-tolerance", "1.5",
+        ])
+        self.assertEqual(args.score_mode, SCORE_HARMONIC)
+        self.assertAlmostEqual(args.crosswalk_flood_weight, 0.5)
+        self.assertAlmostEqual(args.crosswalk_flood_tolerance, 1.5)
+
+    def test_command_line_default_is_the_flood_penalised_mode(self):
+        args = parse_args([])
+        self.assertEqual(args.score_mode, SCORE_HARMONIC_FLOOD)
+        self.assertAlmostEqual(args.crosswalk_flood_weight, 1.0)
+        self.assertAlmostEqual(args.crosswalk_flood_tolerance, 2.0)
+
+    def test_earlier_runs_can_still_request_arithmetic(self):
+        self.assertEqual(
+            parse_args(["--score-mode", SCORE_ARITHMETIC]).score_mode,
+            SCORE_ARITHMETIC,
+        )
+
+    def test_class_and_cli_defaults_agree(self):
+        # They must not drift: a divergence would silently select checkpoints
+        # under a metric the run config does not describe.
+        self.assertEqual(CombinedScore().mode, parse_args([]).score_mode)
 
 
 class ValidationDriftGuardTests(unittest.TestCase):

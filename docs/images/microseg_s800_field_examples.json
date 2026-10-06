@@ -1,0 +1,70 @@
+{
+  "checkpoint": "/home/nacsi/microseg_runs/pilot-neg025-s800-augoff-fixed-20261006/best.keras",
+  "title": "MicroSeg pilot - pilot-neg025-s800-augoff-fixed-20261006 - group_normalization (groups=8) - checkpoint best.keras - monitored val_combined_score [harmonic_flood]",
+  "input_size": [
+    96,
+    96
+  ],
+  "images": [
+    {
+      "image": "/mnt/c/Users/ALLAN/dev/PathClear-Model-Pipeline/docs/images/field/field_path_vegetation.jpg",
+      "original_size": [
+        800,
+        400
+      ],
+      "class_pixels": {
+        "Walkable": 0,
+        "Non-walkable": 1976,
+        "Boundary": 4067,
+        "Crosswalk": 3173
+      },
+      "class_percentages": {
+        "Walkable": 0.0,
+        "Non-walkable": 21.44097222222222,
+        "Boundary": 44.12977430555556,
+        "Crosswalk": 34.42925347222222
+      },
+      "mean_max_softmax_confidence": 0.9086638689041138
+    },
+    {
+      "image": "/mnt/c/Users/ALLAN/dev/PathClear-Model-Pipeline/docs/images/field/field_street_fence.jpg",
+      "original_size": [
+        800,
+        400
+      ],
+      "class_pixels": {
+        "Walkable": 0,
+        "Non-walkable": 4267,
+        "Boundary": 4280,
+        "Crosswalk": 669
+      },
+      "class_percentages": {
+        "Walkable": 0.0,
+        "Non-walkable": 46.29991319444444,
+        "Boundary": 46.44097222222222,
+        "Crosswalk": 7.259114583333333
+      },
+      "mean_max_softmax_confidence": 0.8985377550125122
+    },
+    {
+      "image": "/mnt/c/Users/ALLAN/dev/PathClear-Model-Pipeline/docs/images/field/field_street_wall.jpg",
+      "original_size": [
+        800,
+        400
+      ],
+      "class_pixels": {
+        "Walkable": 0,
+        "Non-walkable": 5010,
+        "Boundary": 4086,
+        "Crosswalk": 120
+      },
+      "class_percentages": {
+        "Walkable": 0.0,
+        "Non-walkable": 54.361979166666664,
+        "Boundary": 44.3359375,
+        "Crosswalk": 1.3020833333333335
+      },
+      "mean_max_softmax_confidence": 0.9502725601196289
+    }
+  ]
+}

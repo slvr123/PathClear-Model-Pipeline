@@ -24,10 +24,17 @@ from microseg.taxonomy import (
 IMAGE_HEIGHT = 96
 IMAGE_WIDTH = 96
 
-# Weak negative supervision for unmarked Crosswalk pixels. Non-walkable is the
-# safest of the four classes for an unmarked first-person road scene: it is the
-# dominant surface class and it is never Crosswalk.
+# Weak negative supervision for unmarked Crosswalk pixels. The unmarked area of
+# a first-person road frame splits at the horizon: above it is building facade
+# and sky, which the Cityscapes mapping already treats as lateral boundary
+# material; below it is road, which is Non-walkable. Neither region is ever
+# Crosswalk, and that is exactly the pressure the negative evidence applies.
+# A single blanket class was wrong for the upper half, which is why the split
+# exists. A horizon_fraction of 0.0 disables the split and labels every
+# unmarked pixel NEGATIVE_CLASS_ID.
+HORIZON_CLASS_ID = 2
 NEGATIVE_CLASS_ID = 1
+CROSSWALK_HORIZON_FRACTION = 0.45
 
 BATCH_SIZE = int(os.environ.get("MICROSEG_BATCH_SIZE", "8"))
 if BATCH_SIZE < 1:
@@ -171,11 +178,35 @@ def collect_crosswalk_pairs(root=None):
     return [image for image, _ in pairs], [mask for _, mask in pairs]
 
 
+def _augment_pair(image, targets, weights, seed=None):
+    """Label-safe augmentation: horizontal flip plus mild photometric jitter.
+
+    A left-right flip is the only spatial transform that is exactly
+    label-preserving for all four classes at once, and it doubles the
+    apparent dataset. Brightness and contrast jitter touch the image only,
+    so they cannot alter a target or a sample weight. Geometry is otherwise
+    left alone: shifting or scaling would move the resize geometry that
+    images and masks must share.
+    """
+    flip = tf.random.uniform([], minval=0, maxval=2, dtype=tf.int32, seed=seed)
+    # Column reversal is an exact horizontal flip that works uniformly for the
+    # 3-D image and for the 2-D target and weight maps; tf.image.flip_left_right
+    # would reject the 2-D ones.
+    image = tf.cond(flip == 1, lambda: image[:, ::-1], lambda: image)
+    targets = tf.cond(flip == 1, lambda: targets[:, ::-1], lambda: targets)
+    weights = tf.cond(flip == 1, lambda: weights[:, ::-1], lambda: weights)
+    image = tf.image.random_brightness(image, 0.15)
+    image = tf.image.random_contrast(image, 0.85, 1.15)
+    return image, targets, weights
+
+
 def load_crosswalk_pair(
     image_path,
     mask_path,
     negative_weight=0.0,
     negative_class_id=NEGATIVE_CLASS_ID,
+    horizon_fraction=CROSSWALK_HORIZON_FRACTION,
+    horizon_class_id=HORIZON_CLASS_ID,
 ):
     """Load a Kaggle pair; supervise positive Crosswalk pixels only.
 
@@ -185,12 +216,16 @@ def load_crosswalk_pair(
     penalty, because ignored pixels never enter the loss.
 
     When ``negative_weight`` is greater than zero the unmarked pixels become
-    weak negative evidence instead: they carry ``negative_class_id`` with
-    that reduced weight, so the unmarked part of a Crosswalk frame pushes the
-    Crosswalk logit down. The weight stays below 1 because the unmarked area
-    of a first-person frame also contains sidewalk, buildings and sky that
-    this class does not describe correctly. It is pressure against Crosswalk
-    flooding, not a claim about those surfaces.
+    weak negative evidence instead, split at the horizon: rows above
+    ``horizon_fraction * IMAGE_HEIGHT`` take ``horizon_class_id`` because that
+    region is building facade and sky, and the rows below take
+    ``negative_class_id`` because that region is road. Both are never
+    Crosswalk, which is the point; the split simply stops the upper half from
+    being taught as road. The weight stays below 1 because the unmarked area
+    still contains sidewalk and vegetation that neither class describes
+    correctly. It is pressure against Crosswalk flooding, not a claim about
+    those surfaces. ``horizon_fraction`` of 0.0 labels every unmarked pixel
+    ``negative_class_id``.
     """
     raw_image = tf.io.read_file(image_path)
     image = tf.io.decode_image(raw_image, channels=3, expand_animations=False)
@@ -209,7 +244,22 @@ def load_crosswalk_pair(
     positive = mask > 127
     crosswalk = tf.fill(tf.shape(mask), CROSSWALK_CLASS_ID)
     if negative_weight > 0:
-        negative = tf.fill(tf.shape(mask), negative_class_id)
+        if horizon_class_id == negative_class_id:
+            raise ValueError(
+                "horizon_class_id and negative_class_id must be different "
+                "classes for the horizon split to carry information."
+            )
+        if horizon_fraction <= 0:
+            negative = tf.fill(tf.shape(mask), negative_class_id)
+        else:
+            horizon_row = int(round(IMAGE_HEIGHT * horizon_fraction))
+            rows = tf.range(IMAGE_HEIGHT)[:, None]
+            negative_column = tf.where(
+                rows < horizon_row,
+                tf.constant(horizon_class_id, tf.int32),
+                tf.constant(negative_class_id, tf.int32),
+            )
+            negative = tf.broadcast_to(negative_column, tf.shape(mask))
         targets_raw = tf.where(positive, crosswalk, negative)
         weights_raw = tf.where(
             positive,
@@ -225,7 +275,14 @@ def load_crosswalk_pair(
 
 
 def make_crosswalk_dataset(
-    training=False, batch_size=None, root=None, pairs=None, negative_weight=0.0
+    training=False,
+    batch_size=None,
+    root=None,
+    pairs=None,
+    negative_weight=0.0,
+    horizon_fraction=CROSSWALK_HORIZON_FRACTION,
+    augment=False,
+    seed=None,
 ):
     """Build the Kaggle Crosswalk dataset at MicroSeg input resolution."""
     batch_size = BATCH_SIZE if batch_size is None else batch_size
@@ -233,6 +290,8 @@ def make_crosswalk_dataset(
         raise ValueError("batch_size must be at least 1.")
     if not 0.0 <= negative_weight <= 1.0:
         raise ValueError("negative_weight must be between 0 and 1.")
+    if not 0.0 <= horizon_fraction <= 1.0:
+        raise ValueError("horizon_fraction must be between 0 and 1.")
     if pairs is None:
         image_paths, mask_paths = collect_crosswalk_pairs(root)
     else:
@@ -244,9 +303,17 @@ def make_crosswalk_dataset(
     if training:
         dataset = dataset.shuffle(len(image_paths), reshuffle_each_iteration=True)
     dataset = dataset.map(
-        partial(load_crosswalk_pair, negative_weight=negative_weight),
+        partial(
+            load_crosswalk_pair,
+            negative_weight=negative_weight,
+            horizon_fraction=horizon_fraction,
+        ),
         num_parallel_calls=AUTOTUNE,
     )
+    if training and augment:
+        dataset = dataset.map(
+            partial(_augment_pair, seed=seed), num_parallel_calls=AUTOTUNE
+        )
     dataset = dataset.batch(batch_size)
     dataset = dataset.prefetch(AUTOTUNE)
     return dataset
@@ -474,6 +541,8 @@ def make_dataset(
     batch_size=None,
     cityscapes_pairs=None,
     cityscapes_ignore_root=None,
+    augment=False,
+    seed=None,
 ):
     batch_size = BATCH_SIZE if batch_size is None else batch_size
     if batch_size < 1:
@@ -523,6 +592,10 @@ def make_dataset(
         ),
         num_parallel_calls=AUTOTUNE,
     )
+    if training and augment:
+        dataset = dataset.map(
+            partial(_augment_pair, seed=seed), num_parallel_calls=AUTOTUNE
+        )
     dataset = dataset.batch(batch_size)
     dataset = dataset.prefetch(AUTOTUNE)
     return dataset
@@ -542,6 +615,9 @@ def make_combined_dataset(
     cityscapes_pairs=None,
     cityscapes_ignore_root=None,
     crosswalk_negative_weight=0.0,
+    crosswalk_horizon_fraction=CROSSWALK_HORIZON_FRACTION,
+    augment=False,
+    seed=None,
 ):
     """Interleave Cityscapes and Kaggle batches for MicroSeg training.
 
@@ -558,11 +634,19 @@ def make_combined_dataset(
         batch_size=batch_size,
         cityscapes_pairs=cityscapes_pairs,
         cityscapes_ignore_root=cityscapes_ignore_root,
+        augment=augment,
+        seed=seed,
     )
     if split != "train" or not include_crosswalk:
         return cityscapes
     if not 0.0 < crosswalk_weight < 1.0:
         raise ValueError("crosswalk_weight must be between 0 and 1.")
+
+    # All branches are repeated during training so the smaller source is never
+    # exhausted. Without this, the finite Cityscapes stream ends partway through
+    # a long epoch and the realised Crosswalk share drifts with steps_per_epoch.
+    if training:
+        cityscapes = cityscapes.repeat()
 
     if crosswalk_real_pairs is not None or crosswalk_synthetic_pairs is not None:
         if crosswalk_pairs is not None:
@@ -582,6 +666,9 @@ def make_combined_dataset(
             root=crosswalk_root,
             pairs=crosswalk_real_pairs,
             negative_weight=crosswalk_negative_weight,
+            horizon_fraction=crosswalk_horizon_fraction,
+            augment=augment,
+            seed=seed,
         )
         synthetic_crosswalk = make_crosswalk_dataset(
             training=training,
@@ -589,6 +676,9 @@ def make_combined_dataset(
             root=crosswalk_root,
             pairs=crosswalk_synthetic_pairs,
             negative_weight=crosswalk_negative_weight,
+            horizon_fraction=crosswalk_horizon_fraction,
+            augment=augment,
+            seed=seed,
         )
         if training:
             real_crosswalk = real_crosswalk.repeat()
@@ -605,6 +695,9 @@ def make_combined_dataset(
             root=crosswalk_root,
             pairs=crosswalk_pairs,
             negative_weight=crosswalk_negative_weight,
+            horizon_fraction=crosswalk_horizon_fraction,
+            augment=augment,
+            seed=seed,
         )
     return tf.data.Dataset.sample_from_datasets(
         [cityscapes, crosswalk],

@@ -1,0 +1,20 @@
+{
+  "verification_python": "3.11.15",
+  "verification_platform": "Windows-10-10.0.26200-SP0",
+  "verification_packages": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.4.6",
+    "pillow": "12.3.0",
+    "matplotlib": "3.11.1"
+  },
+  "training_tensorflow": "2.21.0",
+  "training_keras": "3.15.1",
+  "training_devices": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "training_environment": "WSL Ubuntu via existing run_wsl.sh; exact CUDA/cuDNN build not recorded",
+  "cuda_version": null,
+  "cudnn_version": null,
+  "bitwise_retraining_guaranteed": false
+}

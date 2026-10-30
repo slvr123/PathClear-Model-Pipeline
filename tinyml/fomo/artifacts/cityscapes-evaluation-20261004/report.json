@@ -1,0 +1,99 @@
+{
+  "images": 500,
+  "confidence_threshold": 0.6,
+  "radius_input_pixels": 8.0,
+  "uncapped_micro": {
+    "tp": 1169,
+    "fp": 645,
+    "fn": 8950,
+    "ignored": 3989,
+    "precision": 0.6444321940463065,
+    "recall": 0.11552524953058603,
+    "f1": 0.19592726053800386
+  },
+  "handoff_top3_micro": {
+    "tp": 577,
+    "fp": 136,
+    "fn": 9542,
+    "ignored": 787,
+    "precision": 0.8092566619915849,
+    "recall": 0.05702144480679909,
+    "f1": 0.10653618906942393
+  },
+  "per_class": {
+    "person": {
+      "tp": 454,
+      "fp": 301,
+      "fn": 3484,
+      "ignored": 1043,
+      "precision": 0.6013245033112583,
+      "recall": 0.11528694768918232,
+      "f1": 0.19347965054336244
+    },
+    "vehicle": {
+      "tp": 715,
+      "fp": 344,
+      "fn": 5466,
+      "ignored": 2946,
+      "precision": 0.6751652502360718,
+      "recall": 0.11567707490697299,
+      "f1": 0.19751381215469613
+    }
+  },
+  "matched_center_error_input_pixels_mean": 4.097834991301912,
+  "matched_center_error_input_pixels_median": 3.960094180715768,
+  "matched_center_error_input_pixels_p95": 7.358839038256932,
+  "detection_confidence_mean": 0.7757925007767704,
+  "detection_confidence_quantiles": [
+    0.6000999808311462,
+    0.6797893345355988,
+    0.7673366069793701,
+    0.8673754632472992,
+    0.996358335018158
+  ],
+  "detection_count": 5803,
+  "split": "validation",
+  "synthetic": false,
+  "sanity_model": false,
+  "model_path": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-baseline-20261004\\best.keras",
+  "model_bytes": 511345,
+  "matching": "same-class confidence-greedy one-to-one, input-pixel distance; unmatched predictions in source void/group cells ignored",
+  "pc_single_frame_model_call_ms_median": 5.457000006572343,
+  "pc_single_frame_model_call_ms_p95": 6.153250009811017,
+  "pc_batch_inference_seconds": 0.7306067000026815,
+  "timing_samples": 30,
+  "runtime": "TensorFlow compiled inference",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')"
+  ],
+  "timing_scope": "normalized input already prepared; includes model call and output copy; excludes camera, decode, and CNN",
+  "threshold_diagnostics": {
+    "0.3": {
+      "tp": 1041,
+      "fp": 1091,
+      "fn": 9078,
+      "ignored": 4888,
+      "precision": 0.48827392120075047,
+      "recall": 0.10287577823895643,
+      "f1": 0.16994531058689086
+    },
+    "0.6": {
+      "tp": 1169,
+      "fp": 645,
+      "fn": 8950,
+      "ignored": 3989,
+      "precision": 0.6444321940463065,
+      "recall": 0.11552524953058603,
+      "f1": 0.19592726053800386
+    },
+    "0.8": {
+      "tp": 1056,
+      "fp": 235,
+      "fn": 9063,
+      "ignored": 1821,
+      "precision": 0.8179705654531371,
+      "recall": 0.10435813815594426,
+      "f1": 0.1851007887817704
+    }
+  }
+}

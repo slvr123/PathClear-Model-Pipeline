@@ -1,0 +1,23 @@
+{
+  "false_negatives": 7546,
+  "class_counts": {
+    "person": 3038,
+    "vehicle": 4508
+  },
+  "size_counts": {
+    "2to4": 2408,
+    "lt2": 2338,
+    "ge16": 333,
+    "4to8": 1717,
+    "8to16": 750
+  },
+  "edge_within_4px": 411,
+  "crowded_nearby_center_within_8px": 6592,
+  "center_cell_winner": {
+    "person": 2937,
+    "background": 719,
+    "vehicle": 3890
+  },
+  "occlusion": "not measured: retained annotations do not supply visibility/occlusion; inspect examples manually",
+  "caveat": "Size and class counts partition misses; edge and crowd tags overlap and are geometric proxies, not causal diagnoses."
+}

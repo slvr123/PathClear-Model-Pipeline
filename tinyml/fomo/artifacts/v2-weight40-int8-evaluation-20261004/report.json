@@ -1,0 +1,109 @@
+{
+  "images": 500,
+  "confidence_threshold": 0.6,
+  "radius_input_pixels": 8.0,
+  "uncapped_micro": {
+    "tp": 2684,
+    "fp": 1346,
+    "fn": 7435,
+    "ignored": 1341,
+    "precision": 0.6660049627791563,
+    "recall": 0.2652436011463583,
+    "f1": 0.37939076966570073
+  },
+  "legacy_top3_micro": {
+    "tp": 1159,
+    "fp": 180,
+    "fn": 8960,
+    "ignored": 150,
+    "precision": 0.8655713218820015,
+    "recall": 0.11453700958592747,
+    "f1": 0.20230406702740444
+  },
+  "decoding": {
+    "version": 2,
+    "decoder": "cell_nms",
+    "threshold": 0.6,
+    "max_detections": 0,
+    "nms_distance": "same class, Chebyshev distance in 160x160 input pixels",
+    "nms_radius_input_pixels": 8.0,
+    "consumer": "PathClear decision logic",
+    "creates_classifier_crops": false
+  },
+  "per_class": {
+    "person": {
+      "tp": 906,
+      "fp": 543,
+      "fn": 3032,
+      "ignored": 708,
+      "precision": 0.6252587991718427,
+      "recall": 0.23006602336211274,
+      "f1": 0.33636532392797475
+    },
+    "vehicle": {
+      "tp": 1778,
+      "fp": 803,
+      "fn": 4403,
+      "ignored": 633,
+      "precision": 0.6888802789616427,
+      "recall": 0.2876557191392978,
+      "f1": 0.4058434147454919
+    }
+  },
+  "matched_center_error_input_pixels_mean": 3.8433098301857735,
+  "matched_center_error_input_pixels_median": 3.6526172093996236,
+  "matched_center_error_input_pixels_p95": 7.298629429235783,
+  "detection_confidence_mean": 0.8175427883591561,
+  "detection_confidence_quantiles": [
+    0.6000000238418579,
+    0.7098039388656616,
+    0.82421875,
+    0.93359375,
+    1.0
+  ],
+  "detection_count": 5371,
+  "split": "validation",
+  "synthetic": false,
+  "sanity_model": false,
+  "model_path": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\v2-weight40-export-20261004\\model.int8.tflite",
+  "model_bytes": 70736,
+  "matching": "same-class confidence-greedy one-to-one, input-pixel distance; unmatched predictions in source void/group cells ignored",
+  "pc_single_frame_model_call_ms_median": 0.941399994189851,
+  "pc_single_frame_model_call_ms_p95": 1.6225599989411412,
+  "pc_batch_inference_seconds": 0.9372299000096973,
+  "timing_samples": 30,
+  "runtime": "TFLite CPU, one thread",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')"
+  ],
+  "timing_scope": "normalized input already prepared; includes model call and output copy; excludes camera, decode, MicroSeg, and decision logic",
+  "threshold_diagnostics": {
+    "0.3": {
+      "tp": 3103,
+      "fp": 2348,
+      "fn": 7016,
+      "ignored": 2292,
+      "precision": 0.5692533480095395,
+      "recall": 0.3066508548275521,
+      "f1": 0.39858702633269105
+    },
+    "0.6": {
+      "tp": 2684,
+      "fp": 1346,
+      "fn": 7435,
+      "ignored": 1341,
+      "precision": 0.6660049627791563,
+      "recall": 0.2652436011463583,
+      "f1": 0.37939076966570073
+    },
+    "0.8": {
+      "tp": 1975,
+      "fp": 532,
+      "fn": 8144,
+      "ignored": 469,
+      "precision": 0.7877941763063422,
+      "recall": 0.1951773890700662,
+      "f1": 0.3128465072073499
+    }
+  }
+}

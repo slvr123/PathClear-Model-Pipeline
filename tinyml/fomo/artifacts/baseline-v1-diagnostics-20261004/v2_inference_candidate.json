@@ -1,0 +1,154 @@
+{
+  "name": "v2_inference_candidate",
+  "status": "experimental; does not replace baseline_v1",
+  "model": "tinyml/fomo/artifacts/diagnosis-center-export-20261004/model.int8.tflite",
+  "model_sha256": "359473f21233165ccbc6ea64689a645490d819bb07dd2905ed6dd5fa76f4e372",
+  "grid_size": 20,
+  "input_size": 160,
+  "classes": [
+    "person",
+    "vehicle"
+  ],
+  "decoder": "cells",
+  "nms_enabled": false,
+  "confidence_threshold": 0.8,
+  "max_detections": 0,
+  "evaluation": {
+    "threshold": 0.8,
+    "micro": {
+      "tp": 3391,
+      "fp": 1313,
+      "fn": 6728,
+      "ignored": 762,
+      "precision": 0.720875850340136,
+      "recall": 0.33511216523371873,
+      "f1": 0.45753221345206774
+    },
+    "per_class": {
+      "person": {
+        "tp": 1130,
+        "fp": 425,
+        "fn": 2808,
+        "ignored": 419,
+        "precision": 0.7266881028938906,
+        "recall": 0.28694768918232605,
+        "f1": 0.4114327325687238
+      },
+      "vehicle": {
+        "tp": 2261,
+        "fp": 888,
+        "fn": 3920,
+        "ignored": 343,
+        "precision": 0.7180057161003494,
+        "recall": 0.36579841449603623,
+        "f1": 0.4846730975348339
+      }
+    },
+    "size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 434,
+        "recall": 0.16266866566716642,
+        "per_class": {
+          "person": {
+            "total": 1601,
+            "matched": 230,
+            "recall": 0.14366021236727045
+          },
+          "vehicle": {
+            "total": 1067,
+            "matched": 204,
+            "recall": 0.19119025304592316
+          }
+        }
+      },
+      "2to4": {
+        "total": 2940,
+        "matched": 784,
+        "recall": 0.26666666666666666,
+        "per_class": {
+          "person": {
+            "total": 1305,
+            "matched": 391,
+            "recall": 0.2996168582375479
+          },
+          "vehicle": {
+            "total": 1635,
+            "matched": 393,
+            "recall": 0.24036697247706423
+          }
+        }
+      },
+      "4to8": {
+        "total": 2317,
+        "matched": 872,
+        "recall": 0.376348726801899,
+        "per_class": {
+          "person": {
+            "total": 758,
+            "matched": 347,
+            "recall": 0.4577836411609499
+          },
+          "vehicle": {
+            "total": 1559,
+            "matched": 525,
+            "recall": 0.3367543296985247
+          }
+        }
+      },
+      "8to16": {
+        "total": 1393,
+        "matched": 788,
+        "recall": 0.5656855707106964,
+        "per_class": {
+          "person": {
+            "total": 241,
+            "matched": 144,
+            "recall": 0.5975103734439834
+          },
+          "vehicle": {
+            "total": 1152,
+            "matched": 644,
+            "recall": 0.5590277777777778
+          }
+        }
+      },
+      "ge16": {
+        "total": 801,
+        "matched": 513,
+        "recall": 0.6404494382022472,
+        "per_class": {
+          "person": {
+            "total": 33,
+            "matched": 18,
+            "recall": 0.5454545454545454
+          },
+          "vehicle": {
+            "total": 768,
+            "matched": 495,
+            "recall": 0.64453125
+          }
+        }
+      }
+    },
+    "decoder": "cells",
+    "coarse_size_recall": {
+      "lt2": {
+        "total": 2668,
+        "matched": 434,
+        "recall": 0.16266866566716642
+      },
+      "2to8": {
+        "total": 5257,
+        "matched": 1656,
+        "recall": 0.3150085600152178
+      },
+      "ge8": {
+        "total": 2194,
+        "matched": 1301,
+        "recall": 0.5929808568824065
+      }
+    }
+  },
+  "selection": "Highest recall among tested no-NMS thresholds retaining >=70% precision on development validation; not an independent test result"
+}

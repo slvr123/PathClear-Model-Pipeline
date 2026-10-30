@@ -1,0 +1,253 @@
+{
+  "checkpoint": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\diagnosis-center-training-20261004\\best.keras",
+  "best_epoch": 19,
+  "evaluation": "Best float checkpoint, unaugmented inputs, inference mode, same centroid protocol",
+  "results": {
+    "train": {
+      "threshold": 0.6,
+      "micro": {
+        "tp": 14566,
+        "fp": 6000,
+        "fn": 37436,
+        "ignored": 5128,
+        "precision": 0.708256345424487,
+        "recall": 0.2801046113611015,
+        "f1": 0.4014441627163488
+      },
+      "per_class": {
+        "person": {
+          "tp": 4058,
+          "fp": 2422,
+          "fn": 15596,
+          "ignored": 2417,
+          "precision": 0.6262345679012346,
+          "recall": 0.20647196499440318,
+          "f1": 0.31055330221167826
+        },
+        "vehicle": {
+          "tp": 10508,
+          "fp": 3578,
+          "fn": 21840,
+          "ignored": 2711,
+          "precision": 0.7459889251739316,
+          "recall": 0.32484233955731423,
+          "f1": 0.4525993883792049
+        }
+      },
+      "size_recall": {
+        "lt2": {
+          "total": 13738,
+          "matched": 1613,
+          "recall": 0.11741155917891978,
+          "per_class": {
+            "person": {
+              "total": 8543,
+              "matched": 960,
+              "recall": 0.11237270279761208
+            },
+            "vehicle": {
+              "total": 5195,
+              "matched": 653,
+              "recall": 0.1256977863330125
+            }
+          }
+        },
+        "2to4": {
+          "total": 14420,
+          "matched": 2676,
+          "recall": 0.18557558945908462,
+          "per_class": {
+            "person": {
+              "total": 6146,
+              "matched": 1324,
+              "recall": 0.21542466644972338
+            },
+            "vehicle": {
+              "total": 8274,
+              "matched": 1352,
+              "recall": 0.16340343243896543
+            }
+          }
+        },
+        "4to8": {
+          "total": 11844,
+          "matched": 3518,
+          "recall": 0.2970280310705843,
+          "per_class": {
+            "person": {
+              "total": 3592,
+              "matched": 1217,
+              "recall": 0.33880846325167036
+            },
+            "vehicle": {
+              "total": 8252,
+              "matched": 2301,
+              "recall": 0.2788414929714009
+            }
+          }
+        },
+        "8to16": {
+          "total": 7172,
+          "matched": 3604,
+          "recall": 0.5025097601784718,
+          "per_class": {
+            "person": {
+              "total": 1139,
+              "matched": 482,
+              "recall": 0.4231782265144864
+            },
+            "vehicle": {
+              "total": 6033,
+              "matched": 3122,
+              "recall": 0.5174871539864081
+            }
+          }
+        },
+        "ge16": {
+          "total": 4828,
+          "matched": 3155,
+          "recall": 0.6534797017398508,
+          "per_class": {
+            "person": {
+              "total": 234,
+              "matched": 75,
+              "recall": 0.32051282051282054
+            },
+            "vehicle": {
+              "total": 4594,
+              "matched": 3080,
+              "recall": 0.6704397039616892
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "threshold": 0.6,
+      "micro": {
+        "tp": 2567,
+        "fp": 1083,
+        "fn": 7552,
+        "ignored": 1036,
+        "precision": 0.7032876712328767,
+        "recall": 0.2536811937938531,
+        "f1": 0.3728665843561624
+      },
+      "per_class": {
+        "person": {
+          "tp": 800,
+          "fp": 467,
+          "fn": 3138,
+          "ignored": 529,
+          "precision": 0.6314127861089187,
+          "recall": 0.2031488065007618,
+          "f1": 0.30739673390970224
+        },
+        "vehicle": {
+          "tp": 1767,
+          "fp": 616,
+          "fn": 4414,
+          "ignored": 507,
+          "precision": 0.741502308015107,
+          "recall": 0.2858760718330367,
+          "f1": 0.4126576366184026
+        }
+      },
+      "size_recall": {
+        "lt2": {
+          "total": 2668,
+          "matched": 298,
+          "recall": 0.11169415292353824,
+          "per_class": {
+            "person": {
+              "total": 1601,
+              "matched": 185,
+              "recall": 0.1155527795128045
+            },
+            "vehicle": {
+              "total": 1067,
+              "matched": 113,
+              "recall": 0.10590440487347703
+            }
+          }
+        },
+        "2to4": {
+          "total": 2940,
+          "matched": 516,
+          "recall": 0.17551020408163265,
+          "per_class": {
+            "person": {
+              "total": 1305,
+              "matched": 261,
+              "recall": 0.2
+            },
+            "vehicle": {
+              "total": 1635,
+              "matched": 255,
+              "recall": 0.1559633027522936
+            }
+          }
+        },
+        "4to8": {
+          "total": 2317,
+          "matched": 626,
+          "recall": 0.27017695295640914,
+          "per_class": {
+            "person": {
+              "total": 758,
+              "matched": 246,
+              "recall": 0.3245382585751979
+            },
+            "vehicle": {
+              "total": 1559,
+              "matched": 380,
+              "recall": 0.24374599101988453
+            }
+          }
+        },
+        "8to16": {
+          "total": 1393,
+          "matched": 643,
+          "recall": 0.46159368269921036,
+          "per_class": {
+            "person": {
+              "total": 241,
+              "matched": 96,
+              "recall": 0.3983402489626556
+            },
+            "vehicle": {
+              "total": 1152,
+              "matched": 547,
+              "recall": 0.4748263888888889
+            }
+          }
+        },
+        "ge16": {
+          "total": 801,
+          "matched": 484,
+          "recall": 0.6042446941323346,
+          "per_class": {
+            "person": {
+              "total": 33,
+              "matched": 12,
+              "recall": 0.36363636363636365
+            },
+            "vehicle": {
+              "total": 768,
+              "matched": 472,
+              "recall": 0.6145833333333334
+            }
+          }
+        }
+      }
+    }
+  },
+  "live_int8_max_absolute_differences": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "historical_training_f1_curve": null
+}

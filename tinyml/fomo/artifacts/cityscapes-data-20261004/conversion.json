@@ -1,0 +1,22 @@
+{
+  "source_images": {
+    "train": 2975,
+    "validation": 500
+  },
+  "converted_images": 3475,
+  "annotation_count": 62121,
+  "classes": {
+    "person": 23592,
+    "vehicle": 38529
+  },
+  "images_without_relevant_objects": 18,
+  "invalid_missing_files": [],
+  "skipped": {
+    "group_pixels": 13388032,
+    "void_pixels": 847304822,
+    "group_semantic_regions": 2354,
+    "unrelated_individual_instances": 158
+  },
+  "seconds": 207.6931321999873,
+  "manifest": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-data-20261004\\manifest.json"
+}

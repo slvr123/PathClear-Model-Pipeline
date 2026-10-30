@@ -1,0 +1,60 @@
+{
+  "module": "fomo",
+  "taxonomy": [
+    "person",
+    "vehicle"
+  ],
+  "decoding": {
+    "version": 3,
+    "decoder": "cells",
+    "threshold": 0.7,
+    "max_detections": 0,
+    "nms_enabled": false,
+    "nms_distance": "disabled",
+    "nms_radius_input_pixels": 0.0,
+    "consumer": "PathClear decision logic",
+    "creates_classifier_crops": false
+  },
+  "coordinate_space": "original frame pixels, continuous edge coordinates",
+  "frame_width": 2048,
+  "frame_height": 1024,
+  "detections": [
+    {
+      "centroid_x": 1177.6,
+      "centroid_y": 435.2,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8671875
+    },
+    {
+      "centroid_x": 1382.4,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.8203125
+    },
+    {
+      "centroid_x": 1996.8,
+      "centroid_y": 486.4,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.8046875
+    },
+    {
+      "centroid_x": 870.4,
+      "centroid_y": 435.2,
+      "coarse_class_id": 0,
+      "class_name": "person",
+      "confidence": 0.7372549176216125
+    },
+    {
+      "centroid_x": 1075.2,
+      "centroid_y": 435.2,
+      "coarse_class_id": 1,
+      "class_name": "vehicle",
+      "confidence": 0.7109375
+    }
+  ],
+  "pc_model_call_ms": 2.1291999728418887,
+  "synthetic_training": false
+}

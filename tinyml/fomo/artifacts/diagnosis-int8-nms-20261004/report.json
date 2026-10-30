@@ -1,0 +1,382 @@
+{
+  "manifest_sha256": "2dda2563cda15e4b0df9dbaef1fd078076010bc93e33d7a660a4b36bb16f3924",
+  "probabilities_sha256": "ab58a513787213016d3f10f52bdad812b73f6ccddc0c7257a9a763fe8b9122b9",
+  "evaluation": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-int8-evaluation-20261004",
+  "images": 500,
+  "scope": "Exploratory development validation; previously used for checkpoint selection.",
+  "threshold": 0.6,
+  "radius_input_pixels": 8,
+  "connected": {
+    "micro": {
+      "tp": 1099,
+      "fp": 606,
+      "fn": 9020,
+      "ignored": 3868,
+      "precision": 0.644574780058651,
+      "recall": 0.10860756991797609,
+      "f1": 0.18589309878213803
+    },
+    "per_class": {
+      "person": {
+        "tp": 409,
+        "fp": 241,
+        "fn": 3529,
+        "ignored": 859,
+        "precision": 0.6292307692307693,
+        "recall": 0.10385982732351448,
+        "f1": 0.17829119442022667
+      },
+      "vehicle": {
+        "tp": 690,
+        "fp": 365,
+        "fn": 5491,
+        "ignored": 3009,
+        "precision": 0.6540284360189573,
+        "recall": 0.11163242193819771,
+        "f1": 0.19071310116086235
+      }
+    },
+    "size_recall": {
+      "tiny_lt2": {
+        "matched": 158,
+        "total": 2668,
+        "recall": 0.05922038980509745
+      },
+      "small_2_to8": {
+        "matched": 546,
+        "total": 5257,
+        "recall": 0.10386151797603196
+      },
+      "larger_ge8": {
+        "matched": 395,
+        "total": 2194,
+        "recall": 0.18003646308113036
+      }
+    },
+    "raw_detections": 5573,
+    "legacy_top3": {
+      "tp": 556,
+      "fp": 127,
+      "fn": 9563,
+      "ignored": 817,
+      "precision": 0.8140556368960469,
+      "recall": 0.054946140923016105,
+      "f1": 0.1029438992779115
+    },
+    "ignored_in_top3": 817
+  },
+  "cells": {
+    "micro": {
+      "tp": 4942,
+      "fp": 4236,
+      "fn": 5177,
+      "ignored": 11379,
+      "precision": 0.5384615384615384,
+      "recall": 0.4883881806502619,
+      "f1": 0.5122039695289423
+    },
+    "per_class": {
+      "person": {
+        "tp": 1098,
+        "fp": 694,
+        "fn": 2840,
+        "ignored": 1952,
+        "precision": 0.6127232142857143,
+        "recall": 0.27882173692229556,
+        "f1": 0.3832460732984293
+      },
+      "vehicle": {
+        "tp": 3844,
+        "fp": 3542,
+        "fn": 2337,
+        "ignored": 9427,
+        "precision": 0.520444083401029,
+        "recall": 0.6219058404788869,
+        "f1": 0.5666691236087565
+      }
+    },
+    "size_recall": {
+      "tiny_lt2": {
+        "matched": 701,
+        "total": 2668,
+        "recall": 0.262743628185907
+      },
+      "small_2_to8": {
+        "matched": 2546,
+        "total": 5257,
+        "recall": 0.4843066387673578
+      },
+      "larger_ge8": {
+        "matched": 1695,
+        "total": 2194,
+        "recall": 0.7725615314494074
+      }
+    },
+    "raw_detections": 20557,
+    "legacy_top3": {
+      "tp": 780,
+      "fp": 115,
+      "fn": 9339,
+      "ignored": 605,
+      "precision": 0.8715083798882681,
+      "recall": 0.07708271568336793,
+      "f1": 0.14163791538042492
+    },
+    "ignored_in_top3": 605
+  },
+  "cell_nms": {
+    "micro": {
+      "tp": 2315,
+      "fp": 1019,
+      "fn": 7804,
+      "ignored": 5906,
+      "precision": 0.6943611277744451,
+      "recall": 0.22877754718845736,
+      "f1": 0.3441611536460269
+    },
+    "per_class": {
+      "person": {
+        "tp": 560,
+        "fp": 311,
+        "fn": 3378,
+        "ignored": 1091,
+        "precision": 0.642939150401837,
+        "recall": 0.14220416455053325,
+        "f1": 0.2328966521106259
+      },
+      "vehicle": {
+        "tp": 1755,
+        "fp": 708,
+        "fn": 4426,
+        "ignored": 4815,
+        "precision": 0.7125456760048721,
+        "recall": 0.2839346384080246,
+        "f1": 0.4060620083294771
+      }
+    },
+    "size_recall": {
+      "tiny_lt2": {
+        "matched": 269,
+        "total": 2668,
+        "recall": 0.10082458770614693
+      },
+      "small_2_to8": {
+        "matched": 1026,
+        "total": 5257,
+        "recall": 0.19516834696595017
+      },
+      "larger_ge8": {
+        "matched": 1020,
+        "total": 2194,
+        "recall": 0.4649042844120328
+      }
+    },
+    "raw_detections": 9240,
+    "legacy_top3": {
+      "tp": 771,
+      "fp": 77,
+      "fn": 9348,
+      "ignored": 652,
+      "precision": 0.9091981132075472,
+      "recall": 0.07619329973317522,
+      "f1": 0.14060362906902527
+    },
+    "ignored_in_top3": 652
+  },
+  "oracle": {
+    "20": {
+      "collisions": {
+        "extra_centers": 3734,
+        "centers_in_conflicting_cells": 1821
+      },
+      "cells": {
+        "micro": {
+          "tp": 5797,
+          "fp": 4,
+          "fn": 4322,
+          "ignored": 1,
+          "precision": 0.9993104637131529,
+          "recall": 0.572882695918569,
+          "f1": 0.7282663316582915
+        },
+        "per_class": {
+          "person": {
+            "tp": 2036,
+            "fp": 4,
+            "fn": 1902,
+            "ignored": 0,
+            "precision": 0.9980392156862745,
+            "recall": 0.5170137125444388,
+            "f1": 0.681164268986283
+          },
+          "vehicle": {
+            "tp": 3761,
+            "fp": 0,
+            "fn": 2420,
+            "ignored": 1,
+            "precision": 1.0,
+            "recall": 0.608477592622553,
+            "f1": 0.7565882116274392
+          }
+        },
+        "size_recall": {
+          "tiny_lt2": {
+            "matched": 1011,
+            "total": 2668,
+            "recall": 0.37893553223388304
+          },
+          "small_2_to8": {
+            "matched": 2858,
+            "total": 5257,
+            "recall": 0.5436560776108046
+          },
+          "larger_ge8": {
+            "matched": 1928,
+            "total": 2194,
+            "recall": 0.8787602552415679
+          }
+        },
+        "raw_detections": 5802,
+        "legacy_top3": {
+          "tp": 1454,
+          "fp": 0,
+          "fn": 8665,
+          "ignored": 0,
+          "precision": 1.0,
+          "recall": 0.14369008795335508,
+          "f1": 0.25127451827529595
+        },
+        "ignored_in_top3": 0
+      },
+      "connected": {
+        "micro": {
+          "tp": 2847,
+          "fp": 2,
+          "fn": 7272,
+          "ignored": 0,
+          "precision": 0.9992979992979993,
+          "recall": 0.2813519122442929,
+          "f1": 0.439080814312153
+        },
+        "per_class": {
+          "person": {
+            "tp": 1017,
+            "fp": 0,
+            "fn": 2921,
+            "ignored": 0,
+            "precision": 1.0,
+            "recall": 0.25825292026409347,
+            "f1": 0.4104944500504541
+          },
+          "vehicle": {
+            "tp": 1830,
+            "fp": 2,
+            "fn": 4351,
+            "ignored": 0,
+            "precision": 0.9989082969432315,
+            "recall": 0.2960685973143504,
+            "f1": 0.4567577686259828
+          }
+        },
+        "size_recall": {
+          "tiny_lt2": {
+            "matched": 473,
+            "total": 2668,
+            "recall": 0.1772863568215892
+          },
+          "small_2_to8": {
+            "matched": 1277,
+            "total": 5257,
+            "recall": 0.24291420962526156
+          },
+          "larger_ge8": {
+            "matched": 1097,
+            "total": 2194,
+            "recall": 0.5
+          }
+        },
+        "raw_detections": 2849,
+        "legacy_top3": {
+          "tp": 1422,
+          "fp": 2,
+          "fn": 8697,
+          "ignored": 0,
+          "precision": 0.9985955056179775,
+          "recall": 0.14052772013044768,
+          "f1": 0.24638308931820152
+        },
+        "ignored_in_top3": 0
+      }
+    },
+    "40": {
+      "collisions": {
+        "extra_centers": 1821,
+        "centers_in_conflicting_cells": 688
+      },
+      "cells": {
+        "micro": {
+          "tp": 8020,
+          "fp": 1,
+          "fn": 2099,
+          "ignored": 0,
+          "precision": 0.999875327265927,
+          "recall": 0.7925684356161676,
+          "f1": 0.8842337375964718
+        },
+        "per_class": {
+          "person": {
+            "tp": 3004,
+            "fp": 0,
+            "fn": 934,
+            "ignored": 0,
+            "precision": 1.0,
+            "recall": 0.7628237684103606,
+            "f1": 0.8654566407375396
+          },
+          "vehicle": {
+            "tp": 5016,
+            "fp": 1,
+            "fn": 1165,
+            "ignored": 0,
+            "precision": 0.9998006776958341,
+            "recall": 0.811519171655072,
+            "f1": 0.8958742632612967
+          }
+        },
+        "size_recall": {
+          "tiny_lt2": {
+            "matched": 1627,
+            "total": 2668,
+            "recall": 0.6098200899550225
+          },
+          "small_2_to8": {
+            "matched": 4261,
+            "total": 5257,
+            "recall": 0.8105383298459198
+          },
+          "larger_ge8": {
+            "matched": 2132,
+            "total": 2194,
+            "recall": 0.9717411121239745
+          }
+        },
+        "raw_detections": 8021,
+        "legacy_top3": {
+          "tp": 1456,
+          "fp": 0,
+          "fn": 8663,
+          "ignored": 0,
+          "precision": 1.0,
+          "recall": 0.1438877359422868,
+          "f1": 0.2515766738660907
+        },
+        "ignored_in_top3": 0
+      }
+    }
+  },
+  "ignored_regions": {
+    "ignored_cell_observations": 71953,
+    "foreground_cell_observations": 13594,
+    "caveat": "Unknown labels, not proven false positives; never masked at inference."
+  }
+}

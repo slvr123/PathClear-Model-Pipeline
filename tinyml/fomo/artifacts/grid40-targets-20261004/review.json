@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "bdfbcc74fb851f735b677b44a3f64fc5948eb0690c1cffa25c2883cd5640f174",
+  "valid": true,
+  "visual_review_note": "Reviewed target-train-1487 and target-validation-249: 40x40 center masks align with source content, while original 20x20 evaluation masks and all instance centers are retained. Masks regenerated from source instance PNGs; RGB caches reused.",
+  "inspection": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\grid40-targets-review-20261004",
+  "source_pixels_reverified": false
+}

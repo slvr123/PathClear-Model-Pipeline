@@ -1,0 +1,83 @@
+{
+  "exclusive_reasons": {
+    "eligible_prediction_already_matched_to_neighbor": 3040,
+    "no_same_class_winning_cell_within_match_radius": 1488,
+    "same_class_winning_cell_only_below_threshold": 1080,
+    "eligible_raw_cell_removed_by_nms": 1938
+  },
+  "center_cell_winners": {
+    "correct_class": 4864,
+    "wrong_object_class": 1963,
+    "background": 719
+  },
+  "annotation_collisions": {
+    "extra_centers": 3734,
+    "centers_in_conflicting_cells": 1821
+  },
+  "perfect_target_grid_with_current_decoder": {
+    "images": 500,
+    "confidence_threshold": 0.6,
+    "radius_input_pixels": 8.0,
+    "uncapped_micro": {
+      "tp": 3657,
+      "fp": 0,
+      "fn": 6462,
+      "ignored": 0,
+      "precision": 1.0,
+      "recall": 0.3613993477616365,
+      "f1": 0.5309233449477352
+    },
+    "legacy_top3_micro": {
+      "tp": 1444,
+      "fp": 0,
+      "fn": 8675,
+      "ignored": 0,
+      "precision": 1.0,
+      "recall": 0.1427018480086965,
+      "f1": 0.2497621724465969
+    },
+    "decoding": {
+      "version": 2,
+      "decoder": "cell_nms",
+      "threshold": 0.6,
+      "max_detections": 0,
+      "nms_distance": "same class, Chebyshev distance in 160x160 input pixels",
+      "nms_radius_input_pixels": 8.0,
+      "consumer": "PathClear decision logic",
+      "creates_classifier_crops": false
+    },
+    "per_class": {
+      "person": {
+        "tp": 1277,
+        "fp": 0,
+        "fn": 2661,
+        "ignored": 0,
+        "precision": 1.0,
+        "recall": 0.32427628237684103,
+        "f1": 0.4897411313518696
+      },
+      "vehicle": {
+        "tp": 2380,
+        "fp": 0,
+        "fn": 3801,
+        "ignored": 0,
+        "precision": 1.0,
+        "recall": 0.38505096262740657,
+        "f1": 0.5560098119378577
+      }
+    },
+    "matched_center_error_input_pixels_mean": 2.9017344734099138,
+    "matched_center_error_input_pixels_median": 2.9859800167041093,
+    "matched_center_error_input_pixels_p95": 4.729127541831333,
+    "detection_confidence_mean": 1.0,
+    "detection_confidence_quantiles": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "detection_count": 3657
+  },
+  "caveat": "Mechanistic associations at threshold 0.60, not causal interventions. The perfect target-grid result is illustrative, not a strict upper bound for arbitrary learned outputs."
+}

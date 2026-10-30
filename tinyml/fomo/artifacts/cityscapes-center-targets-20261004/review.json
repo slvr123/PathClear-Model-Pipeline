@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "72e092415105c07c5cb4ccce141354c1248a437c71b8f13af0203429e0842b9a",
+  "valid": true,
+  "visual_review_note": "Opened target-train-0 and target-validation-249 overlays: thin border pooling is reduced, genuine unknown/group regions remain, and known instance centers are preserved. Structural audit passed all 3475 records; original RGB caches reused unchanged. Evaluation ignore cells and all boxes retained.",
+  "inspection": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\center-targets-approved-20261004",
+  "source_pixels_reverified": false
+}

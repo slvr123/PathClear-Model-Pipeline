@@ -1,0 +1,148 @@
+{
+  "contract": {
+    "implementation": "local-fomo-inspired-cityscapes-v2",
+    "class_names": [
+      "person",
+      "vehicle"
+    ],
+    "background_channel": 0,
+    "object_channel_offset": 1,
+    "input": "RGB float32 [0,1], direct resize, NHWC",
+    "output": "20x20x3 softmax; background, person, vehicle",
+    "image_size": 160,
+    "grid_size": 20,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "crop_size": 96,
+    "collision_policy": "same-class centers share a positive cell; mixed-class cells ignored"
+  },
+  "synthetic": false,
+  "sanity": true,
+  "manifest": "/mnt/c/Users/Asus/OneDrive/Desktop/Code/PathClear/tinyml/fomo/artifacts/cityscapes-pilot-20261004/manifest.json",
+  "manifest_sha256": "5413a0b9bede94170269f841d27c9ec570e73acecc1e74ebf8c1fc6d49c84764",
+  "settings": {
+    "image_size": 160,
+    "crop_size": 96,
+    "stride": 8,
+    "alpha": 0.35,
+    "head_channels": 32,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "epochs": 20,
+    "object_weight": 20.0,
+    "patience": 5,
+    "lr_patience": 2,
+    "min_learning_rate": 1e-05,
+    "confidence_threshold": 0.6,
+    "max_detections": 3,
+    "seed": 42,
+    "match_radius": 8.0,
+    "calibration_images": 100
+  },
+  "batch_size": 8,
+  "requested_epochs": 20,
+  "initialization": "imagenet",
+  "tensorflow": "2.21.0",
+  "keras": "3.15.1",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "parameters": 20787,
+  "train_images": 12,
+  "validation_images": 12,
+  "initial_batch_loss": 1.6054143905639648,
+  "checkpoint_selection": "maximum validation centroid F1 at threshold 0.60",
+  "sanity_gate_passed": true,
+  "duration_seconds": 12.174300928000005,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.7273750901222229,
+      "validation_loss": 0.7977119088172913,
+      "validation_f1": 0.21323529411764705,
+      "validation_precision": 0.4393939393939394,
+      "validation_recall": 0.1407766990291262,
+      "per_class": {
+        "person": {
+          "tp": 6,
+          "fp": 12,
+          "fn": 75,
+          "ignored": 6,
+          "precision": 0.3333333333333333,
+          "recall": 0.07407407407407407,
+          "f1": 0.12121212121212122
+        },
+        "vehicle": {
+          "tp": 23,
+          "fp": 25,
+          "fn": 102,
+          "ignored": 61,
+          "precision": 0.4791666666666667,
+          "recall": 0.184,
+          "f1": 0.2658959537572254
+        }
+      },
+      "learning_rate": 0.0010000000474974513,
+      "elapsed_seconds": 11.434574266999999
+    }
+  ],
+  "best_epoch": 1,
+  "max_trainable_weight_change": 0.02891879342496395,
+  "updates": 30,
+  "metrics": {
+    "images": 12,
+    "confidence_threshold": 0.6,
+    "radius_input_pixels": 8.0,
+    "uncapped_micro": {
+      "tp": 29,
+      "fp": 37,
+      "fn": 177,
+      "ignored": 67,
+      "precision": 0.4393939393939394,
+      "recall": 0.1407766990291262,
+      "f1": 0.21323529411764705
+    },
+    "handoff_top3_micro": {
+      "tp": 9,
+      "fp": 5,
+      "fn": 197,
+      "ignored": 22,
+      "precision": 0.6428571428571429,
+      "recall": 0.043689320388349516,
+      "f1": 0.08181818181818182
+    },
+    "per_class": {
+      "person": {
+        "tp": 6,
+        "fp": 12,
+        "fn": 75,
+        "ignored": 6,
+        "precision": 0.3333333333333333,
+        "recall": 0.07407407407407407,
+        "f1": 0.12121212121212122
+      },
+      "vehicle": {
+        "tp": 23,
+        "fp": 25,
+        "fn": 102,
+        "ignored": 61,
+        "precision": 0.4791666666666667,
+        "recall": 0.184,
+        "f1": 0.2658959537572254
+      }
+    },
+    "matched_center_error_input_pixels_mean": 4.316926695757737,
+    "matched_center_error_input_pixels_median": 3.8542238523347594,
+    "matched_center_error_input_pixels_p95": 7.314871228783934,
+    "detection_confidence_mean": 0.7583891834531512,
+    "detection_confidence_quantiles": [
+      0.6007647514343262,
+      0.6635911464691162,
+      0.748846709728241,
+      0.8312917351722717,
+      0.9873237013816833
+    ],
+    "detection_count": 133
+  },
+  "best_model_bytes": 511345
+}

@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "2dda2563cda15e4b0df9dbaef1fd078076010bc93e33d7a660a4b36bb16f3924",
+  "valid": true,
+  "visual_review_note": "Full 3475-image source and cache audit passed in cityscapes-review-20261004. Codex visually inspected pilot samples plus full-dataset preview indices 3,8,14,15 across train and validation; visible-instance boxes and class mapping align. Collisions and unresolved groups remain documented limitations.",
+  "inspection": "C:\\Users\\Asus\\OneDrive\\Desktop\\Code\\PathClear\\tinyml\\fomo\\artifacts\\cityscapes-approved-20261004",
+  "source_pixels_reverified": false
+}
